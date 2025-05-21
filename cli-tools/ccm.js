@@ -17,7 +17,7 @@ program
     .version('1.0.0');
 
 // ---------------------------------------------
-// cm create-model --model <name> --template <template> [--emojis] [--list]
+// cm create-model --model <name> --template <template> [--emojis]
 // ---------------------------------------------
 program
   .command('create-model')
@@ -25,7 +25,6 @@ program
   .option('--model <name>', '[required with --template] The name of the new model folder')
   .option('--template <template>', '[required with --model] The template to use (e.g., "generic")')
   .option('--emojis', 'Copy emojis.json from templates to content-models (fails if already exists)')
-  .option('--list', 'List all available templates')
   .action((options, command) => {
   const script = path.join(__dirname, 'create-content-model.js');
 
@@ -36,17 +35,8 @@ program
 
   const args = [];
 
-  // ✅ Mode 1: --list must be used alone
-  if (usingList) {
-    if (usingModel || usingTemplate || usingEmojis) {
-      console.error('\n❌ The --list option must be used on its own.\n');
-      process.exit(1);
-    }
-    args.push('--list');
-  }
-
-  // ✅ Mode 2: --model and --template must be used together (optionally with --emojis)
-  else if (usingModel || usingTemplate) {
+  // ✅ Mode 1: --model and --template must be used together (optionally with --emojis)
+  if (usingModel || usingTemplate) {
     if (!(usingModel && usingTemplate)) {
       console.error('\n❌ You must provide both --model and --template together.\n');
       process.exit(1);
@@ -55,7 +45,7 @@ program
     if (usingEmojis) args.push('--emojis');
   }
 
-  // ✅ Mode 3: --emojis only
+  // ✅ Mode 2: --emojis only
   else if (usingEmojis) {
     args.push('--emojis');
   }
@@ -63,7 +53,6 @@ program
   // ❌ Invalid usage
   else {
     console.error('\n❌ You must use one of the following:\n');
-    console.error('  - --list');
     console.error('  - Both --model and --template');
     console.error('  - --emojis');
     process.exit(1);
@@ -112,6 +101,17 @@ program
     const args = ['--model', options.model];
     if (options.force) args.push('--force');
     spawn('node', [script, ...args], { stdio: 'inherit' });
+  });
+
+// ---------------------------------------------
+// cm list-templates
+// ---------------------------------------------
+program
+  .command('list-templates')
+  .description('List all available content model templates and their content types')
+  .action(() => {
+    const script = path.join(__dirname, 'list-templates.js');
+    spawn('node', [script], { stdio: 'inherit' });
   });
 
 // ---------------------------------------------

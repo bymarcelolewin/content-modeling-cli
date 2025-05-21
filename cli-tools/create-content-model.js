@@ -10,7 +10,6 @@ const fse = require("fs-extra");
 const args = process.argv.slice(2);
 const templateFlagIndex = args.indexOf("--template");
 const modelFlagIndex = args.indexOf("--model");
-const listFlagIndex = args.indexOf("--list");
 const emojisFlagIndex = args.indexOf("--emojis");
 
 const templateName =
@@ -23,66 +22,13 @@ const emojisSourcePath = path.join(templatesDir, "emojis.json");
 const emojisDestPath = path.join(modelsDir, "emojis.json");
 
 // --------------------------------------------
-// 📋 Handle --list flag
-// --------------------------------------------
-if (listFlagIndex !== -1) {
-  try {
-    const folders = fs
-      .readdirSync(templatesDir, { withFileTypes: true })
-      .filter((dirent) => dirent.isDirectory())
-      .map((dirent) => {
-        const name = dirent.name;
-        const location = `templates/${dirent.name}`;
-
-        // Look inside content-types folder
-        const contentTypesPath = path.join(
-          templatesDir,
-          dirent.name,
-          "content-types"
-        );
-        let contentTypes = [];
-
-        if (fs.existsSync(contentTypesPath)) {
-          const files = fs
-            .readdirSync(contentTypesPath)
-            .filter((f) => f.endsWith(".json"));
-          contentTypes = files.map((f) => path.basename(f, ".json"));
-        }
-
-        return {
-          "Template Name": name,
-          "Template Location": location,
-          "Content Types":
-            contentTypes.length > 0 ? contentTypes.join(", ") : "[none]",
-        };
-      });
-
-    if (folders.length === 0) {
-      console.log("No templates found in templates/ folder.");
-    } else {
-      console.table(folders);
-    }
-  } catch (err) {
-    console.error(`❌ Failed to list templates: ${err.message}`);
-  }
-
-  process.exit(0);
-}
-
-// --------------------------------------------
 // 🧪 Validate argument combinations
 // --------------------------------------------
 const usingTemplate = !!templateName;
 const usingModel = !!modelName;
-const usingList = listFlagIndex !== -1;
 const usingEmojis = emojisFlagIndex !== -1;
 
-if (usingList && (usingTemplate || usingModel || usingEmojis)) {
-  console.error("❌ --list must be used on its own.");
-  process.exit(1);
-}
-
-if (usingEmojis && !(usingTemplate || usingModel || usingList)) {
+if (usingEmojis && !(usingTemplate || usingModel)) {
   // ✅ Only copying emojis — allow
   if (fs.existsSync(emojisDestPath)) {
     console.error("❌ emojis.json already exists in content-models/");
@@ -104,7 +50,6 @@ if (!usingTemplate || !usingModel) {
   console.error("❌ Please provide both --template and --model arguments.");
   console.error("Usage:");
   console.error("  ccm create-model --template generic --model my-model");
-  console.error("  ccm create-model --list");
   console.error("  ccm create-model --emojis");
   process.exit(1);
 }

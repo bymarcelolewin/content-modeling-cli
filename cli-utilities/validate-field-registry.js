@@ -4,12 +4,14 @@ const fs = require("fs");
 const path = require("path");
 
 function validateFieldRegistry() {
-  const registryPath = path.join(__dirname, "..", "fields", "field-registry.json");
-  const fieldsDir = path.join(__dirname, "..", "fields");
+  const registryPath = path.join(__dirname, "../project/dev-lib", "fields", "field-registry.json");
+  const fieldsDir = path.join(__dirname, "../project/dev-lib", "fields");
 
   let hasErrors = false;
 
   if (!fs.existsSync(registryPath)) {
+    console.log(registryPath);
+    console.log(fieldsDir);
     console.error("❌ field-registry.json not found.");
     process.exit(1);
   }
