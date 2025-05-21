@@ -1,6 +1,8 @@
-# Contentful Content Modeling CLI (`ccm`)
+![Contentful Content Modeling CLI](cli-assets/ccm-logo.png)
+
 © Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reseved.
 
+**NOT associated with Contentful** - Learn more at [Intelligent Content Academy](https://www.intelligentcontentacademy.com/)
 
 A CLI tool for **content architects** and **content modelers** working in Contentful. Easily define content types, fields, and relationships using simple, structured JSON—no scripting or programming required. Create reusable components—field groups that can include predefined options and default values—and use them across multiple content models to ensure consistency and save time. Templatize entire models, and enhance clarity with emoji support through a centralized, easy-to-manage library. Spend less time clicking around the UI and more time designing scalable content models.
 
@@ -76,5 +78,10 @@ Be careful with this, as it will make changes to your Contentful space.  We sugg
 | `ccm delete-model`   | `--model <name>`<br>`--force`       | Deletes an entire content model folder and its types and entries (dry run by default).      | `--model`: Name of the model folder to delete.<br>`--force`: Actually deletes the content; otherwise, it performs a dry run.                         |
 | `ccm list-templates` | _(none)_                            | Lists all available content model templates and their content types.                        | —                                                                                                                                                    |
 | `ccm list-models`    | _(none)_                            | Lists all content model folders currently available in `content-models/`.                   | —                                                                                                                                                    |
-
+## Further Information
+- Learn more at [Intelligent Content Academy](https://www.intelligentcontentacademy.com/)
+- Need help, contact [Marcelo Lewin](https://www.intelligentcontentacademy.com/contact)
+- Use as is.  No warranty provided.  Do not use it in a production environment.
+- **Not affiliated with Contentful.**
+  
 ## More documentation coming soon!

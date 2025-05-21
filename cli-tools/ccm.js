@@ -12,7 +12,7 @@ const program = new Command();
 program
     .name('cm')
     .description(
-        chalk.green('CONTENTFUL CONTENT MODELING (ccm) CLI TOOL\n') + 'By Marcelo Lewin - IntelligentContentAcademy.com\nContact me at marcelo@intelligentcontentacademy.com'
+        chalk.green('CONTENTFUL CONTENT MODELING (ccm) CLI TOOL\n') + '© Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reseved.\n\nLearn more at IntelligentContentAcademy.com\nFor help contact marcelo@intelligentcontentacademy.com\nNot associated with Contentful.\nUse as is.  No warranty provided.  Do not use it in a production environment.'
     )
     .version('1.0.0');
 
