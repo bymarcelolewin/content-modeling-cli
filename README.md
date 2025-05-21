@@ -4,7 +4,7 @@
 
 **NOT associated with Contentful** - Learn more at [Intelligent Content Academy](https://www.intelligentcontentacademy.com/)
 
-A CLI tool for **content architects** and **content modeler**s** working in Contentful. Easily define content types, fields, and relationships using simple, structured JSON—no scripting or programming required. Create reusable components—field groups that can include predefined options and default values—and use them across multiple content models to ensure consistency and save time. Templatize entire models, and enhance clarity with emoji support through a centralized, easy-to-manage library. Because content models are just JSON files, you can version them using Git, GitHub, or any version control system—making your modeling process scalable, trackable, and team-friendly. Spend less time clicking around the UI and more time designing scalable content models.
+A CLI tool for **content architects** and **content modelers** working in Contentful. Easily define content types, fields, and relationships using simple, structured JSON—no scripting or programming required. Create reusable components—field groups that can include predefined options and default values—and use them across multiple content models to ensure consistency and save time. Templatize entire models, and enhance clarity with emoji support through a centralized, easy-to-manage library. Because content models are just JSON files, you can version them using Git, GitHub, or any version control system—making your modeling process scalable, trackable, and team-friendly. Spend less time clicking around the UI and more time designing scalable content models.
 
 ## Key Features
 
