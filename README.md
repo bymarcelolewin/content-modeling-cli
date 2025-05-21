@@ -69,9 +69,7 @@ Be careful with this, as it will make changes to your Contentful space.  We sugg
 
 ```cm push-model --model [your-model-name]```
 
-## Supported CLI Commands
-
-## 📋 CLI Command Reference
+## Currently Supported CLI Commands (Version 1.0.0)
 
 | Command              | Flags                              | Description                                                                                 | Flag Descriptions                                                                                                                                     |
 |:---------------------|:------------------------------------|:--------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------|
