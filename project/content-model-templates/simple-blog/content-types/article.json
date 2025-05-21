@@ -35,7 +35,7 @@
       "fieldName": "Authors",
       "fieldId": "authors",
       "allowedEntries": "one-to-many",
-      "allowedContentTypes": ["authors"]
+      "allowedContentTypes": ["author"]
     },
     {
       "type": "component",
