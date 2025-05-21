@@ -1,12 +1,14 @@
 {
-  "name": "contentful-content-modeling-cli",
+  "name": "content-modeling-cli",
   "version": "1.0.0",
-  "description": "A CLI tool for building, templating, and managing Contentful content models.",
+  "description": "A CLI tool for building, templating, and managing content models for Contentful.",
   "bin": {
-    "ccm": "./cli-tools/ccm.js"
+    "cm": "./cli-tools/cm.js"
   },
   "files": [
     "cli-tools",
+    "cli-utilities",
+    "cli-assets",
     "project",
     "README.md"
   ],

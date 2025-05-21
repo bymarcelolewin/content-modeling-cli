@@ -12,7 +12,7 @@ const program = new Command();
 program
     .name('cm')
     .description(
-        chalk.green('CONTENTFUL CONTENT MODELING (ccm) CLI TOOL\n') + '© Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reseved.\n\nLearn more at IntelligentContentAcademy.com\nFor help contact marcelo@intelligentcontentacademy.com\nNot associated with Contentful.\nUse as is.  No warranty provided.  Do not use it in a production environment.'
+        chalk.green('Content Modeling CLI') + ' for Contentful\n© Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reseved.\n\nLearn more at IntelligentContentAcademy.com\nFor help contact marcelo@intelligentcontentacademy.com\n\nNot associated with Contentful.\nUse \'as is\'.  No warranty provided.\n\n** Do not use it in a production environment. **'
     )
     .version('1.0.0');
 
@@ -153,6 +153,7 @@ program.configureHelp({
     // Override subcommandTerm to color command names green
     subcommandTerm: (cmd) => chalk.green(cmd.name() + (cmd._alias ? '|' + cmd._alias : '') + (cmd.usage() ? ' ' + cmd.usage() : '')),
 });
+
 
 // Parse arguments
 program.parse(process.argv);
