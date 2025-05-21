@@ -21,7 +21,7 @@ A CLI tool for **content architects** and **content modeler**s** working in Cont
   Clone and reuse complete content models using predefined templates to speed up setup and ensure governance and standards.
 
 - **Version Control**  
-  All content types are defined as simple JSON files and organized by model folder, making it easy to track changes, collaborate, and manage your content models with any version control system like Git or GitHub.
+  All content types are defined as simple JSON files and organized by model folder, making it easy to track changes, collaborate, and manage your content models with any version control system like Git, GitHub or any other versioning system.
 
 - **Emoji Support**  
   Add emojis to your content types and fields from a centralized emoji library to enhance the authoring experience.
