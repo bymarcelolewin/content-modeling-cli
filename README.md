@@ -26,7 +26,7 @@ A CLI tool for **content architects** and **content modelers** working in Conten
 - **Emoji Support**  
   Add emojis to your content types and fields from a centralized emoji library to enhance the authoring experience.
 
-- **CMA Configuration per Model**  
+- **Contentful Configuration per Model**  
   Each model includes its own Contentful configuration file, allowing easy switching between environments, spaces, or projects.
 
 - **Command Line Simplicity**  
@@ -38,10 +38,10 @@ A CLI tool for **content architects** and **content modelers** working in Conten
 ## Getting Started
 
 - Install Node.js if you don't already have it.
-- git pull this repo.  It will create a Contentful-Content-Modeling-CLI folder. 
+- git pull this repo.  It will create a Content-Modeling-CLI folder. 
 
 ## CLI Setup
-- Switch to "Contentful-Content-Modeling-CLI" folder.
+- Switch to "Content-Modeling-CLI" folder.
 - In your terminal run: ```npm install```
 - Then run ```npm link``` or if you get a permission error, run ```sudo npm link```.
 - Test the CLI by typing in ```cm --help``` from anywhere.  ```cm``` should be globally available in your terminal now.
@@ -51,7 +51,7 @@ Clone the provided sample content model template using:
 
 ```cm create-model --model [your-model-name] --template simple-blog --emojis``` 
 
-Once your model is created, swich to the ```Contentful-Content-Modeling-CLI/content-models/[your-model-name]/content-types``` folder and configure the .contentfulrc.json file
+Once your model is created, switch to the ```Content-Modeling-CLI/content-models/[your-model-name]/content-types``` folder and configure the .contentfulrc.json file
 
 ```
 {
