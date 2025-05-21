@@ -115,16 +115,14 @@ program
   });
 
 // ---------------------------------------------
-// cm list-models [--details]
+// cm list-models
 // ---------------------------------------------
 program
   .command('list-models')
-  .description('List all available content model folders')
-  .option('--details', 'Show full model details including content types and entry counts')
-  .action((options) => {
+  .description('List all available content models in the content-models folder')
+  .action(() => {
     const script = path.join(__dirname, 'list-content-models.js');
-    const args = options.details ? ['--details'] : [];
-    spawn('node', [script, ...args], { stdio: 'inherit' });
+    spawn('node', [script], { stdio: 'inherit' }); // ✅ args removed
   });
 
 // ---------------------------------------------
