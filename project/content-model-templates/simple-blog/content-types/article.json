@@ -1,0 +1,45 @@
+{
+  "id": "article",
+  "name": "Article",
+  "emoji": "emoji.contentType.contentgroup",
+  "entryField": "title",
+  "description": "This content type lets you create an article.",
+  "fields": [
+    {
+      "type": "title"
+    },
+    {
+      "type": "url",
+      "fieldName": "Article URL",
+      "fieldId": "articleURL",
+      "validation": "path",
+      "emoji": "🔗"
+    },
+    {
+      "type": "multiSelect",
+      "fieldName": "Type",
+      "fieldId": "type",
+      "required": true,
+      "options": ["Article", "FAQ", "Blog"],
+      "defaultValues": ["Article"],
+      "emoji": ""
+    },
+    {
+      "type": "text",
+      "fieldName": "Body",
+      "fieldId": "body",
+      "textType": "rich-text"
+    },
+    {
+      "type": "reference",
+      "fieldName": "Authors",
+      "fieldId": "authors",
+      "allowedEntries": "one-to-many",
+      "allowedContentTypes": ["authors"]
+    },
+    {
+      "type": "component",
+      "componentId": "seoMetadata"
+    }
+  ]
+}

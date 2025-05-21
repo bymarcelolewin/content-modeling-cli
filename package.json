@@ -1,0 +1,49 @@
+{
+  "name": "contentful-content-modeling-cli",
+  "version": "1.0.0",
+  "description": "A CLI tool for building, templating, and managing Contentful content models.",
+  "bin": {
+    "ccm": "./cli-tools/ccm.js"
+  },
+  "files": [
+    "cli-tools",
+    "project",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "keywords": [
+    "contentful",
+    "contentful-cli",
+    "cli",
+    "content-modeling",
+    "headless-cms",
+    "content-architecture"
+  ],
+  "author": {
+    "name": "Marcelo Lewin",
+    "email": "marcelo@intelligentcontentacademy.com",
+    "url": "https://www.intelligentcontent.academy"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^13.1.0",
+    "contentful-cli": "^3.8.8",
+    "contentful-management": "^11.52.2",
+    "fs-extra": "^11.3.0",
+    "module-alias": "^2.2.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "_moduleAliases": {
+  "@expand": "cli-utilities/expand-components",
+  "@validateRegistry": "cli-utilities/validate-field-registry",
+  "@resolve-emoji": "cli-utilities/resolve-emoji"
+  }
+}

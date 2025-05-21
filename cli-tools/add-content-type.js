@@ -1,0 +1,71 @@
+require("module-alias/register"); // 🔗 Enable support for @expand, @validateRegistry, etc.
+
+const fs = require("fs");
+const path = require("path");
+const { camelCase } = require("lodash");
+
+// --------------------------------------------
+// 🧾 Parse CLI arguments
+// --------------------------------------------
+const args = process.argv.slice(2);
+const modelIndex = args.indexOf("--model");
+const nameIndex = args.indexOf("--name");
+
+const modelName = modelIndex !== -1 ? args[modelIndex + 1] : null;
+const contentTypeName = nameIndex !== -1 ? args[nameIndex + 1] : null;
+
+if (!modelName || !contentTypeName) {
+  console.error("❌ Usage: ccm add-content-type --model <model-name> --name <Display Name>");
+  process.exit(1);
+}
+
+// --------------------------------------------
+// 🛠 Convert to content type ID (camelCase)
+// --------------------------------------------
+const contentTypeId = camelCase(contentTypeName);
+
+// --------------------------------------------
+// 🧱 Paths
+// --------------------------------------------
+const modelFolder = path.join(__dirname, "../project/content-models", modelName);
+const contentTypesFolder = path.join(modelFolder, "content-types");
+const filePath = path.join(contentTypesFolder, `${contentTypeId}.json`);
+
+// --------------------------------------------
+// ✅ Ensure model and content-types folder exist
+// --------------------------------------------
+if (!fs.existsSync(modelFolder)) {
+  console.error(`❌ Model folder does not exist: ${modelFolder}`);
+  process.exit(1);
+}
+
+if (!fs.existsSync(contentTypesFolder)) {
+  fs.mkdirSync(contentTypesFolder);
+}
+
+// --------------------------------------------
+// 🚫 Check if content type already exists
+// --------------------------------------------
+if (fs.existsSync(filePath)) {
+  console.error(`❌ Content type already exists: ${filePath}`);
+  process.exit(1);
+}
+
+// --------------------------------------------
+// 📝 Create content type JSON
+// --------------------------------------------
+const contentTypeDefinition = {
+  id: contentTypeId,
+  name: contentTypeName,
+  emoji: "emoji.contentType.contentblock",
+  entryField: "title",
+  description: "Describe this content type.",
+  fields: [
+    {
+      type: "title"
+    }
+  ]
+};
+
+fs.writeFileSync(filePath, JSON.stringify(contentTypeDefinition, null, 2));
+console.log(`✅ Created content-types/${contentTypeId}.json in "${modelName}" model`);

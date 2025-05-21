@@ -1,0 +1,37 @@
+[
+  {
+    "type": "codeId",
+    "function": "createCodeId",
+    "file": "./createCodeId.js"
+  },
+  {
+    "type": "multiSelect",
+    "function": "createMultiSelect",
+    "file": "./createMultiSelect.js"
+  },
+  {
+    "type": "reference",
+    "function": "createReference",
+    "file": "./createReference.js"
+  },
+  {
+    "type": "singleSelect",
+    "function": "createSingleSelect",
+    "file": "./createSingleSelect.js"
+  },
+  {
+    "type": "text",
+    "function": "createText",
+    "file": "./createText.js"
+  },
+  {
+    "type": "title",
+    "function": "createTitle",
+    "file": "./createTitle.js"
+  },
+  {
+    "type": "url",
+    "function": "createURL",
+    "file": "./createURL.js"
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "name": "SEO Metadata",
+  "type": "component",
+  "editorGroup": "SEO",
+  "description": "This component holds fields for SEO metadata.",
+  "fields": [
+    {
+      "type": "text",
+      "fieldName": "SEO Title",
+      "fieldId": "seoTitle",
+      "textType": "single-line",
+      "emoji": "emoji.field.metadata"
+    },
+    {
+      "type": "text",
+      "fieldName": "SEO Description",
+      "fieldId": "seoDescription",
+      "textType": "multi-line",
+      "emoji": "emoji.field.metadata"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "id": "author",
+  "name": "Author",
+  "emoji": "emoji.contentType.contentblock",
+  "entryField": "fullName",
+  "description": "This content type lets you create an author.",
+  "fields": [
+    {
+      "type": "title",
+      "fieldId": "fullName",
+      "fieldName": "Full Name"
+    },
+    {
+      "type": "text",
+      "textType": "single-line",
+      "fieldId": "firstName",
+      "fieldName": "First Name"
+    },
+    {
+      "type": "text",
+      "textType": "single-line",
+      "fieldId": "lastName",
+      "fieldName": "Last Name"
+    },
+    {
+      "type": "text",
+      "textType": "markdown",
+      "fieldId": "workHistory",
+      "fieldName": "Work History"
+    },
+    {
+      "type": "text",
+      "textType": "rich-text",
+      "fieldId": "bio",
+      "fieldName": "Bio"
+    },
+    {
+      "type": "codeId",
+      "fieldId": "authorID",
+      "fieldName": "Author ID",
+      "unique": true,
+      "validate": "snake_case",
+      "emoji": "emoji.field.developer"
+    },
+    {
+      "type": "component",
+      "componentId": "seoMetadata"
+    }
+  ]
+}
