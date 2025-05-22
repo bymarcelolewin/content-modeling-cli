@@ -49,9 +49,9 @@ A CLI tool for **content architects** and **content modelers** working in Conten
 ## Create Your First Model
 Clone the provided sample content model template using: 
 
-```cm create-model --model [your-model-name] --template simple-blog --emojis``` 
+```cm create-model --model [your-model-name] --template simple-blog ``` 
 
-Once your model is created, switch to the ```Content-Modeling-CLI/content-models/[your-model-name]/content-types``` folder and configure the .contentfulrc.json file
+Once your model is created, switch to the ```Content-Modeling-CLI/content-models/models/[your-model-name]/content-types``` folder and configure the .contentfulrc.json file
 
 ```
 {
@@ -73,10 +73,10 @@ Be careful with this, as it will make changes to your Contentful space.  We sugg
 
 | Command              | Flags                              | Description                                                                                 | Flag Descriptions                                                                                                                                     |
 |:---------------------|:------------------------------------|:--------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `cm create-model`   | `--model <name>`<br>`--template <template>`<br>`--emojis` | Creates a new content model folder using a specified template.                              | `--model`: Name of the new model folder to create.<br>`--template`: Name of the template to use.<br>`--emojis`: Copy `emojis.json` into model folder. |
-| `cm push-model`     | `--model <name>`                    | Pushes all content types from the specified model folder to Contentful.                     | `--model`: Name of the existing model folder in `content-models`.                                                                                    |
+| `cm create-model`   | `--model <name>`<br>`--template <template>` | Creates a new content model folder using a specified template. Brings over emoji.json and components folder.                             | `--model`: Name of the new model folder to create.<br>`--template`: Name of the template to use. |
+| `cm push-model`     | `--model <name>`                    | Pushes all content types from the specified model folder to Contentful.                     | `--model`: Name of the existing model folder in.                                                                                    |
 | `cm add-content-type` | `--model <name>`<br>`--name <name>` | Adds a new content type to an existing model folder.                                        | `--model`: Name of the existing model folder.<br>`--name`: Display name of the new content type (e.g., "Article - Blog").                           |
-| `cm delete-model`   | `--model <name>`<br>`--force`       | Deletes an entire content model folder and its types and entries (dry run by default).      | `--model`: Name of the model folder to delete.<br>`--force`: Actually deletes the content; otherwise, it performs a dry run.                         |
+| `cm delete-model`   | `--model <name>`<br>`--force`       | Deletes an entire content model in Contentful, including its Content Types and entries (dry run by default).      | `--model`: Name of the model folder to delete.<br>`--force`: Actually deletes the content; otherwise, it performs a dry run.                         |
 | `cm list-templates` | _(none)_                            | Lists all available content model templates and their content types.                        | —                                                                                                                                                    |
 | `cm list-models`    | _(none)_                            | Lists all content model folders currently available in `content-models/`.                   | —                                                                                                                                                    |
 ## Further Information

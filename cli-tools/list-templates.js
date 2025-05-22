@@ -1,9 +1,16 @@
+//======================================
+// file: list-templates.js
+// version: 1.0
+// last updated: 05-25-2025
+//======================================
+
 require("module-alias/register");
 
 const fs = require("fs");
 const path = require("path");
 
-const templatesDir = path.join(__dirname, "../project/content-model-templates");
+// ✅ Updated path to new templates directory
+const templatesDir = path.join(__dirname, "../project/content-model-templates/templates");
 
 try {
   const folders = fs

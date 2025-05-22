@@ -1,3 +1,9 @@
+//======================================
+// file: resolve-emoji.js
+// version: 1.0
+// last updated: 05-25-2025
+//======================================
+
 require("module-alias/register");
 
 const fs = require("fs");
@@ -6,7 +12,7 @@ const path = require("path");
 let emojis = {};
 
 /**
- * Loads the emojis.json file from the given path, or defaults to process.cwd().
+ * Loads the emojis.json file from the given path, or defaults to content-models root.
  * Skips loading if SKIP_EMOJI_RESOLUTION is set to "true".
  * @param {string} [emojiPath] - Optional absolute path to emojis.json
  * @returns {Object} - Parsed emoji map
@@ -14,7 +20,8 @@ let emojis = {};
 function loadEmojis(emojiPath) {
   if (process.env.SKIP_EMOJI_RESOLUTION === "true") return {};
 
-  const finalPath = emojiPath || path.resolve(process.cwd(), "../emojis.json"); 
+  const defaultEmojiPath = path.join(__dirname, "../project/content-models/emojis.json");
+  const finalPath = emojiPath || defaultEmojiPath;
 
   if (!fs.existsSync(finalPath)) {
     throw new Error(`❌ emojis.json not found at expected path: ${finalPath}`);
@@ -26,7 +33,7 @@ function loadEmojis(emojiPath) {
 /**
  * Resolves an emoji from a direct character or a path like "emoji.field.developer".
  * @param {string} emoji - Emoji character or emoji path
- * @param {string} [emojiPath] - Optional path to emojis.json (resolved externally or via cwd)
+ * @param {string} [emojiPath] - Optional path to emojis.json (resolved externally or via fallback)
  * @returns {string}
  */
 function resolveEmoji(emoji, emojiPath) {
@@ -36,7 +43,6 @@ function resolveEmoji(emoji, emojiPath) {
 
   if (!emoji || typeof emoji !== "string") return "";
 
-  // Handle dot-path like "emoji.field.developer"
   if (emoji.startsWith("emoji.")) {
     const parts = emoji.split(".");
     if (parts.length !== 3 || parts[0] !== "emoji") {
@@ -62,7 +68,6 @@ function resolveEmoji(emoji, emojiPath) {
     return emojis[type][name];
   }
 
-  // Handle literal emoji (basic check)
   if (/^[\p{Emoji}\u200d]+$/u.test(emoji)) {
     return emoji;
   }

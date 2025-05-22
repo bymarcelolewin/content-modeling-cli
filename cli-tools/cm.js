@@ -1,5 +1,11 @@
 #!/usr/bin/env node
 
+//======================================
+// file: cm.js
+// version: 1.0
+// last updated: 05-25-2025
+//======================================
+
 require("module-alias/register");
 
 const { Command } = require('commander');
@@ -10,63 +16,43 @@ const chalk = require('chalk');
 const program = new Command();
 
 program
-    .name('cm')
-    .description(
-        chalk.green('Content Modeling CLI') + ' for Contentful\n© Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reseved.\n\nLearn more at IntelligentContentAcademy.com\nFor help contact marcelo@intelligentcontentacademy.com\n\nNot associated with Contentful.\nUse \'as is\'.  No warranty provided.\n\n** Do not use it in a production environment. **'
-    )
-    .version('1.0.0');
+  .name('cm')
+  .description(
+    chalk.green('Content Modeling CLI') + ' for Contentful\n© Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reseved.\n\nLearn more at IntelligentContentAcademy.com\nFor help contact marcelo@intelligentcontentacademy.com\n\nNot associated with Contentful.\nUse \'as is\'.  No warranty provided.\n\n** Do not use it in a production environment. **'
+  )
+  .version('1.0.0');
 
 // ---------------------------------------------
-// cm create-model --model <name> --template <template> [--emojis]
+// cm create-model --model <name> --template <template>
 // ---------------------------------------------
 program
   .command('create-model')
-  .description('Creates a content model folder inside content-models using an existing template from templates folder.')
+  .description('Creates a content model folder inside content-models/models using an existing template from templates folder.')
   .option('--model <name>', '[required with --template] The name of the new model folder')
-  .option('--template <template>', '[required with --model] The template to use (e.g., "generic")')
-  .option('--emojis', 'Copy emojis.json from templates to content-models (fails if already exists)')
+  .option('--template <template>', '[required with --model] The template to use (e.g., "simple-blog")')
   .action((options, command) => {
-  const script = path.join(__dirname, 'create-content-model.js');
+    const script = path.join(__dirname, 'create-content-model.js');
 
-  const usingModel = typeof options.model !== 'undefined';
-  const usingTemplate = typeof options.template !== 'undefined';
-  const usingList = options.list === true;
-  const usingEmojis = options.emojis === true;
+    const usingModel = typeof options.model !== 'undefined';
+    const usingTemplate = typeof options.template !== 'undefined';
 
-  const args = [];
-
-  // ✅ Mode 1: --model and --template must be used together (optionally with --emojis)
-  if (usingModel || usingTemplate) {
     if (!(usingModel && usingTemplate)) {
       console.error('\n❌ You must provide both --model and --template together.\n');
+      console.error('Usage:');
+      console.error('  cm create-model --template <template> --model <name>\n');
       process.exit(1);
     }
-    args.push('--model', options.model, '--template', options.template);
-    if (usingEmojis) args.push('--emojis');
-  }
 
-  // ✅ Mode 2: --emojis only
-  else if (usingEmojis) {
-    args.push('--emojis');
-  }
-
-  // ❌ Invalid usage
-  else {
-    console.error('\n❌ You must use one of the following:\n');
-    console.error('  - Both --model and --template');
-    console.error('  - --emojis');
-    process.exit(1);
-  }
-
-  spawn('node', [script, ...args], { stdio: 'inherit' });
-});
+    const args = ['--model', options.model, '--template', options.template];
+    spawn('node', [script, ...args], { stdio: 'inherit' });
+  });
 
 // ---------------------------------------------
 // cm push-model --model <name>
 // ---------------------------------------------
 program
   .command('push-model')
-  .description('Pushes an existing content model from the content-models folder to Contentful.')
+  .description('Pushes an existing content model from the content-models/models folder to Contentful.')
   .requiredOption('--model <model>', 'Name of the content model folder that contains all your content types, located inside the content-models folder.')
   .action((options) => {
     const script = path.join(__dirname, 'push-content-model.js');
@@ -93,8 +79,8 @@ program
 // ---------------------------------------------
 program
   .command('delete-model')
-  .description('Delete a content model, including all content types and entries')
-  .requiredOption('--model <model>', 'The model folder name to delete')
+  .description('Delete a content model in Contentful, including all content types and entries')
+  .requiredOption('--model <model>', 'The model to delete')
   .option('--force', 'Actually delete content (dry run by default)')
   .action((options) => {
     const script = path.join(__dirname, 'delete-content-model.js');
@@ -119,10 +105,10 @@ program
 // ---------------------------------------------
 program
   .command('list-models')
-  .description('List all available content models in the content-models folder')
+  .description('List all available content models in the content-models/models folder')
   .action(() => {
     const script = path.join(__dirname, 'list-content-models.js');
-    spawn('node', [script], { stdio: 'inherit' }); // ✅ args removed
+    spawn('node', [script], { stdio: 'inherit' });
   });
 
 // ---------------------------------------------
@@ -140,7 +126,6 @@ program
       args.push('--validate-field-registry');
     }
 
-    // If no args passed to --dev, forward --help
     if (args.length === 0) {
       args.push('--help');
     }
@@ -150,10 +135,12 @@ program
 
 // Enhance help output: make command names green
 program.configureHelp({
-    // Override subcommandTerm to color command names green
-    subcommandTerm: (cmd) => chalk.green(cmd.name() + (cmd._alias ? '|' + cmd._alias : '') + (cmd.usage() ? ' ' + cmd.usage() : '')),
+  subcommandTerm: (cmd) =>
+    chalk.green(
+      cmd.name() +
+      (cmd._alias ? '|' + cmd._alias : '') +
+      (cmd.usage() ? ' ' + cmd.usage() : '')
+    ),
 });
 
-
-// Parse arguments
 program.parse(process.argv);

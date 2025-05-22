@@ -1,3 +1,9 @@
+//======================================
+// file: push-content-model.js
+// version: 1.0
+// last updated: 05-25-2025
+//======================================
+
 require("module-alias/register"); // 🔗 Enable @expand alias
 
 const { execSync } = require("child_process");
@@ -40,9 +46,10 @@ if (!modelName) {
   process.exit(1);
 }
 
-const modelFolder = path.join(__dirname, "../project/content-models", modelName);
+const modelFolder = path.join(__dirname, "../project/content-models/models", modelName);
 const contentTypesFolder = path.join(modelFolder, "content-types");
-const componentsFolder = path.join(modelFolder, "components");
+const componentsFolder = path.join(__dirname, "../project/content-models/components");
+const emojisPath = path.join(__dirname, "../project/content-models/emojis.json");
 const tempModelScriptPath = path.join(modelFolder, "temp-push-content-model.js");
 
 //
@@ -72,7 +79,6 @@ try {
     const def = JSON.parse(raw);
 
     def.__filename = file;
-    const emojisPath = path.join(path.dirname(modelFolder), "emojis.json");
     def.emoji = resolveEmoji(def.emoji, emojisPath);
 
     return expandComponents(def, componentsFolder);
@@ -81,11 +87,11 @@ try {
   const tempScript = `const path = require("path");
 
 // ✅ Load field registry
-const fieldRegistry = require("../../dev-lib/fields/field-registry.json");
+const fieldRegistry = require("../../../dev-lib/fields/field-registry.json");
 
 const typeToHandler = {};
 fieldRegistry.forEach(({ type, function: functionName, file }) => {
-  const fullPath = path.join(__dirname, "..", "..", "dev-lib", "fields", file);
+  const fullPath = path.join(__dirname, "..", "..", "..", "dev-lib", "fields", file);
   const module = require(fullPath);
   if (!module[functionName]) {
     throw new Error(\`❌ Function "\${functionName}" not found in \${file}\`);

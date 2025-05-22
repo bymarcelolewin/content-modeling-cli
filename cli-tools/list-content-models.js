@@ -1,11 +1,16 @@
+//======================================
+// file: list-content-models.js
+// version: 1.0
+// last updated: 05-25-2025
+//======================================
+
 require("module-alias/register");
 
 const fs = require("fs");
 const path = require("path");
-const { createClient } = require("contentful-management");
 
-// Root path to content models
-const MODELS_DIR = path.join(__dirname, "../project/content-models");
+// ✅ New path to models directory
+const MODELS_DIR = path.join(__dirname, "../project/content-models/models");
 
 function getContentModelFolders() {
   return fs.readdirSync(MODELS_DIR).filter((item) => {

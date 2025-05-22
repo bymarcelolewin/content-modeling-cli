@@ -1,3 +1,9 @@
+//======================================
+// file: add-content-type.js
+// version: 1.0
+// last updated: 05-25-2025
+//======================================
+
 require("module-alias/register"); // 🔗 Enable support for @expand, @validateRegistry, etc.
 
 const fs = require("fs");
@@ -15,7 +21,7 @@ const modelName = modelIndex !== -1 ? args[modelIndex + 1] : null;
 const contentTypeName = nameIndex !== -1 ? args[nameIndex + 1] : null;
 
 if (!modelName || !contentTypeName) {
-  console.error("❌ Usage: ccm add-content-type --model <model-name> --name <Display Name>");
+  console.error("❌ Usage: cm add-content-type --model <model-name> --name <Display Name>");
   process.exit(1);
 }
 
@@ -27,7 +33,7 @@ const contentTypeId = camelCase(contentTypeName);
 // --------------------------------------------
 // 🧱 Paths
 // --------------------------------------------
-const modelFolder = path.join(__dirname, "../project/content-models", modelName);
+const modelFolder = path.join(__dirname, "../project/content-models/models", modelName);
 const contentTypesFolder = path.join(modelFolder, "content-types");
 const filePath = path.join(contentTypesFolder, `${contentTypeId}.json`);
 

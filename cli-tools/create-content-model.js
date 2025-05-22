@@ -1,8 +1,15 @@
+//======================================
+// file: create-content-model.js
+// version: 1.0
+// last updated: 05-25-2025
+//======================================
+
 require("module-alias/register");
 
 const fs = require("fs");
 const path = require("path");
 const fse = require("fs-extra");
+const readline = require("readline");
 
 // --------------------------------------------
 // 🔧 Parse CLI arguments
@@ -10,96 +17,176 @@ const fse = require("fs-extra");
 const args = process.argv.slice(2);
 const templateFlagIndex = args.indexOf("--template");
 const modelFlagIndex = args.indexOf("--model");
-const emojisFlagIndex = args.indexOf("--emojis");
 
-const templateName =
-  templateFlagIndex !== -1 ? args[templateFlagIndex + 1] : null;
+const templateName = templateFlagIndex !== -1 ? args[templateFlagIndex + 1] : null;
 const modelName = modelFlagIndex !== -1 ? args[modelFlagIndex + 1] : null;
 
 const templatesDir = path.join(__dirname, "../project/content-model-templates");
+const templateContentTypesDir = path.join(templatesDir, "templates", templateName, "content-types");
+const templateConfigPath = path.join(templatesDir, "templates", templateName, ".contentfulrc.json");
+
 const modelsDir = path.join(__dirname, "../project/content-models");
+const modelFolder = path.join(modelsDir, "models", modelName);
+const modelContentTypesDir = path.join(modelFolder, "content-types");
+const modelConfigPath = path.join(modelFolder, ".contentfulrc.json");
+
 const emojisSourcePath = path.join(templatesDir, "emojis.json");
 const emojisDestPath = path.join(modelsDir, "emojis.json");
 
+const componentsSourceDir = path.join(templatesDir, "components");
+const componentsDestDir = path.join(modelsDir, "components");
+
+// Summary tracking
+let copiedComponents = [];
+let skippedComponents = [];
+let overwrittenComponents = [];
+let skippedEmojis = false;
+let copiedEmojis = false;
+let overwrittenEmojis = false;
+let copiedConfig = false;
+
 // --------------------------------------------
-// 🧪 Validate argument combinations
+// 🔄 Helper: Prompt for yes/no
 // --------------------------------------------
-const usingTemplate = !!templateName;
-const usingModel = !!modelName;
-const usingEmojis = emojisFlagIndex !== -1;
+const promptYesNo = (question) => {
+  return new Promise((resolve) => {
+    const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+    rl.question(question + " (y/n): ", (answer) => {
+      rl.close();
+      resolve(answer.trim().toLowerCase() === "y");
+    });
+  });
+};
 
-if (usingEmojis && !(usingTemplate || usingModel)) {
-  // ✅ Only copying emojis — allow
-  if (fs.existsSync(emojisDestPath)) {
-    console.error("❌ emojis.json already exists in content-models/");
-    process.exit(1);
-  }
-
-  try {
-    fs.copyFileSync(emojisSourcePath, emojisDestPath);
-    console.log("✅ emojis.json copied to content-models/");
-  } catch (err) {
-    console.error(`❌ Failed to copy emojis.json: ${err.message}`);
-    process.exit(1);
-  }
-
-  process.exit(0);
-}
-
-if (!usingTemplate || !usingModel) {
+// --------------------------------------------
+// 🧪 Validate arguments
+// --------------------------------------------
+if (!templateName || !modelName) {
   console.error("❌ Please provide both --template and --model arguments.");
   console.error("Usage:");
-  console.error("  ccm create-model --template generic --model my-model");
-  console.error("  ccm create-model --emojis");
+  console.error("  ccm create-model --template simple-blog --model myblog");
   process.exit(1);
 }
 
-const templateFolder = path.join(templatesDir, `${templateName}`);
-const modelFolder = path.join(modelsDir, modelName);
-
 // --------------------------------------------
-// 📂 Check template folder exists
+// 📂 Check template content-types folder exists
 // --------------------------------------------
-if (!fs.existsSync(templateFolder)) {
-  console.error(
-    `❌ Template folder does not exist: templates/${templateName}`
-  );
+if (!fs.existsSync(templateContentTypesDir)) {
+  console.error(`❌ Template folder does not exist: templates/${templateName}`);
   process.exit(1);
 }
 
 // 🚫 Abort if model folder already exists
 if (fs.existsSync(modelFolder)) {
-  console.error(`❌ Model folder already exists: content-models/${modelName}`);
+  console.error(`❌ Model folder already exists: models/${modelName}`);
   process.exit(1);
 }
 
 // --------------------------------------------
-// ✅ Copy template to new model folder
+// ✅ Copy template content-types to new model folder
 // --------------------------------------------
 try {
-  fse.copySync(templateFolder, modelFolder);
-  console.log(
-    `✅ Model "${modelName}" created from template "${templateName}"`
-  );
+  fse.copySync(templateContentTypesDir, modelContentTypesDir);
 } catch (err) {
   console.error(`❌ Failed to copy template: ${err.message}`);
   process.exit(1);
 }
 
 // --------------------------------------------
-// 😊 Copy emojis.json if --emojis flag is set
+// 📦 Copy .contentfulrc.json from template
 // --------------------------------------------
-if (emojisFlagIndex !== -1) {
-  if (fs.existsSync(emojisDestPath)) {
-    console.error("❌ emojis.json already exists in content-models/");
-    process.exit(1);
-  }
-
+if (fs.existsSync(templateConfigPath)) {
   try {
-    fs.copyFileSync(emojisSourcePath, emojisDestPath);
-    console.log("✅ emojis.json copied to content-models/");
+    fs.copyFileSync(templateConfigPath, modelConfigPath);
+    copiedConfig = true;
   } catch (err) {
-    console.error(`❌ Failed to copy emojis.json: ${err.message}`);
+    console.error(`❌ Failed to copy .contentfulrc.json: ${err.message}`);
     process.exit(1);
   }
 }
+
+// --------------------------------------------
+// 📦 Copy emojis.json (if available)
+// --------------------------------------------
+(async () => {
+  if (fs.existsSync(emojisSourcePath)) {
+    if (!fs.existsSync(emojisDestPath)) {
+      fs.copyFileSync(emojisSourcePath, emojisDestPath);
+      copiedEmojis = true;
+    } else {
+      const sourceStat = fs.statSync(emojisSourcePath);
+      const destStat = fs.statSync(emojisDestPath);
+
+      if (sourceStat.mtime > destStat.mtime) {
+        const overwrite = await promptYesNo("⚠️ emojis.json already exists and is older. Overwrite?");
+        if (overwrite) {
+          fs.copyFileSync(emojisSourcePath, emojisDestPath);
+          overwrittenEmojis = true;
+        } else {
+          skippedEmojis = true;
+        }
+      } else {
+        skippedEmojis = true;
+      }
+    }
+  }
+
+  // --------------------------------------------
+  // 📦 Copy components folder
+  // --------------------------------------------
+  if (fs.existsSync(componentsSourceDir)) {
+    if (!fs.existsSync(componentsDestDir)) {
+      fs.mkdirSync(componentsDestDir, { recursive: true });
+    }
+
+    const files = fs.readdirSync(componentsSourceDir).filter(f => f.endsWith(".json"));
+
+    for (const file of files) {
+      const srcFile = path.join(componentsSourceDir, file);
+      const destFile = path.join(componentsDestDir, file);
+
+      if (!fs.existsSync(destFile)) {
+        fs.copyFileSync(srcFile, destFile);
+        copiedComponents.push(file);
+      } else {
+        const srcStat = fs.statSync(srcFile);
+        const destStat = fs.statSync(destFile);
+
+        if (srcStat.mtime > destStat.mtime) {
+          const overwrite = await promptYesNo(`⚠️ Component "${file}" already exists and is older. Overwrite?`);
+          if (overwrite) {
+            fs.copyFileSync(srcFile, destFile);
+            overwrittenComponents.push(file);
+          } else {
+            skippedComponents.push(file);
+          }
+        } else {
+          skippedComponents.push(file);
+        }
+      }
+    }
+  }
+
+  // --------------------------------------------
+  // 🧾 Final Summary
+  // --------------------------------------------
+  console.log("\n=============");
+  console.log("Summary");
+  console.log("=============");
+
+  console.log(`✅ Model "${modelName}" created from template "${templateName}"`);
+  if (copiedConfig) console.log("✅ Copied .contentfulrc.json to model folder");
+
+  if (copiedEmojis) console.log("✅ Copied emojis.json");
+  if (overwrittenEmojis) console.log("⚠️ Overwritten emojis.json");
+  if (skippedEmojis) console.log("⚠️ Skipped emojis.json");
+
+  if (copiedComponents.length)
+    console.log(`✅ Copied components: ${copiedComponents.join(", ")}`);
+  if (overwrittenComponents.length)
+    console.log(`⚠️ Overwritten components: ${overwrittenComponents.join(", ")}`);
+  if (skippedComponents.length)
+    console.log(`⚠️ Skipped components: ${skippedComponents.join(", ")}`);
+
+  console.log(""); // newline
+})();

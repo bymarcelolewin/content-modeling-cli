@@ -1,3 +1,9 @@
+//======================================
+// file: expand-components.js
+// version: 1.0
+// last updated: 05-25-2025
+//======================================
+
 require("module-alias/register");
 
 const fs = require("fs");

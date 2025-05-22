@@ -1,3 +1,9 @@
+//======================================
+// file: createURL.js
+// version: 1.0
+// last updated: 05-25-2025
+//======================================
+
 const resolveEmoji = require("../../../cli-utilities/resolve-emoji");
 
 function createURL(contentType, {

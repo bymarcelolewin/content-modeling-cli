@@ -1,3 +1,9 @@
+//======================================
+// file: delete-content-model.js
+// version: 1.0
+// last updated: 05-25-2025
+//======================================
+
 require("module-alias/register");
 
 const fs = require("fs");
@@ -21,13 +27,13 @@ if (!modelArg) {
 }
 
 // --------------------------------------------
-// 🔧 Warn user they are not in dry-mode
+// 🛑 Warn user they are not in dry-mode
 // --------------------------------------------
 if (!isDryRun) {
   console.log(
     "\x1b[31m************************************************\x1b[0m"
   );
-  console.log("🚨 \x1b[1m\x1b[31mREAD THIS! IMPORTANT!\x1b[0m 🚨"); // bold red foreground
+  console.log("🚨 \x1b[1m\x1b[31mREAD THIS! IMPORTANT!\x1b[0m 🚨");
   console.log();
   console.log("You are running the script in --force mode.");
   console.log("This will DELETE YOUR ENTIRE content model.");
@@ -35,13 +41,13 @@ if (!isDryRun) {
   console.log(
     "\x1b[31m************************************************\x1b[0m"
   );
-  console.log("\x1b[0m"); // reset
+  console.log("\x1b[0m");
 }
 
 // --------------------------------------------
 // 🗂️ Resolve paths
 // --------------------------------------------
-const modelPath = path.resolve(__dirname, "../project/content-models", modelArg);
+const modelPath = path.resolve(__dirname, "../project/content-models/models", modelArg);
 const configPath = path.join(modelPath, ".contentfulrc.json");
 
 if (!fs.existsSync(configPath)) {
@@ -123,10 +129,7 @@ async function deleteAllContentTypes() {
 
     for (const ct of contentTypes.items) {
       const ctId = ct.sys.id;
-      const entries = await environment.getEntries({
-        content_type: ctId,
-        limit: 1,
-      });
+      const entries = await environment.getEntries({ content_type: ctId, limit: 1 });
       const count = entries.total;
       contentTypeEntryCounts[ctId] = count;
 
@@ -157,7 +160,7 @@ async function deleteAllContentTypes() {
 
     if (typesWithEntries.length > 0) {
       const confirm = await promptUser(
-        "\n⚠️\u00A0\u00A0Do you want to delete ALL entries in the\ncontent types above (including archived,\ndraft, published)? (yes/no): "
+        "\n⚠️  Do you want to delete ALL entries in the\ncontent types above (including archived,\ndraft, published)? (yes/no): "
       );
       if (confirm === "yes") {
         confirmedDeleteEntries = true;
@@ -198,7 +201,7 @@ async function deleteAllContentTypes() {
     });
 
     const confirmDelete1 = await promptUser(
-      "\n⚠️\u00A0\u00A0Are you sure you want to delete ALL\nthe content types above? (yes/no): "
+      "\n⚠️  Are you sure you want to delete ALL\nthe content types above? (yes/no): "
     );
     if (confirmDelete1 !== "yes") {
       console.log("❌ Aborted by user.");
@@ -206,17 +209,14 @@ async function deleteAllContentTypes() {
     }
 
     const confirmDelete2 = await promptUser(
-      '\n⚠️\u00A0\u00A0Please type "delete all" to confirm\nfinal deletion: '
+      '\n⚠️  Please type "delete all" to confirm\nfinal deletion: '
     );
     if (confirmDelete2 !== "delete all") {
-      console.log(
-        "❌ Final confirmation failed. No content types were deleted."
-      );
+      console.log("❌ Final confirmation failed. No content types were deleted.");
       return;
     }
 
     // 🔥 Begin actual deletions
-
     console.log("\n---------------------------------------");
     console.log(`DELETING PROCESS STARTED ${isDryRun ? "(Dry Run)" : ""}`);
     console.log("---------------------------------------");
@@ -259,9 +259,7 @@ async function deleteAllContentTypes() {
             await entry.delete();
             console.log(`   ✅ Deleted`);
           } catch (err) {
-            console.error(
-              `⚠️ Failed to delete entry ${entryId}: ${err.message}`
-            );
+            console.error(`⚠️ Failed to delete entry ${entryId}: ${err.message}`);
           }
         }
       }

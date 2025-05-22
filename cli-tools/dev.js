@@ -1,4 +1,9 @@
-#!/usr/bin/env node
+//======================================
+// file: dev.js
+// version: 1.0
+// last updated: 05-25-2025
+//======================================
+
 require("module-alias/register");
 
 // ✅ Set flag to skip emoji loading in dev mode
@@ -13,10 +18,10 @@ const args = process.argv.slice(2);
 
 if (args.length === 0 || args.includes("--help")) {
   console.log(`
-🛠️  Developer Tools (ccm dev)
+🛠️  Developer Tools (cm dev)
 
 Usage:
-  ccm dev --validate-field-registry   Validate field-registry.json
+  cm dev --validate-field-registry   Validate field-registry.json
 
 More dev tools coming soon...
   `);
@@ -43,5 +48,5 @@ if (args.includes("--validate-field-registry")) {
 // ❌ Unknown dev command
 //
 console.error("❌ Unknown dev command.");
-console.log('Try: ccm dev --help');
+console.log('Try: cm dev --help');
 process.exit(1);
