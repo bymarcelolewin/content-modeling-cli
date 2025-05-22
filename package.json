@@ -8,9 +8,10 @@
   "files": [
     "cli-assets",
     "cli-fields",
+    "cli-project-template",
+    "cli-temp",
     "cli-tools",
     "cli-utilities",
-    "project",
     "README.md"
   ],
   "scripts": {

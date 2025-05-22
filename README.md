@@ -4,44 +4,41 @@
 
 **NOT associated with Contentful** - Learn more at [Intelligent Content Academy](https://www.intelligentcontentacademy.com/)
 
-A CLI tool for **content architects** and **content modelers** working in Contentful. Easily define content types, fields, and relationships using simple, structured JSON—no scripting or programming required. Create reusable components—field groups that can include predefined options and default values—and use them across multiple content models to ensure consistency and save time. Templatize entire models, and enhance clarity with emoji support through a centralized, easy-to-manage library. Because content models are just JSON files, you can version them using Git, GitHub, or any version control system—making your modeling process scalable, trackable, and team-friendly. Spend less time clicking around the UI and more time designing scalable content models.
+A CLI tool for content modeling in Contentful, built specifically for content architects and content modelers. Define content types, fields, and relationships using simple, structured JSON—no scripting or programming required. Create reusable components with predefined options and default values, and apply them across models for consistency and speed. Templatize entire content models, enhance clarity with emoji support via a centralized library, and organize your work using a project-based structure. With built-in Git support, you can version, track, and collaborate on your models just like code—making your modeling process scalable, maintainable, and team-friendly. Spend less time clicking around the UI and more time designing intelligent, reusable content architectures.
 
 ## Key Features
 
-- **No-Code Modeling**  
-  Define content types, fields, and relationships using simple, structured JSON—no scripting or programming required.
+- **No-Code Content Modeling**  
+  Define content types, fields, and relationships using clean, structured JSON—no scripting or programming required.
 
-- **Reusable Components**  
-  Create reusable field groups (components) that can be shared across content types to reduce duplication and enforce consistency.
-
-- **Default Values in Components**  
-  Preconfigure components with predefined options and default values (e.g., a multi-select list with pre-selected defaults) for quick, consistent use in any model.
+- **Reusable Components with Defaults**  
+  Create reusable field groups (components) that include predefined options and default values (e.g., a multi-select field with default selections) for fast, consistent reuse across content models.
 
 - **Model Templatization**  
-  Clone and reuse complete content models using predefined templates to speed up setup and ensure governance and standards.
+  Clone and reuse complete content models from predefined templates to accelerate setup and ensure governance, consistency, and scalability.
 
-- **Emoji Support**  
-  Add emojis to your content types and fields from a centralized emoji library to enhance the authoring experience.
+- **Project-Based Organization**  
+  Use `cm init` to scaffold distinct Content Modeling projects—each containing multiple content models, templates, and localized configurations. Ideal for managing multiple clients, sites, or environments.
+
+- **Built-in Git Version Control**  
+  All content models are stored as structured JSON files and organized by project, making them easy to version and manage with Git or GitHub. With built-in Git initialization support, you can start tracking your models from day one—ideal for collaboration, auditing, and CI/CD integration.
 
 - **Contentful Configuration per Model**  
-  Each model includes its own Contentful configuration file, allowing easy switching between environments, spaces, or projects.
+  Each model includes its own simple Contentful configuration file, allowing seamless switching between spaces, environments, and teams without changing global settings.
 
-- **Command Line Simplicity**  
-  Run all tasks from a single CLI command (`cm`), making content modeling repeatable, scalable, and versionable (if you, for example, check in your model using Git / GitHub).
+- **Emoji Support**  
+  Enhance clarity and usability by adding emojis to content types and fields from a centralized emoji library—improving the authoring experience in Contentful.
 
 - **Extensible Field Type Registry**  
-  Your developers can add support for custom field types and embed business logic by extending our modular field registry—making the CLI adaptable to your company's unique modeling requirements.
+  Developers can extend the CLI with support for custom field types and business logic via a modular, pluggable field registry—adapting the tool to your team’s specific modeling needs.
 
-- **Project with Multiple Models Support**  
-  Use `cm init` to create distinct Content Modeling projects, each capable of containing multiple content models, templates, and localized configurations—ideal for organizing projects by client, site, or environment.
-
-- **Version Control**  
-  Because Content Modeling CLI stores everything as a project in simple JSON files, organized by content model, it's easy to track changes, collaborate, and manage your content models with any version control system like Git or GitHub.
+- **Command Line Simplicity**  
+  Perform all modeling tasks using a single command (`cm`)—making your process fast, consistent, and easily scriptable for automation or CI/CD integration.
 
 ## Getting Started
 
 - Install Node.js if you don't already have it.
-- git pull this repo.  It will create a Content-Modeling-CLI folder. 
+- git clone this repo.  It will create a Content-Modeling-CLI folder. 
 
 ## CLI Setup
 - Switch to "Content-Modeling-CLI" folder.
