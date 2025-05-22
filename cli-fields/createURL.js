@@ -1,10 +1,10 @@
 //======================================
 // file: createURL.js
-// version: 1.0
-// last updated: 05-25-2025
+// version: 1.2
+// last updated: 05-22-2025
 //======================================
 
-const resolveEmoji = require("../../../cli-utilities/resolve-emoji");
+const resolveEmoji = require("@resolve-emoji");
 
 function createURL(contentType, {
   fieldName = "URL or Path",
@@ -12,8 +12,9 @@ function createURL(contentType, {
   required = true,
   validate = "both",
   emoji = "",
+  emojiPath = undefined, // ✅ Injected by CLI
 } = {}) {
-  const resolvedEmoji = resolveEmoji(emoji);
+  const resolvedEmoji = resolveEmoji(emoji, emojiPath);
   const name = resolvedEmoji ? `${resolvedEmoji} ${fieldName}` : fieldName;
 
   let pattern;

@@ -6,9 +6,10 @@
     "cm": "./cli-tools/cm.js"
   },
   "files": [
+    "cli-assets",
+    "cli-fields",
     "cli-tools",
     "cli-utilities",
-    "cli-assets",
     "project",
     "README.md"
   ],
@@ -43,9 +44,14 @@
   "publishConfig": {
     "access": "public"
   },
+  "exports": {
+    "./cli": "./cli-tools/cm.js"
+  },
   "_moduleAliases": {
-  "@expand": "cli-utilities/expand-components",
-  "@validateRegistry": "cli-utilities/validate-field-registry",
-  "@resolve-emoji": "cli-utilities/resolve-emoji"
+    "@fields": "cli-fields",
+    "@expand": "cli-utilities/expand-components.js",
+    "@validateRegistry": "cli-utilities/validate-field-registry.js",
+    "@resolve-emoji": "cli-utilities/resolve-emoji.js",
+    "@loadProjectRoot": "cli-utilities/load-project-root.js"
   }
 }

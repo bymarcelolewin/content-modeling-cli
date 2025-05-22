@@ -1,18 +1,19 @@
 //======================================
 // file: createTitle.js
-// version: 1.0
-// last updated: 05-25-2025
+// version: 1.3
+// last updated: 05-22-2025
 //======================================
 
-const resolveEmoji = require("../../../cli-utilities/resolve-emoji");
+const resolveEmoji = require("@resolve-emoji");
 
 function createTitle(contentType, {
   fieldName = "Title",
   fieldId = "title",
   required = true,
   emoji = "",
+  emojiPath = undefined, // ✅ Accept emojiPath passed in from CLI
 } = {}) {
-  const resolvedEmoji = resolveEmoji(emoji);
+  const resolvedEmoji = resolveEmoji(emoji, emojiPath); // ✅ Use provided path
   const name = resolvedEmoji ? `${resolvedEmoji} ${fieldName}` : fieldName;
 
   contentType.createField(fieldId, {

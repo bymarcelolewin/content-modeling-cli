@@ -1,60 +1,53 @@
 //======================================
 // file: push-content-model.js
-// version: 1.0
-// last updated: 05-25-2025
+// version: 1.9
+// last updated: 05-22-2025
 //======================================
 
-require("module-alias/register"); // 🔗 Enable @expand alias
+require("module-alias/register");
 
 const { execSync } = require("child_process");
 const path = require("path");
 const fs = require("fs");
-
-// --------------------------------------------
-// ✅ Load shared utilities
-// --------------------------------------------
 const resolveEmoji = require("@resolve-emoji");
 const { expandComponents } = require("@expand");
+const loadProjectRoot = require("@loadProjectRoot");
 
-//
-// ✅ Load field registry and build dynamic handler map
-//
-const fieldRegistry = require("../project/dev-lib/fields/field-registry.json");
+// --------------------------------------------
+// ✅ Load field registry and handler map
+// --------------------------------------------
+const fieldRegistry = require("@fields/field-registry.json");
 
-const typeToHandler = {};
-fieldRegistry.forEach(({ type, function: functionName, file }) => {
-  const fullPath = path.join(__dirname, "..", "project", "dev-lib", "fields", file);
-  const module = require(fullPath);
+const cliFieldsDir = path.join(__dirname, "..", "cli-fields");
+const cliTempDir = path.join(__dirname, "..", "cli-temp");
+const relativeFieldsDir = "../cli-fields";
+const relativeRegistryPath = "../cli-fields/field-registry.json";
+const relativeResolveEmoji = "../cli-utilities/resolve-emoji.js";
 
-  if (!module[functionName]) {
-    throw new Error(`❌ Function "${functionName}" not found in ${file}`);
-  }
-
-  typeToHandler[type] = module[functionName];
-});
-
-//
+// --------------------------------------------
 // 🔧 Parse --model from arguments
-//
+// --------------------------------------------
 const args = process.argv.slice(2);
 const modelFlagIndex = args.indexOf("--model");
 const modelName = modelFlagIndex !== -1 ? args[modelFlagIndex + 1] : null;
 
 if (!modelName) {
   console.error("❌ Please provide a content model using --model");
-  console.error("Usage: node push-content-model.js --model [model-name]");
+  console.error("Usage: cm push-model --model [model-name]");
   process.exit(1);
 }
 
-const modelFolder = path.join(__dirname, "../project/content-models/models", modelName);
+const projectRoot = loadProjectRoot();
+const modelFolder = path.join(projectRoot, "content-models", "models", modelName);
 const contentTypesFolder = path.join(modelFolder, "content-types");
-const componentsFolder = path.join(__dirname, "../project/content-models/components");
-const emojisPath = path.join(__dirname, "../project/content-models/emojis.json");
-const tempModelScriptPath = path.join(modelFolder, "temp-push-content-model.js");
+const componentsFolder = path.join(projectRoot, "content-models", "components");
+const emojisPath = path.join(projectRoot, "content-models", "emojis.json");
+const tempScriptFilename = `temp-push-content-model-${modelName}.js`;
+const tempModelScriptPath = path.join(cliTempDir, tempScriptFilename);
 
-//
+// --------------------------------------------
 // 🧼 Generate temp-push-content-model.js
-//
+// --------------------------------------------
 try {
   if (!fs.existsSync(contentTypesFolder)) {
     console.error(`❌ content-types folder does not exist at: ${contentTypesFolder}`);
@@ -63,7 +56,7 @@ try {
 
   if (fs.existsSync(tempModelScriptPath)) {
     fs.unlinkSync(tempModelScriptPath);
-    console.log(`🗑️  Deleted existing temp-push-content-model.js in "${modelName}"`);
+    console.log(`🗑️  Deleted existing ${tempScriptFilename}`);
   }
 
   const files = fs.readdirSync(contentTypesFolder).filter((file) => file.endsWith(".json"));
@@ -81,18 +74,26 @@ try {
     def.__filename = file;
     def.emoji = resolveEmoji(def.emoji, emojisPath);
 
-    return expandComponents(def, componentsFolder);
+    // Expand components
+    const expanded = expandComponents(def, componentsFolder);
+
+    // Inject emojiPath into each field
+    expanded.fields = expanded.fields.map((f) => ({
+      ...f,
+      emojiPath: emojisPath,
+    }));
+
+    return expanded;
   });
 
   const tempScript = `const path = require("path");
-
-// ✅ Load field registry
-const fieldRegistry = require("../../../dev-lib/fields/field-registry.json");
+const fs = require("fs");
+const resolveEmoji = require("${relativeResolveEmoji}");
+const fieldRegistry = require("${relativeRegistryPath}");
 
 const typeToHandler = {};
 fieldRegistry.forEach(({ type, function: functionName, file }) => {
-  const fullPath = path.join(__dirname, "..", "..", "..", "dev-lib", "fields", file);
-  const module = require(fullPath);
+  const module = require("${relativeFieldsDir}/" + file);
   if (!module[functionName]) {
     throw new Error(\`❌ Function "\${functionName}" not found in \${file}\`);
   }
@@ -125,30 +126,40 @@ ${contentTypeObjects.map((def) => {
   console.log("\n---------------------------------------");
   console.log("INITIALIZING");
   console.log("---------------------------------------");
-  console.log(`\n>> Generated temp script for installing "${modelName}"`);
+  console.log(`\n>> Generated ${tempScriptFilename} in cli-temp`);
 } catch (err) {
-  console.error(`❌ Failed to generate temp-push-content-model.js: ${err.message}`);
+  console.error(`❌ Failed to generate ${tempScriptFilename}: ${err.message}`);
   process.exit(1);
 }
 
-//
+// --------------------------------------------
 // 🚀 Run the migration script
-//
+// --------------------------------------------
 console.log(`>> Running migration script for installing "${modelName}"...`);
 console.log("\n---------------------------------------");
 console.log("MIGRATING - CONFIRMATION REQUIRED");
 console.log("---------------------------------------");
 
 try {
-  execSync(`npx contentful space migration temp-push-content-model.js`, {
-    stdio: "inherit",
-    cwd: modelFolder,
-  });
+  const contentfulBinPath = path.join(__dirname, "../node_modules/.bin/contentful");
+
+  if (!fs.existsSync(contentfulBinPath)) {
+    console.error("❌ Contentful CLI not found. Run `npm install` in the CLI root.");
+    process.exit(1);
+  }
+
+  execSync(
+    `"${contentfulBinPath}" space migration "${tempModelScriptPath}"`,
+    {
+      stdio: "inherit",
+      cwd: modelFolder,
+    }
+  );
 
   console.log(`✅ Migration complete for "${modelName}"`);
   fs.unlinkSync(tempModelScriptPath);
-  console.log(`🧹 Deleted temp-push-content-model.js after successful run`);
+  console.log(`🧹 Deleted ${tempScriptFilename} after successful run`);
 } catch (err) {
   console.error(`❌ Migration failed: ${err.message}`);
-  console.warn(`⚠️ temp-push-content-model.js left in "${modelName}" for inspection`);
+  console.warn(`⚠️ ${tempScriptFilename} left in cli-temp for inspection`);
 }

@@ -1,7 +1,7 @@
 //======================================
 // file: delete-content-model.js
-// version: 1.0
-// last updated: 05-25-2025
+// version: 1.2
+// last updated: 05-22-2025
 //======================================
 
 require("module-alias/register");
@@ -10,6 +10,7 @@ const fs = require("fs");
 const path = require("path");
 const readline = require("readline");
 const contentful = require("contentful-management");
+const loadProjectRoot = require("@loadProjectRoot");
 
 // --------------------------------------------
 // 🔧 Parse arguments
@@ -45,15 +46,11 @@ if (!isDryRun) {
 }
 
 // --------------------------------------------
-// 🗂️ Resolve paths
+// 🗂️ Resolve paths using project root
 // --------------------------------------------
-const modelPath = path.resolve(__dirname, "../project/content-models/models", modelArg);
+const projectRoot = loadProjectRoot();
+const modelPath = path.join(projectRoot, "content-models", "models", modelArg);
 const configPath = path.join(modelPath, ".contentfulrc.json");
-
-if (!fs.existsSync(configPath)) {
-  console.error(`❌ Could not find .contentfulrc.json at: ${configPath}`);
-  process.exit(1);
-}
 
 // --------------------------------------------
 // 🧾 Load config from .contentfulrc.json

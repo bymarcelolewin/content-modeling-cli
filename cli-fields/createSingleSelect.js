@@ -1,10 +1,10 @@
 //======================================
 // file: createSingleSelect.js
-// version: 1.0
-// last updated: 05-25-2025
+// version: 1.2
+// last updated: 05-22-2025
 //======================================
 
-const resolveEmoji = require("../../../cli-utilities/resolve-emoji");
+const resolveEmoji = require("@resolve-emoji");
 
 function createSingleSelect(contentType, {
   fieldName = "Category",
@@ -13,6 +13,7 @@ function createSingleSelect(contentType, {
   options = [],
   defaultValue = undefined,
   emoji = "",
+  emojiPath = undefined, // ✅ Injected by CLI
 } = {}) {
   if (!Array.isArray(options) || options.length === 0) {
     throw new Error(`createSingleSelect: 'options' array is required and cannot be empty.`);
@@ -24,7 +25,7 @@ function createSingleSelect(contentType, {
     );
   }
 
-  const resolvedEmoji = resolveEmoji(emoji);
+  const resolvedEmoji = resolveEmoji(emoji, emojiPath);
   const name = resolvedEmoji ? `${resolvedEmoji} ${fieldName}` : fieldName;
 
   const fieldConfig = {

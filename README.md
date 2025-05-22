@@ -20,9 +20,6 @@ A CLI tool for **content architects** and **content modelers** working in Conten
 - **Model Templatization**  
   Clone and reuse complete content models using predefined templates to speed up setup and ensure governance and standards.
 
-- **Version Control**  
-  All content types are defined as simple JSON files and organized by model folder, making it easy to track changes, collaborate, and manage your content models with any version control system like Git or GitHub.
-
 - **Emoji Support**  
   Add emojis to your content types and fields from a centralized emoji library to enhance the authoring experience.
 
@@ -34,6 +31,12 @@ A CLI tool for **content architects** and **content modelers** working in Conten
 
 - **Extensible Field Type Registry**  
   Your developers can add support for custom field types and embed business logic by extending our modular field registry—making the CLI adaptable to your company's unique modeling requirements.
+
+- **Project with Multiple Models Support**  
+  Use `cm init` to create distinct Content Modeling projects, each capable of containing multiple content models, templates, and localized configurations—ideal for organizing projects by client, site, or environment.
+
+- **Version Control**  
+  Because Content Modeling CLI stores everything as a project in simple JSON files, organized by content model, it's easy to track changes, collaborate, and manage your content models with any version control system like Git or GitHub.
 
 ## Getting Started
 
@@ -73,12 +76,14 @@ Be careful with this, as it will make changes to your Contentful space.  We sugg
 
 | Command              | Flags                              | Description                                                                                 | Flag Descriptions                                                                                                                                     |
 |:---------------------|:------------------------------------|:--------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `cm init`           | `--name <name>`                    | Initializes a new CLI project with a standard folder structure and config file.             | `--name`: Display name of the new project. Will be normalized into a safe folder name.                                                              |
 | `cm create-model`   | `--model <name>`<br>`--template <template>` | Creates a new content model folder using a specified template. Brings over emoji.json and components folder.                             | `--model`: Name of the new model folder to create.<br>`--template`: Name of the template to use. |
 | `cm push-model`     | `--model <name>`                    | Pushes all content types from the specified model folder to Contentful.                     | `--model`: Name of the existing model folder in.                                                                                    |
 | `cm add-content-type` | `--model <name>`<br>`--name <name>` | Adds a new content type to an existing model folder.                                        | `--model`: Name of the existing model folder.<br>`--name`: Display name of the new content type (e.g., "Article - Blog").                           |
 | `cm delete-model`   | `--model <name>`<br>`--force`       | Deletes an entire content model in Contentful, including its Content Types and entries (dry run by default).      | `--model`: Name of the model folder to delete.<br>`--force`: Actually deletes the content; otherwise, it performs a dry run.                         |
 | `cm list-templates` | _(none)_                            | Lists all available content model templates and their content types.                        | —                                                                                                                                                    |
 | `cm list-models`    | _(none)_                            | Lists all content model folders currently available in `content-models/`.                   | —                                                                                                                                                    |
+
 ## Further Information
 - Learn more at [Intelligent Content Academy](https://www.intelligentcontentacademy.com/)
 - Need help, contact [Marcelo Lewin](https://www.intelligentcontentacademy.com/contact)

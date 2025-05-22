@@ -1,7 +1,7 @@
 //======================================
 // file: add-content-type.js
-// version: 1.0
-// last updated: 05-25-2025
+// version: 1.1
+// last updated: 05-22-2025
 //======================================
 
 require("module-alias/register"); // 🔗 Enable support for @expand, @validateRegistry, etc.
@@ -9,6 +9,7 @@ require("module-alias/register"); // 🔗 Enable support for @expand, @validateR
 const fs = require("fs");
 const path = require("path");
 const { camelCase } = require("lodash");
+const loadProjectRoot = require("@loadProjectRoot");
 
 // --------------------------------------------
 // 🧾 Parse CLI arguments
@@ -31,9 +32,10 @@ if (!modelName || !contentTypeName) {
 const contentTypeId = camelCase(contentTypeName);
 
 // --------------------------------------------
-// 🧱 Paths
+// 📦 Load project root from .cmcli.json
 // --------------------------------------------
-const modelFolder = path.join(__dirname, "../project/content-models/models", modelName);
+const projectRoot = loadProjectRoot();
+const modelFolder = path.join(projectRoot, "content-models", "models", modelName);
 const contentTypesFolder = path.join(modelFolder, "content-types");
 const filePath = path.join(contentTypesFolder, `${contentTypeId}.json`);
 

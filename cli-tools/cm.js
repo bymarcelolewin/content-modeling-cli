@@ -2,8 +2,8 @@
 
 //======================================
 // file: cm.js
-// version: 1.0
-// last updated: 05-25-2025
+// version: 1.1
+// last updated: 05-22-2025
 //======================================
 
 require("module-alias/register");
@@ -20,7 +20,20 @@ program
   .description(
     chalk.green('Content Modeling CLI') + ' for Contentful\n© Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reseved.\n\nLearn more at IntelligentContentAcademy.com\nFor help contact marcelo@intelligentcontentacademy.com\n\nNot associated with Contentful.\nUse \'as is\'.  No warranty provided.\n\n** Do not use it in a production environment. **'
   )
-  .version('1.0.0');
+  .version('1.1.0');
+
+// ---------------------------------------------
+// cm init --name <project name>
+// ---------------------------------------------
+program
+  .command('init')
+  .description('Initialize a new Content Modeling CLI project')
+  .requiredOption('--name <project>', 'Name of the new project (e.g., "My Project")')
+  .action((options) => {
+    const script = path.join(__dirname, 'init-project.js');
+    const args = ['--name', options.name];
+    spawn('node', [script, ...args], { stdio: 'inherit' });
+  });
 
 // ---------------------------------------------
 // cm create-model --model <name> --template <template>

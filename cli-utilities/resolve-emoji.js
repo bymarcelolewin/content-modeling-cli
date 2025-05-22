@@ -1,7 +1,7 @@
 //======================================
 // file: resolve-emoji.js
 // version: 1.0
-// last updated: 05-25-2025
+// last updated: 05-21-2025
 //======================================
 
 require("module-alias/register");

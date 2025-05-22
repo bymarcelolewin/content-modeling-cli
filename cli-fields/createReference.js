@@ -1,10 +1,10 @@
 //======================================
 // file: createReference.js
-// version: 1.0
-// last updated: 05-25-2025
+// version: 1.2
+// last updated: 05-22-2025
 //======================================
 
-const resolveEmoji = require("../../../cli-utilities/resolve-emoji");
+const resolveEmoji = require("@resolve-emoji");
 
 function createReference(contentType, {
   fieldId = "metadata",
@@ -12,12 +12,13 @@ function createReference(contentType, {
   allowedEntries = "one-to-many",
   allowedContentTypes = [],
   emoji = "",
+  emojiPath = undefined, // ✅ Injected by CLI
 } = {}) {
   if (!Array.isArray(allowedContentTypes) || allowedContentTypes.length === 0) {
     throw new Error(`createReference: 'allowedContentTypes' must be a non-empty array of content type IDs.`);
   }
 
-  const resolvedEmoji = resolveEmoji(emoji);
+  const resolvedEmoji = resolveEmoji(emoji, emojiPath);
   const name = resolvedEmoji ? `${resolvedEmoji} ${fieldName}` : fieldName;
 
   const linkValidation = [

@@ -1,7 +1,7 @@
 //======================================
 // file: create-content-model.js
-// version: 1.0
-// last updated: 05-25-2025
+// version: 1.1
+// last updated: 05-22-2025
 //======================================
 
 require("module-alias/register");
@@ -10,6 +10,7 @@ const fs = require("fs");
 const path = require("path");
 const fse = require("fs-extra");
 const readline = require("readline");
+const loadProjectRoot = require("@loadProjectRoot");
 
 // --------------------------------------------
 // 🔧 Parse CLI arguments
@@ -21,11 +22,12 @@ const modelFlagIndex = args.indexOf("--model");
 const templateName = templateFlagIndex !== -1 ? args[templateFlagIndex + 1] : null;
 const modelName = modelFlagIndex !== -1 ? args[modelFlagIndex + 1] : null;
 
-const templatesDir = path.join(__dirname, "../project/content-model-templates");
+const projectRoot = loadProjectRoot();
+const templatesDir = path.join(projectRoot, "content-model-templates");
 const templateContentTypesDir = path.join(templatesDir, "templates", templateName, "content-types");
 const templateConfigPath = path.join(templatesDir, "templates", templateName, ".contentfulrc.json");
 
-const modelsDir = path.join(__dirname, "../project/content-models");
+const modelsDir = path.join(projectRoot, "content-models");
 const modelFolder = path.join(modelsDir, "models", modelName);
 const modelContentTypesDir = path.join(modelFolder, "content-types");
 const modelConfigPath = path.join(modelFolder, ".contentfulrc.json");

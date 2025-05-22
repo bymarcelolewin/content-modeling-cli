@@ -1,10 +1,10 @@
 //======================================
 // file: createCodeId.js
-// version: 1.0
-// last updated: 05-25-2025
+// version: 1.2
+// last updated: 05-22-2025
 //======================================
 
-const resolveEmoji = require("../../../cli-utilities/resolve-emoji");
+const resolveEmoji = require("@resolve-emoji");
 
 function createCodeId(contentType, {
   fieldName = "Code ID",
@@ -13,6 +13,7 @@ function createCodeId(contentType, {
   unique = true,
   validate = "camelCase",
   emoji = "emoji.field.developer",
+  emojiPath = undefined, // ✅ injected by CLI
 } = {}) {
   const validations = [];
 
@@ -41,7 +42,7 @@ function createCodeId(contentType, {
     }
   );
 
-  const resolvedEmoji = resolveEmoji(emoji);
+  const resolvedEmoji = resolveEmoji(emoji, emojiPath);
   const name = resolvedEmoji ? `${resolvedEmoji} ${fieldName}` : fieldName;
 
   contentType.createField(fieldId, {
