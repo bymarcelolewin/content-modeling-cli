@@ -29,8 +29,8 @@ A CLI tool for content modeling in Contentful, built specifically for content ar
 - **Emoji Support**  
   Enhance clarity and usability by adding emojis to content types and fields from a centralized emoji library—improving the authoring experience in Contentful.
 
-- **Extensible Field Type Registry**  
-  Developers can extend the CLI with support for custom field types and business logic via a modular, pluggable field registry—adapting the tool to your team’s specific modeling needs.
+- **Custom Field Types**  
+  >(Coming soon) Developers can extend the CLI with support for custom field types with business logic (local to your project) via a modular, pluggable field registry—adapting the tool to your team’s specific modeling needs.
 
 - **Command Line Simplicity**  
   Perform all modeling tasks using a single command (`cm`)—making your process fast, consistent, and easily scriptable for automation or CI/CD integration.
@@ -68,7 +68,7 @@ Once you do that, you will see a folder named ```my-first-project```.  In there,
    |- content-models
       |- README.md <- You can delete this file
    |- content-model-templates
-      |- components <- Global Components
+      |- components <- Local Components
       |- templates <- Content Model Templates including Content Types
       |- emojis.json <- Emojis Library
 ```
