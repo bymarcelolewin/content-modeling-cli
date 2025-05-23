@@ -1,6 +1,6 @@
 //======================================
 // file: init-project.js
-// version: 1.1
+// version: 1.2
 // last updated: 05-23-2025
 //======================================
 
@@ -48,29 +48,31 @@ if (fs.existsSync(destDir)) {
 }
 
 // --------------------------------------------
-// 📦 Copy base template (2 folders + config file)
+// 🏗️ Function to create project structure
 // --------------------------------------------
-try {
-  fse.copySync(path.join(templateDir, "content-models"), path.join(destDir, "content-models"));
-  fse.copySync(path.join(templateDir, "content-model-templates"), path.join(destDir, "content-model-templates"));
+function createProject() {
+  try {
+    fse.copySync(path.join(templateDir, "content-models"), path.join(destDir, "content-models"));
+    fse.copySync(path.join(templateDir, "content-model-templates"), path.join(destDir, "content-model-templates"));
 
-  const configPath = path.join(templateDir, ".cmcli.json");
-  const config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
-  config.projectName = originalName;
-  config.projectFolder = folderName;
+    const configPath = path.join(templateDir, ".cmcli.json");
+    const config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
+    config.projectName = originalName;
+    config.projectFolder = folderName;
 
-  fs.writeFileSync(
-    path.join(destDir, ".cmcli.json"),
-    JSON.stringify(config, null, 2),
-    "utf-8"
-  );
-} catch (err) {
-  console.error("❌ Failed to initialize project:", err.message);
-  process.exit(1);
+    fs.writeFileSync(
+      path.join(destDir, ".cmcli.json"),
+      JSON.stringify(config, null, 2),
+      "utf-8"
+    );
+  } catch (err) {
+    console.error("❌ Failed to initialize project:", err.message);
+    process.exit(1);
+  }
 }
 
 // --------------------------------------------
-// 🧠 Handle --git flag (optional)
+// ✅ Final user feedback
 // --------------------------------------------
 function finalize(successGit) {
   console.log("\n🎉 Project created successfully.");
@@ -84,6 +86,9 @@ function finalize(successGit) {
   }
 }
 
+// --------------------------------------------
+// 🧠 Handle --git logic and prompt if needed
+// --------------------------------------------
 if (gitIndex !== -1) {
   const gitCheck = spawnSync("git", ["--version"], { stdio: "ignore" });
 
@@ -96,6 +101,7 @@ if (gitIndex !== -1) {
     rl.question("\n⚠️ Git is not installed or not available in your PATH.\nWould you like to continue without initializing Git? (y/n) ", (answer) => {
       rl.close();
       if (answer.toLowerCase() === "y") {
+        createProject();
         finalize(false);
       } else {
         console.log("❌ Project creation aborted by user.");
@@ -103,7 +109,8 @@ if (gitIndex !== -1) {
       }
     });
   } else {
-    // Initialize Git
+    createProject();
+
     try {
       spawnSync("git", ["init"], { cwd: destDir, stdio: "ignore" });
 
@@ -121,5 +128,6 @@ if (gitIndex !== -1) {
     }
   }
 } else {
+  createProject();
   finalize(false);
 }
