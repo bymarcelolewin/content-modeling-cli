@@ -66,7 +66,7 @@ Once you do that, you will see a folder named ```my-first-project```.  In there,
 |- my-first-project
    |- .cmcli.json
    |- content-models
-      |- README.md <- You can delete this file
+      |- ok-to-delete.txt <- You can delete this file
    |- content-model-templates
       |- components <- Local Components
       |- templates <- Content Model Templates including Content Types
