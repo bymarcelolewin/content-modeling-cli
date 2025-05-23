@@ -38,20 +38,57 @@ A CLI tool for content modeling in Contentful, built specifically for content ar
 ## Getting Started
 
 - Install Node.js if you don't already have it.
-- git clone this repo.  It will create a Content-Modeling-CLI folder. 
+- If you want to use the built-in version control, you need to install git if you don't already have it.
+- git clone this repo using ```git clone https://github.com/bymarcelolewin/Content-Modeling-CLI.git```
 
 ## CLI Setup
 - Switch to "Content-Modeling-CLI" folder.
-- In your terminal run: ```npm install```
-- Then run ```npm link``` or if you get a permission error, run ```sudo npm link```.
+- In your terminal run: ```npm install```.  You will get npm warnings that some packages are deprecated.  You can ignore those.
+- Run ```npm link``` or if you get a permission error, run ```sudo npm link```.
 - Test the CLI by typing in ```cm --help``` from anywhere.  ```cm``` should be globally available in your terminal now.
 
-## Create Your First Model
-Clone the provided sample content model template using: 
+## Create Your First Project
+All models and templates are stored in a project, so you need a project before you can create any models.   Projects also come with sample templates you can use to create your first model.
 
-```cm create-model --model [your-model-name] --template simple-blog ``` 
+Let's first create the project. Projects can be stored anywhere you want in the same machine that you installed the CLI.
 
-Once your model is created, switch to the ```Content-Modeling-CLI/content-models/models/[your-model-name]/content-types``` folder and configure the .contentfulrc.json file
+Let's create our first project.  You have to be in the terminal to perform the following.
+
+```cm init --name "My First Project"```
+
+Once you do that, you will see a folder named ```my-first-project```.  In there, you will find the following:
+
+```
+|- my-first-project
+   |- .cmcli.json
+   |- content-models
+      |- README.md <- You can delete this file
+   |- content-model-templates
+      |- components <- Global Components
+      |- templates <- Content Model Templates including Content Types
+      |- emojis.json <- Emojis Library
+```
+
+Now that you created your project, you can create as many models as you want.  Models can be created manually or you can use the CLI.  We recommend using the CLI, since it a much faster process.  You can easily create a new model based on a template.  Let's do that.
+
+Make sure you are inside the ```my-first-project``` (or whatever you called the project).  You have to be at the root level of the project, as the CLI uses the .cmcli.json file to know it's a CM CLI project.
+
+Now type:
+
+```cm create-model --model myblog --template simple-blog ``` 
+
+You will get the following:
+```
+✅ Model "myblog" created from template "simple-blog"
+✅ Copied .contentfulrc.json to model folder
+✅ Copied emojis.json
+✅ Copied components: seoMetadata.json
+```
+A new model (folder) called ```myblog``` has been created inside the ```content-models/models/```
+
+Inside the ```myblog``` folder you'll find the contentfulrc.json file.  You'll need to fill out some information so that you can connect to your Contentful environment.
+
+Specifically, you'll need:
 
 ```
 {
@@ -62,29 +99,37 @@ Once your model is created, switch to the ```Content-Modeling-CLI/content-models
 }
 ```
 
-You can get the CMA token from Contentful, under the cogwheel -> CMA Tokens.
+You can get the CMA token from Contentful.  Click on ⚙️ (gear) at the top right, then select CMA Tokens and create one.
 
 ## Push Your First Model Into Contentful
-Be careful with this, as it will make changes to your Contentful space.  We suggest you create a playground environment and push there first.
 
-```cm push-model --model [your-model-name]```
+>[!WARNING]
+>Be careful with this, as it will make changes to your Contentful space.  We suggest you create a playground environment and push there first.  
+
+>[!CAUTION]
+>Don't perform the following in a production environment!
+
+```cm push-model --model myblog```
+
+Congratulations!  You did it.  You created your first project, created a model inside of it and pushed it to Contentful!
 
 ## Currently Supported CLI Commands (Version 1.0.0)
 
-| Command              | Flags                              | Description                                                                                 | Flag Descriptions                                                                                                                                     |
-|:---------------------|:------------------------------------|:--------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `cm init`           | `--name <name>`                    | Initializes a new CLI project with a standard folder structure and config file.             | `--name`: Display name of the new project. Will be normalized into a safe folder name.                                                              |
-| `cm create-model`   | `--model <name>`<br>`--template <template>` | Creates a new content model folder using a specified template. Brings over emoji.json and components folder.                             | `--model`: Name of the new model folder to create.<br>`--template`: Name of the template to use. |
-| `cm push-model`     | `--model <name>`                    | Pushes all content types from the specified model folder to Contentful.                     | `--model`: Name of the existing model folder in.                                                                                    |
-| `cm add-content-type` | `--model <name>`<br>`--name <name>` | Adds a new content type to an existing model folder.                                        | `--model`: Name of the existing model folder.<br>`--name`: Display name of the new content type (e.g., "Article - Blog").                           |
-| `cm delete-model`   | `--model <name>`<br>`--force`       | Deletes an entire content model in Contentful, including its Content Types and entries (dry run by default).      | `--model`: Name of the model folder to delete.<br>`--force`: Actually deletes the content; otherwise, it performs a dry run.                         |
-| `cm list-templates` | _(none)_                            | Lists all available content model templates and their content types.                        | —                                                                                                                                                    |
-| `cm list-models`    | _(none)_                            | Lists all content model folders currently available in `content-models/`.                   | —                                                                                                                                                    |
+| Command               | Description                                                                                          | Flags                                                                                                                                                 |
+|:---------------------|:-----------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `cm init`            | Initializes a new CLI project with a standard folder structure and config file.                      | `--name`: Display name of the new project. Will be normalized into a safe folder name.                                                               |
+| `cm create-model`    | Creates a new content model using a specified template. Will also include the global components and emojis library. | `--model`: Name of the new model folder to create.<br>`--template`: Name of the template to use.                                                     |
+| `cm push-model`      | Pushes all content types from the specified model folder to Contentful.                              | `--model`: Name of the existing model folder in.                                                                                                      |
+| `cm add-content-type`| Adds a new content type to an existing model.                                                 | `--model`: Name of the existing model folder.<br>`--name`: Display name of the new content type (e.g., "Article - Blog").                           |
+| `cm delete-model`    | Deletes an entire content model in Contentful, including its content types and entries.  If --force is not included, it will only be a dry run.  This will not delete the model folder locally. | `--model`: Name of the model folder to delete.<br>`--force`: Actually deletes the content; otherwise, it performs a dry run.                         |
+| `cm list-templates`  | Lists all available content model templates and their content types.                                 | —                                                                                                                                                    |
+| `cm list-models`     | Lists all the content models you created so far.                            | —                                                                                                                                                    |
 
 ## Further Information
 - Learn more at [Intelligent Content Academy](https://www.intelligentcontentacademy.com/)
 - Need help, contact [Marcelo Lewin](https://www.intelligentcontentacademy.com/contact)
-- Use as is.  No warranty provided.  Do not use it in a production environment.
+- Use as is.  No warranty provided.  
+- Do not use it in a production environment.
 - **Not affiliated with Contentful.**
   
 ## More documentation coming soon!

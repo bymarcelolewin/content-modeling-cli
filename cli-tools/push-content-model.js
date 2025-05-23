@@ -1,6 +1,6 @@
 //======================================
 // file: push-content-model.js
-// version: 1.9
+// version: 2.0
 // last updated: 05-22-2025
 //======================================
 
@@ -158,7 +158,7 @@ try {
 
   console.log(`✅ Migration complete for "${modelName}"`);
   fs.unlinkSync(tempModelScriptPath);
-  console.log(`🧹 Deleted ${tempScriptFilename} after successful run`);
+  //console.log(`🧹 Deleted ${tempScriptFilename} after successful run`);
 } catch (err) {
   console.error(`❌ Migration failed: ${err.message}`);
   console.warn(`⚠️ ${tempScriptFilename} left in cli-temp for inspection`);
