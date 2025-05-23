@@ -73,6 +73,8 @@ Once you do that, you will see a folder named ```my-first-project```.  In there,
       |- emojis.json <- Emojis Library
 ```
 
+If you create the project with --git, you will see your .git and .gitignore as well.
+
 Now that you created your project, you can create as many models as you want.  Models can be created manually or you can use the CLI.  We recommend using the CLI, since it a much faster process.  You can easily create a new model based on a template.  Let's do that.
 
 Make sure you are inside the ```my-first-project``` (or whatever you called the project).  You have to be at the root level of the project, as the CLI uses the .cmcli.json file to know it's a CM CLI project.
