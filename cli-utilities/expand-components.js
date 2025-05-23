@@ -1,7 +1,7 @@
 //======================================
 // file: expand-components.js
-// version: 1.0
-// last updated: 05-21-2025
+// version: 1.3
+// last updated: 05-23-2025
 //======================================
 
 require("module-alias/register");
@@ -21,26 +21,46 @@ function expandComponents(contentTypeJson, componentsDir) {
   const expandedFields = [];
 
   for (const field of contentTypeJson.fields) {
-    if (field.type === "component") {
-      const componentId = field.componentId;
+    if (typeof field.type === "string" && field.type.endsWith(".component")) {
+      const [namespace, typeName] = field.type.split(".");
 
-      if (!componentId) {
-        throw new Error(`❌ Missing "componentId" in a field of type "component" in "${contentTypeJson.id}".`);
+      if (typeName !== "component") {
+        throw new Error(`❌ Invalid component type "${field.type}" in "${contentTypeJson.id}".`);
       }
 
-      const componentPath = path.join(componentsDir, `${componentId}.json`);
+      if (namespace === "local") {
+        const componentId = field.componentId;
+        if (!componentId) {
+          throw new Error(`❌ Missing "componentId" in a field of type "local.component" in "${contentTypeJson.id}".`);
+        }
 
-      if (!fs.existsSync(componentPath)) {
-        throw new Error(`❌ Component "${componentId}" not found at path: ${componentPath}`);
+        const componentPath = path.join(componentsDir, `${componentId}.json`);
+
+        if (!fs.existsSync(componentPath)) {
+          throw new Error(`❌ Component "${componentId}" not found at path: ${componentPath}`);
+        }
+
+        const componentJson = JSON.parse(fs.readFileSync(componentPath, "utf-8"));
+
+        if (!Array.isArray(componentJson.fields)) {
+          throw new Error(`❌ Component "${componentId}" does not contain a valid "fields" array.`);
+        }
+
+        const fieldsWithSource = componentJson.fields.map(f => ({
+          ...f,
+          __sourceComponent: componentId,
+          __sourceComponentNamespace: namespace
+        }));
+
+        expandedFields.push(...fieldsWithSource);
+      } else if (namespace === "global") {
+        throw new Error(`❌ "global.component" is not supported yet in "${contentTypeJson.id}".`);
+      } else {
+        throw new Error(`❌ Unknown component namespace "${namespace}" in "${contentTypeJson.id}".`);
       }
 
-      const componentJson = JSON.parse(fs.readFileSync(componentPath, "utf-8"));
-
-      if (!Array.isArray(componentJson.fields)) {
-        throw new Error(`❌ Component "${componentId}" does not contain a valid "fields" array.`);
-      }
-
-      expandedFields.push(...componentJson.fields);
+    } else if (field.type === "component") {
+      throw new Error(`❌ Field type "component" is missing a namespace in "${contentTypeJson.id}". Use "local.component" instead.`);
     } else {
       expandedFields.push(field);
     }
@@ -54,18 +74,11 @@ function expandComponents(contentTypeJson, componentsDir) {
   };
 }
 
-/**
- * Validates that all fieldId values in the expanded field list are unique.
- *
- * @param {Array} fields - The array of all fields (after expansion).
- * @param {string} contentTypeId - The ID of the content type being processed.
- * @throws {Error} - If duplicate fieldIds are found.
- */
 function validateUniqueFieldIds(fields, contentTypeId) {
   const seen = new Set();
 
   for (const field of fields) {
-    if (!field.fieldId) continue; // Some field types like 'title' may not have a fieldId
+    if (!field.fieldId) continue;
     if (seen.has(field.fieldId)) {
       throw new Error(
         `❌ Duplicate fieldId "${field.fieldId}" found in content type "${contentTypeId}".\n` +

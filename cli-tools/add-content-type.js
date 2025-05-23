@@ -1,7 +1,7 @@
 //======================================
 // file: add-content-type.js
-// version: 1.1
-// last updated: 05-22-2025
+// version: 1.2
+// last updated: 05-23-2025
 //======================================
 
 require("module-alias/register"); // 🔗 Enable support for @expand, @validateRegistry, etc.
@@ -70,7 +70,7 @@ const contentTypeDefinition = {
   description: "Describe this content type.",
   fields: [
     {
-      type: "title"
+      type: "global.title"
     }
   ]
 };

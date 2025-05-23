@@ -6,17 +6,17 @@
   "description": "This content type lets you create an article.",
   "fields": [
     {
-      "type": "title"
+      "type": "global.title"
     },
     {
-      "type": "url",
+      "type": "global.url",
       "fieldName": "Article URL",
       "fieldId": "articleURL",
       "validation": "path",
       "emoji": "🔗"
     },
     {
-      "type": "multiSelect",
+      "type": "global.multiSelect",
       "fieldName": "Type",
       "fieldId": "type",
       "required": true,
@@ -25,20 +25,20 @@
       "emoji": ""
     },
     {
-      "type": "text",
+      "type": "global.text",
       "fieldName": "Body",
       "fieldId": "body",
       "textType": "rich-text"
     },
     {
-      "type": "reference",
+      "type": "global.reference",
       "fieldName": "Authors",
       "fieldId": "authors",
       "allowedEntries": "one-to-many",
       "allowedContentTypes": ["author"]
     },
     {
-      "type": "component",
+      "type": "local.component",
       "componentId": "seoMetadata"
     }
   ]

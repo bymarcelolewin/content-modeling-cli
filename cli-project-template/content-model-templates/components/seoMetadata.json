@@ -5,14 +5,14 @@
   "description": "This component holds fields for SEO metadata.",
   "fields": [
     {
-      "type": "text",
+      "type": "global.text",
       "fieldName": "SEO Title",
       "fieldId": "seoTitle",
       "textType": "single-line",
       "emoji": "emoji.field.metadata"
     },
     {
-      "type": "text",
+      "type": "global.text",
       "fieldName": "SEO Description",
       "fieldId": "seoDescription",
       "textType": "multi-line",

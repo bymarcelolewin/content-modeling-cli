@@ -1,7 +1,7 @@
 //======================================
 // file: push-content-model.js
-// version: 2.0
-// last updated: 05-22-2025
+// version: 2.4
+// last updated: 05-23-2025
 //======================================
 
 require("module-alias/register");
@@ -13,9 +13,6 @@ const resolveEmoji = require("@resolve-emoji");
 const { expandComponents } = require("@expand");
 const loadProjectRoot = require("@loadProjectRoot");
 
-// --------------------------------------------
-// ✅ Load field registry and handler map
-// --------------------------------------------
 const fieldRegistry = require("@fields/field-registry.json");
 
 const cliFieldsDir = path.join(__dirname, "..", "cli-fields");
@@ -24,9 +21,6 @@ const relativeFieldsDir = "../cli-fields";
 const relativeRegistryPath = "../cli-fields/field-registry.json";
 const relativeResolveEmoji = "../cli-utilities/resolve-emoji.js";
 
-// --------------------------------------------
-// 🔧 Parse --model from arguments
-// --------------------------------------------
 const args = process.argv.slice(2);
 const modelFlagIndex = args.indexOf("--model");
 const modelName = modelFlagIndex !== -1 ? args[modelFlagIndex + 1] : null;
@@ -74,10 +68,24 @@ try {
     def.__filename = file;
     def.emoji = resolveEmoji(def.emoji, emojisPath);
 
-    // Expand components
     const expanded = expandComponents(def, componentsFolder);
 
-    // Inject emojiPath into each field
+    // Check for unsupported field types like local
+    for (const field of expanded.fields) {
+      if (typeof field.type !== "string") continue;
+      const [namespace, typeName] = field.type.split(".");
+      if (!namespace || !typeName) {
+        throw new Error(`❌ Field type must include a namespace (e.g., 'global.text') in ${def.__filename}`);
+      }
+      if (namespace === "local") {
+        const origin = field.__sourceComponent
+          ? `${field.__sourceComponentNamespace || "local"}.${field.__sourceComponent}`
+          : def.__filename;
+
+        throw new Error(`❌ Local field types are not yet supported: ${field.type} in ${origin}`);
+      }
+    }
+
     expanded.fields = expanded.fields.map((f) => ({
       ...f,
       emojiPath: emojisPath,
@@ -112,11 +120,23 @@ ${contentTypeObjects.map((def) => {
   });
 
   ${JSON.stringify(def.fields, null, 2)}.forEach((field) => {
-    const handler = typeToHandler[field.type];
-    if (!handler) {
-      throw new Error("❌ Unsupported field type: " + field.type + " in ${def.__filename}");
+    const [namespace, typeName] = field.type.split(".");
+    if (!namespace || !typeName) {
+      throw new Error("❌ Field type must include a namespace (e.g., 'global.text') in ${def.__filename}");
     }
-    handler(${varName}, field);
+
+    if (namespace === "global") {
+      const handler = typeToHandler[typeName];
+      if (!handler) {
+        throw new Error("❌ Unsupported global field type: " + typeName + " in ${def.__filename}");
+      }
+      field.type = typeName;
+      handler(${varName}, field);
+    } else if (namespace === "local") {
+      throw new Error("❌ Local field types are not yet supported: " + field.type + " in ${def.__filename}");
+    } else {
+      throw new Error("❌ Unknown field namespace: " + namespace + " in ${def.__filename}");
+    }
   });`;
 }).join("\n")}
 };
@@ -128,7 +148,11 @@ ${contentTypeObjects.map((def) => {
   console.log("---------------------------------------");
   console.log(`\n>> Generated ${tempScriptFilename} in cli-temp`);
 } catch (err) {
-  console.error(`❌ Failed to generate ${tempScriptFilename}: ${err.message}`);
+  if (err.message.startsWith("❌")) {
+    console.error(err.message);
+  } else {
+    console.error(`❌ Failed to generate ${tempScriptFilename}: ${err.message}`);
+  }
   process.exit(1);
 }
 

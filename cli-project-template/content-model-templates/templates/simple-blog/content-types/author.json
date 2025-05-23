@@ -6,36 +6,36 @@
   "description": "This content type lets you create an author.",
   "fields": [
     {
-      "type": "title",
+      "type": "global.title",
       "fieldId": "fullName",
       "fieldName": "Full Name"
     },
     {
-      "type": "text",
+      "type": "global.text",
       "textType": "single-line",
       "fieldId": "firstName",
       "fieldName": "First Name"
     },
     {
-      "type": "text",
+      "type": "global.text",
       "textType": "single-line",
       "fieldId": "lastName",
       "fieldName": "Last Name"
     },
     {
-      "type": "text",
+      "type": "global.text",
       "textType": "markdown",
       "fieldId": "workHistory",
       "fieldName": "Work History"
     },
     {
-      "type": "text",
+      "type": "global.text",
       "textType": "rich-text",
       "fieldId": "bio",
       "fieldName": "Bio"
     },
     {
-      "type": "codeId",
+      "type": "global.codeId",
       "fieldId": "authorID",
       "fieldName": "Author ID",
       "unique": true,
@@ -43,7 +43,7 @@
       "emoji": "emoji.field.developer"
     },
     {
-      "type": "component",
+      "type": "local.component",
       "componentId": "seoMetadata"
     }
   ]
