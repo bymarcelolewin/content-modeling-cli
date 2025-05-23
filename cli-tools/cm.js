@@ -2,8 +2,8 @@
 
 //======================================
 // file: cm.js
-// version: 1.1
-// last updated: 05-22-2025
+// version: 1.2
+// last updated: 05-23-2025
 //======================================
 
 require("module-alias/register");
@@ -23,15 +23,21 @@ program
   .version('1.1.0');
 
 // ---------------------------------------------
-// cm init --name <project name>
+// cm init --name <project name> [--git]
 // ---------------------------------------------
 program
   .command('init')
   .description('Initialize a new Content Modeling CLI project')
   .requiredOption('--name <project>', 'Name of the new project (e.g., "My Project")')
+  .option('--git', 'Initialize Git in the root of the project with a default .gitignore')
   .action((options) => {
     const script = path.join(__dirname, 'init-project.js');
     const args = ['--name', options.name];
+
+    if (options.git) {
+      args.push('--git');
+    }
+
     spawn('node', [script, ...args], { stdio: 'inherit' });
   });
 
