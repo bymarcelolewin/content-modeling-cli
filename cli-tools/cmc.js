@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 //======================================
-// file: cm.js
-// version: 1.2
-// last updated: 05-23-2025
+// file: cmc.js
+// version: 1.3
+// last updated: 05-26-2025
 //======================================
 
 require("module-alias/register");
@@ -16,14 +16,14 @@ const chalk = require('chalk');
 const program = new Command();
 
 program
-  .name('cm')
+  .name('cmc')
   .description(
     chalk.green('Content Modeling CLI') + ' for Contentful\n© Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reseved.\n\nLearn more at IntelligentContentAcademy.com\nFor help contact marcelo@intelligentcontentacademy.com\n\nNot associated with Contentful.\nUse \'as is\'.  No warranty provided.\n\n** Do not use it in a production environment. **'
   )
   .version('1.1.0');
 
 // ---------------------------------------------
-// cm init --name <project name> [--git]
+// cmc init --name <project name> [--git]
 // ---------------------------------------------
 program
   .command('init')
@@ -42,7 +42,7 @@ program
   });
 
 // ---------------------------------------------
-// cm create-model --model <name> --template <template>
+// cmc create-model --model <name> --template <template>
 // ---------------------------------------------
 program
   .command('create-model')
@@ -58,7 +58,7 @@ program
     if (!(usingModel && usingTemplate)) {
       console.error('\n❌ You must provide both --model and --template together.\n');
       console.error('Usage:');
-      console.error('  cm create-model --template <template> --model <name>\n');
+      console.error('  cmc create-model --template <template> --model <name>\n');
       process.exit(1);
     }
 
@@ -67,7 +67,7 @@ program
   });
 
 // ---------------------------------------------
-// cm push-model --model <name>
+// cmc push-model --model <name>
 // ---------------------------------------------
 program
   .command('push-model')
@@ -80,7 +80,7 @@ program
   });
 
 // ---------------------------------------------
-// cm add-content-type --model <name> --name <name>
+// cmc add-content-type --model <name> --name <name>
 // ---------------------------------------------
 program
   .command('add-content-type')
@@ -94,7 +94,7 @@ program
   });
 
 // ---------------------------------------------
-// cm delete-model --model <name> [--force]
+// cmc delete-model --model <name> [--force]
 // ---------------------------------------------
 program
   .command('delete-model')
@@ -109,7 +109,7 @@ program
   });
 
 // ---------------------------------------------
-// cm list-templates
+// cmc list-templates
 // ---------------------------------------------
 program
   .command('list-templates')
@@ -120,7 +120,7 @@ program
   });
 
 // ---------------------------------------------
-// cm list-models
+// cmc list-models
 // ---------------------------------------------
 program
   .command('list-models')
@@ -131,7 +131,7 @@ program
   });
 
 // ---------------------------------------------
-// cm dev [--validate-field-registry]
+// cmc dev [--validate-field-registry]
 // ---------------------------------------------
 program
   .command('dev')
