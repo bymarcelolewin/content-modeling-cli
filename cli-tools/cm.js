@@ -18,7 +18,14 @@ const program = new Command();
 program
   .name('cm')
   .description(
-    chalk.green('Content Modeling CLI') + ' for Contentful ⚠️  BETA\n© Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reseved.\n\nLearn more at IntelligentContentAcademy.com\nFor help contact marcelo@intelligentcontentacademy.com\n\nNot associated with Contentful.\nUse \'as is\'.  No warranty provided.\n\n** Do not use it in a production environment. **'
+    chalk.green('Content Modeling CLI') + ' for Contentful ⚠️  BETA\n' +
+    '© Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reserved.\n\n' +
+    'Learn more at https://www.intelligentcontentacademy.com\n' +
+    'For help contact marcelo@intelligentcontentacademy.com\n\n' +
+    'Licensed for Contentful modeling only. See LICENSE.md in the project or NPM page for full terms.\n\n' +
+    'Not associated with Contentful.\n' +
+    'Use "as is". No warranty provided.\n\n' +
+    '** Do not use in a production environment. **'
   )
   .version('1.0.0-beta.1');
 

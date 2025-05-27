@@ -31,6 +31,11 @@
     "email": "marcelo@intelligentcontentacademy.com",
     "url": "https://www.intelligentcontentacademy.com"
   },
+  "homepage": "https://www.intelligentcontentacademy.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bymarcelolewin/Content-Modeling-CLI.git"
+  },
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {
     "node": ">=18.0.0"

@@ -1,4 +1,4 @@
-Content Modeling CLI License v1.1
+Content Modeling CLI License v1.1 – May 2025
 Copyright (c) 2025 Red Pill Blue Pill Studios, LLC
 
 Permission is granted to use this software solely for the purpose of creating and managing content models within the Contentful platform.
@@ -7,7 +7,7 @@ You may integrate this CLI into internal workflows, including CI/CD pipelines, p
 
 Any other use—including but not limited to automation of unrelated workflows, integration with non-Contentful platforms, or adaptation for other CMSs—is strictly prohibited without prior written permission.
 
-Modification of the codebase is permitted for internal use only. Any modified versions must be submitted as a pull request to the official repository at https://github.com/bymarcelolewin/Content-Modeling-CLI before being used, shared, or deployed. Approval and merging of the pull request are required for any redistribution or external use.
+Modification of the codebase is permitted for internal use only. Any modified versions must be submitted as a pull request to the official repository at https://github.com/bymarcelolewin/Content-Modeling-CLI before being used, shared, or deployed. Only code that has been approved and merged into the official repository may be used beyond internal development. Redistribution or hosting of modified versions is prohibited under all other circumstances.
 
 Redistribution, republishing, mirroring, or packaging of this software or its modified versions is strictly prohibited. All usage must reference and depend on the official GitHub repository or npm package.
 
