@@ -18,6 +18,15 @@ With built-in Git support, you can version, track, and collaborate on your model
 
 Spend less time clicking through the UI and more time designing scalable, reusable content models—fast.
 
+- [Key Features](#key-features)
+- [Getting Started](#getting-started)
+- [CLI Setup](#cli-setup)
+- [Create Your First Project](#create-your-first-project)
+- [Push Your First Model Into Contentful](#push-your-first-model-into-contentful)
+- [Currently Supported CLI Commands (Version 1.0.0)](#currently-supported-cli-commands-version-100)
+- [Further Information](#further-information)
+- [License](#license)
+
 ## Key Features
 
 - **No-Code Content Modeling**  
