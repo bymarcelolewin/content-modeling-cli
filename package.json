@@ -1,6 +1,6 @@
 {
   "name": "content-modeling-cli",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "⚠️ BETA – A CLI tool for building, templating, and managing content models for Contentful using simple JSON files.",
   "main": "cli-tools/cm.js",
   "bin": {
