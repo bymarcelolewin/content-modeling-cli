@@ -4,7 +4,15 @@
 
 **NOT associated with Contentful** - Learn more at [Intelligent Content Academy](https://www.intelligentcontentacademy.com/)
 
-A CLI tool for content modeling in Contentful, built specifically for content architects and content modelers. Define content types, fields, and relationships using simple, structured JSON—no scripting or programming required. Create reusable components with predefined options and default values, and apply them across models for consistency and speed. Templatize entire content models, enhance clarity with emoji support via a centralized library, and organize your work using a project-based structure. With built-in Git support, you can version, track, and collaborate on your models just like code—making your modeling process scalable, maintainable, and team-friendly. Spend less time clicking around the UI and more time designing intelligent, reusable content architectures.
+A CLI tool for content modeling in Contentful, purpose-built for content modeling architects and teams working in Contentful.
+
+Define content types, fields, and relationships using clean, structured JSON—no scripting or programming required. Create reusable components with predefined options and default values, and apply them across models for consistency and speed.
+
+Templatize entire content models, enhance clarity with emoji support via a centralized library, and organize your work using a project-based structure. 
+
+With built-in Git support, you can version, track, and collaborate on your models just like code—making your modeling process scalable, maintainable, and team-friendly.
+
+Spend less time clicking through the UI and more time designing scalable, reusable content models—fast.
 
 ## Key Features
 
@@ -124,8 +132,7 @@ Congratulations!  You did it.  You created your first project, created a model i
 |:---------------------|:-----------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `cm init`            | Initializes a new CLI project with a standard folder structure and config file.                      | `--name`: Display name of the new project. Will be normalized into a safe folder name.<br>`--git`: Initializes Git at the project root and adds a `.gitignore` to exclude `.contentfulrc.json`. If Git is not installed, you'll be prompted to continue without version control. |
 | `cm create-model`    | Creates a new content model using a specified template. Will also include the global components and emojis library. | `--model`: Name of the new model folder to create.<br>`--template`: Name of the template to use.                                                     |
-| `cm push-model`      | Pushes all content types from the specified model folder to Contentful.                              | `--model`: Name of the existing model folder in.                                                                                                      |
-| `cm add-content-type`| Adds a new content type to an existing model.                                                        | `--model`: Name of the existing model folder.<br>`--name`: Display name of the new content type (e.g., "Article - Blog").                           |
+| `cm push-model`      | Pushes all content types from the specified model folder to Contentful. Without `--force`, it performs a dry run and does not create anything. | `--model`: Name of the existing model folder.<br>`--force`: Actually pushes the model to Contentful. Without it, the command runs in dry run mode and shows what would be created. | `cm add-content-type`| Adds a new content type to an existing model.                                                        | `--model`: Name of the existing model folder.<br>`--name`: Display name of the new content type (e.g., "Article - Blog").                           |
 | `cm delete-model`    | Deletes an entire content model in Contentful, including its content types and entries. If --force is not included, it will only be a dry run. This will not delete the model folder locally. | `--model`: Name of the model folder to delete.<br>`--force`: Actually deletes the content; otherwise, it performs a dry run.                         |
 | `cm list-templates`  | Lists all available content model templates and their content types.                                 | —                                                                                                                                                    |
 | `cm list-models`     | Lists all the content models you created so far.                                                     | —                                                                                                                                                    |
