@@ -1,7 +1,8 @@
 {
   "name": "content-modeling-cli",
   "version": "1.0.0",
-  "description": "A CLI tool for building, templating, and managing content models for Contentful.",
+  "description": "A CLI tool for building, templating, and managing content models for Contentful using simple JSON files.",
+  "main": "cli-tools/cm.js",
   "bin": {
     "cm": "./cli-tools/cm.js",
     "contentmodel": "./cli-tools/cm.js"
@@ -28,9 +29,9 @@
   "author": {
     "name": "Marcelo Lewin",
     "email": "marcelo@intelligentcontentacademy.com",
-    "url": "https://www.intelligentcontent.academy"
+    "url": "https://www.intelligentcontentacademy.com"
   },
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "engines": {
     "node": ">=18.0.0"
   },
@@ -43,9 +44,6 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "exports": {
-    "./cli": "./cli-tools/cm.js"
   },
   "_moduleAliases": {
     "@fields": "cli-fields",

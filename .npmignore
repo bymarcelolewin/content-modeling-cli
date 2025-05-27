@@ -1,0 +1,15 @@
+# Node/NPM artifacts
+node_modules/
+npm-debug.log
+
+# Editor/IDE metadata
+.vscode/
+.idea/
+.DS_Store
+
+# Git
+.git
+.gitignore
+
+# Logs
+*.log
