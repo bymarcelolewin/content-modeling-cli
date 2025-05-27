@@ -20,7 +20,9 @@ Spend less time clicking through the UI and more time designing scalable, reusab
 
 - [Key Features](#key-features)
 - [Getting Started](#getting-started)
-- [CLI Setup](#cli-setup)
+- [Installing from NPM (Recommended)](#installing-from-npm-recommended)
+- [Installing from Source](#installing-from-source)
+- [Test the Install](#test-the-install)
 - [Create Your First Project](#create-your-first-project)
 - [Push Your First Model Into Contentful](#push-your-first-model-into-contentful)
 - [Currently Supported CLI Commands (Version 1.0.0)](#currently-supported-cli-commands-version-100)
@@ -58,15 +60,72 @@ Spend less time clicking through the UI and more time designing scalable, reusab
 
 ## Getting Started
 
-- Install Node.js if you don't already have it.
-- If you want to use the built-in version control, you need to install git if you don't already have it.
-- git clone this repo using ```git clone https://github.com/bymarcelolewin/Content-Modeling-CLI.git```
+- Install [Node.js](https://nodejs.org/) if you don't already have it.
+- If you want to use the built-in version control features, make sure [Git](https://git-scm.com/) is installed too.
 
-## CLI Setup
-- Switch to "Content-Modeling-CLI" folder.
-- In your terminal run: ```npm install```.  You will get npm warnings that some packages are deprecated.  You can ignore those.
-- Run ```npm link``` or if you get a permission error, run ```sudo npm link```.
-- Test the CLI by typing in ```cm --help``` from anywhere.  ```cm``` should be globally available in your terminal now.
+---
+
+## Installing from NPM (Recommended)
+
+The easiest way to install the CLI is via NPM:
+
+```bash
+npm install -g content-modeling-cli@beta
+```
+
+If you get a permissions error, try:
+
+```bash
+sudo npm install -g content-modeling-cli@beta
+```
+
+## Installing from Source
+
+This option is for developers who want to work directly with the source code.
+
+1. Clone the repo:
+
+    ```bash
+    git clone https://github.com/bymarcelolewin/Content-Modeling-CLI.git
+    ```
+
+2. Navigate into the folder:
+
+    ```bash
+    cd Content-Modeling-CLI
+    ```
+
+3. Install dependencies:
+
+    ```bash
+    npm install
+    ```
+
+    You may see deprecation warnings — they can be safely ignored.
+
+4. Link the CLI globally:
+
+    ```bash
+    npm link
+    ```
+
+    If you get a permission error, run:
+
+    ```bash
+    sudo npm link
+    ```
+
+---
+
+## Test the Install
+
+To confirm everything is working, run:
+
+```bash
+cm --help
+```
+
+You should see the CLI help menu. The `cm` command is now available globally from any terminal window. You can also use `contentmodel` if you prefer.
 
 ## Create Your First Project
 All models and templates are stored in a project, so you need a project before you can create any models.   Projects also come with sample templates you can use to create your first model.
