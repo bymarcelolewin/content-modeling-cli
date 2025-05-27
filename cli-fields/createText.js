@@ -1,52 +1,78 @@
 //======================================
 // file: createText.js
-// version: 1.2
-// last updated: 05-22-2025
+// version: 2.0
+// last updated: 05-27-2025
 //======================================
 
 const resolveEmoji = require("@resolve-emoji");
 
-function createText(contentType, {
+/**
+ * Returns a CMA-compatible field definition for various text types.
+ *
+ * @param {Object} options
+ * @param {string} options.fieldName - Display name
+ * @param {string} options.fieldId - Field ID
+ * @param {boolean} options.required - Whether the field is required
+ * @param {string} options.textType - single-line | multi-line | markdown | rich-text
+ * @param {string} options.emoji - Optional emoji key or literal
+ * @param {string} options.emojiPath - Path to emojis.json
+ * @returns {Object} CMA-compatible field definition
+ */
+function createText({
   fieldName = "Description",
   fieldId = "description",
   required = false,
   textType = "single-line",
   emoji = "",
-  emojiPath = undefined, // ✅ Injected by CLI
+  emojiPath = undefined,
 } = {}) {
   const resolvedEmoji = resolveEmoji(emoji, emojiPath);
   const name = resolvedEmoji ? `${resolvedEmoji} ${fieldName}` : fieldName;
 
-  let fieldDefinition;
-  let widget;
+  let fieldConfig;
 
   switch (textType) {
     case "single-line":
-      fieldDefinition = { name, type: "Symbol", required };
-      widget = "singleLine";
+      fieldConfig = {
+        id: fieldId,
+        name,
+        type: "Symbol",
+        required,
+      };
       break;
 
     case "multi-line":
-      fieldDefinition = { name, type: "Text", required };
-      widget = "multipleLine";
-      break;
-
     case "markdown":
-      fieldDefinition = { name, type: "Text", required };
-      widget = "markdown";
+      fieldConfig = {
+        id: fieldId,
+        name,
+        type: "Text",
+        required,
+      };
       break;
 
     case "rich-text":
-      fieldDefinition = { name, type: "RichText", required };
-      widget = "richTextEditor";
+      fieldConfig = {
+        id: fieldId,
+        name,
+        type: "RichText",
+        required,
+      };
       break;
 
     default:
-      throw new Error(`createText: Unknown type "${textType}". Valid options are single-line, multi-line, markdown, rich-text.`);
+      throw new Error(
+        `createText: Unknown textType "${textType}". Valid options are: single-line, multi-line, markdown, rich-text.`
+      );
   }
 
-  contentType.createField(fieldId, fieldDefinition);
-  contentType.changeFieldControl(fieldId, "builtin", widget);
+  // Set standard defaults across all types
+  fieldConfig.localized = false;
+  fieldConfig.disabled = false;
+  fieldConfig.omitted = false;
+  fieldConfig.validations = [];
+
+  return fieldConfig;
 }
 
 module.exports = {

@@ -1,25 +1,40 @@
 //======================================
 // file: createTitle.js
-// version: 1.3
-// last updated: 05-22-2025
+// version: 2.0
+// last updated: 05-27-2025
 //======================================
 
 const resolveEmoji = require("@resolve-emoji");
 
-function createTitle(contentType, {
+/**
+ * Returns a CMA-compatible Symbol field intended for content titles.
+ *
+ * @param {Object} options
+ * @param {string} options.fieldName - Display name of the field
+ * @param {string} options.fieldId - Field ID
+ * @param {boolean} options.required - Whether the field is required
+ * @param {string} options.emoji - Optional emoji key or literal
+ * @param {string} options.emojiPath - Path to emojis.json
+ * @returns {Object} CMA-compatible field definition
+ */
+function createTitle({
   fieldName = "Title",
   fieldId = "title",
   required = true,
   emoji = "",
-  emojiPath = undefined, // ✅ Accept emojiPath passed in from CLI
+  emojiPath = undefined,
 } = {}) {
-  const resolvedEmoji = resolveEmoji(emoji, emojiPath); // ✅ Use provided path
+  const resolvedEmoji = resolveEmoji(emoji, emojiPath);
   const name = resolvedEmoji ? `${resolvedEmoji} ${fieldName}` : fieldName;
 
-  contentType.createField(fieldId, {
+  return {
+    id: fieldId,
     name,
     type: "Symbol",
-    required: required,
+    required,
+    localized: false,
+    disabled: false,
+    omitted: false,
     validations: [
       {
         size: {
@@ -28,9 +43,7 @@ function createTitle(contentType, {
         },
       },
     ],
-  });
-
-  contentType.changeFieldControl(fieldId, "builtin", "singleLine");
+  };
 }
 
 module.exports = {

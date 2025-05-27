@@ -1,19 +1,32 @@
 //======================================
 // file: createCodeId.js
-// version: 1.2
-// last updated: 05-22-2025
+// version: 2.0
+// last updated: 05-27-2025
 //======================================
 
 const resolveEmoji = require("@resolve-emoji");
 
-function createCodeId(contentType, {
+/**
+ * Returns a CMA-compatible Symbol field for a developer-friendly ID
+ *
+ * @param {Object} options
+ * @param {string} options.fieldName - Display name of the field
+ * @param {string} options.fieldId - Field ID (e.g., "codeId")
+ * @param {boolean} options.required - Whether the field is required
+ * @param {boolean} options.unique - Whether the field value must be unique
+ * @param {string} options.validate - "camelCase" or "snake_case"
+ * @param {string} options.emoji - Optional emoji key or literal
+ * @param {string} options.emojiPath - Path to emojis.json
+ * @returns {Object} A CMA-compatible field definition
+ */
+function createCodeId({
   fieldName = "Code ID",
   fieldId = "codeId",
   required = true,
   unique = true,
   validate = "camelCase",
   emoji = "emoji.field.developer",
-  emojiPath = undefined, // ✅ injected by CLI
+  emojiPath = undefined,
 } = {}) {
   const validations = [];
 
@@ -33,26 +46,29 @@ function createCodeId(contentType, {
     });
   }
 
-  validations.push(
-    { unique: unique },
-    {
-      size: {
-        min: 2,
-      },
-    }
-  );
+  if (unique) {
+    validations.push({ unique: true });
+  }
+
+  validations.push({
+    size: {
+      min: 2,
+    },
+  });
 
   const resolvedEmoji = resolveEmoji(emoji, emojiPath);
   const name = resolvedEmoji ? `${resolvedEmoji} ${fieldName}` : fieldName;
 
-  contentType.createField(fieldId, {
+  return {
+    id: fieldId,
     name,
     type: "Symbol",
-    required: required,
+    required,
+    localized: false,
+    disabled: false,
+    omitted: false,
     validations,
-  });
-
-  contentType.changeFieldControl(fieldId, "builtin", "singleLine");
+  };
 }
 
 module.exports = {

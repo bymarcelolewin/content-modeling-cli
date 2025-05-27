@@ -1,22 +1,37 @@
 //======================================
 // file: createSingleSelect.js
-// version: 1.2
-// last updated: 05-22-2025
+// version: 2.0
+// last updated: 05-27-2025
 //======================================
 
 const resolveEmoji = require("@resolve-emoji");
 
-function createSingleSelect(contentType, {
+/**
+ * Returns a CMA-compatible Symbol field with a single-select value from a list.
+ *
+ * @param {Object} options
+ * @param {string} options.fieldName - Display name of the field
+ * @param {string} options.fieldId - Field ID
+ * @param {boolean} options.required - Whether the field is required
+ * @param {string[]} options.options - List of allowed values
+ * @param {string} [options.defaultValue] - Optional default value (must be in options)
+ * @param {string} options.emoji - Optional emoji key or literal
+ * @param {string} options.emojiPath - Path to emojis.json
+ * @returns {Object} CMA-compatible field definition
+ */
+function createSingleSelect({
   fieldName = "Category",
   fieldId = "category",
   required = false,
   options = [],
   defaultValue = undefined,
   emoji = "",
-  emojiPath = undefined, // ✅ Injected by CLI
+  emojiPath = undefined,
 } = {}) {
   if (!Array.isArray(options) || options.length === 0) {
-    throw new Error(`createSingleSelect: 'options' array is required and cannot be empty.`);
+    throw new Error(
+      `createSingleSelect: 'options' array is required and cannot be empty.`
+    );
   }
 
   if (defaultValue && !options.includes(defaultValue)) {
@@ -29,9 +44,13 @@ function createSingleSelect(contentType, {
   const name = resolvedEmoji ? `${resolvedEmoji} ${fieldName}` : fieldName;
 
   const fieldConfig = {
+    id: fieldId,
     name,
     type: "Symbol",
-    required: required,
+    required,
+    localized: false,
+    disabled: false,
+    omitted: false,
     validations: [
       {
         in: options,
@@ -45,8 +64,7 @@ function createSingleSelect(contentType, {
     };
   }
 
-  contentType.createField(fieldId, fieldConfig);
-  contentType.changeFieldControl(fieldId, "builtin", "radio");
+  return fieldConfig;
 }
 
 module.exports = {

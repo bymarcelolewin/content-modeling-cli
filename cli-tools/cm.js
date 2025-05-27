@@ -2,7 +2,7 @@
 
 //======================================
 // file: cm.js
-// version: 1.3
+// version: 1.4
 // last updated: 05-26-2025
 //======================================
 
@@ -67,15 +67,17 @@ program
   });
 
 // ---------------------------------------------
-// cm push-model --model <name>
+// cm push-model --model <name> [--force]
 // ---------------------------------------------
 program
   .command('push-model')
   .description('Pushes an existing content model from the content-models/models folder to Contentful.')
   .requiredOption('--model <model>', 'Name of the content model folder that contains all your content types, located inside the content-models folder.')
+  .option('--force', 'Actually push the model to Contentful (dry run by default)')
   .action((options) => {
     const script = path.join(__dirname, 'push-content-model.js');
     const args = ['--model', options.model];
+    if (options.force) args.push('--force');
     spawn('node', [script, ...args], { stdio: 'inherit' });
   });
 

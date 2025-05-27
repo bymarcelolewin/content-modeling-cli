@@ -1,21 +1,38 @@
 //======================================
 // file: createReference.js
-// version: 1.2
-// last updated: 05-22-2025
+// version: 2.0
+// last updated: 05-27-2025
 //======================================
 
 const resolveEmoji = require("@resolve-emoji");
 
-function createReference(contentType, {
+/**
+ * Returns a CMA-compatible reference field for entries.
+ *
+ * @param {Object} options
+ * @param {string} options.fieldId - ID of the field
+ * @param {string} options.fieldName - Name of the field
+ * @param {string} options.allowedEntries - one, zero-to-one, one-to-many, zero-to-many
+ * @param {string[]} options.allowedContentTypes - List of allowed content type IDs
+ * @param {string} options.emoji - Optional emoji key or literal
+ * @param {string} options.emojiPath - Path to emojis.json
+ * @returns {Object} CMA-compatible field definition
+ */
+function createReference({
   fieldId = "metadata",
   fieldName = "Metadata",
   allowedEntries = "one-to-many",
   allowedContentTypes = [],
   emoji = "",
-  emojiPath = undefined, // ✅ Injected by CLI
+  emojiPath = undefined,
 } = {}) {
-  if (!Array.isArray(allowedContentTypes) || allowedContentTypes.length === 0) {
-    throw new Error(`createReference: 'allowedContentTypes' must be a non-empty array of content type IDs.`);
+  if (
+    !Array.isArray(allowedContentTypes) ||
+    allowedContentTypes.length === 0
+  ) {
+    throw new Error(
+      `createReference: 'allowedContentTypes' must be a non-empty array of content type IDs.`
+    );
   }
 
   const resolvedEmoji = resolveEmoji(emoji, emojiPath);
@@ -29,54 +46,64 @@ function createReference(contentType, {
 
   switch (allowedEntries) {
     case "one":
-      contentType.createField(fieldId, {
+      return {
+        id: fieldId,
         name,
         type: "Link",
         linkType: "Entry",
-        validations: linkValidation,
         required: true,
-      });
-      contentType.changeFieldControl(fieldId, "builtin", "entryLinkEditor");
-      break;
+        localized: false,
+        disabled: false,
+        omitted: false,
+        validations: linkValidation,
+      };
 
     case "zero-to-one":
-      contentType.createField(fieldId, {
+      return {
+        id: fieldId,
         name,
         type: "Link",
         linkType: "Entry",
-        validations: linkValidation,
         required: false,
-      });
-      contentType.changeFieldControl(fieldId, "builtin", "entryLinkEditor");
-      break;
+        localized: false,
+        disabled: false,
+        omitted: false,
+        validations: linkValidation,
+      };
 
     case "one-to-many":
-      contentType.createField(fieldId, {
+      return {
+        id: fieldId,
         name,
         type: "Array",
+        required: true,
+        localized: false,
+        disabled: false,
+        omitted: false,
         items: {
           type: "Link",
           linkType: "Entry",
           validations: linkValidation,
         },
-        required: true,
-      });
-      contentType.changeFieldControl(fieldId, "builtin", "entryLinksEditor");
-      break;
+        validations: [],
+      };
 
     case "zero-to-many":
-      contentType.createField(fieldId, {
+      return {
+        id: fieldId,
         name,
         type: "Array",
+        required: false,
+        localized: false,
+        disabled: false,
+        omitted: false,
         items: {
           type: "Link",
           linkType: "Entry",
           validations: linkValidation,
         },
-        required: false,
-      });
-      contentType.changeFieldControl(fieldId, "builtin", "entryLinksEditor");
-      break;
+        validations: [],
+      };
 
     default:
       throw new Error(

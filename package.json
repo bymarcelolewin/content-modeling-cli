@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "description": "A CLI tool for building, templating, and managing content models for Contentful.",
   "bin": {
-    "cm": "./cli-tools/cm.js"
+    "cm": "./cli-tools/cm.js",
+    "contentmodel": "./cli-tools/cm.js"
   },
   "files": [
     "cli-assets",
     "cli-components",
     "cli-fields",
     "cli-project-template",
-    "cli-temp",
     "cli-tools",
     "cli-utilities",
     "README.md"
@@ -23,8 +23,7 @@
     "contentful-cli",
     "cli",
     "content-modeling",
-    "headless-cms",
-    "content-architecture"
+    "headless-cms"
   ],
   "author": {
     "name": "Marcelo Lewin",
@@ -38,7 +37,6 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^13.1.0",
-    "contentful-cli": "^3.8.8",
     "contentful-management": "^11.52.2",
     "fs-extra": "^11.3.0",
     "module-alias": "^2.2.3"

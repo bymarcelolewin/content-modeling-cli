@@ -1,18 +1,30 @@
 //======================================
 // file: createURL.js
-// version: 1.2
-// last updated: 05-22-2025
+// version: 2.0
+// last updated: 05-27-2025
 //======================================
 
 const resolveEmoji = require("@resolve-emoji");
 
-function createURL(contentType, {
+/**
+ * Returns a CMA-compatible Symbol field for URL or path validation.
+ *
+ * @param {Object} options
+ * @param {string} options.fieldName - Display name
+ * @param {string} options.fieldId - Field ID
+ * @param {boolean} options.required - Whether the field is required
+ * @param {"url"|"path"|"both"} options.validate - Validation type
+ * @param {string} options.emoji - Optional emoji key or literal
+ * @param {string} options.emojiPath - Path to emojis.json
+ * @returns {Object} CMA-compatible field definition
+ */
+function createURL({
   fieldName = "URL or Path",
   fieldId = "urlOrPath",
   required = true,
   validate = "both",
   emoji = "",
-  emojiPath = undefined, // ✅ Injected by CLI
+  emojiPath = undefined,
 } = {}) {
   const resolvedEmoji = resolveEmoji(emoji, emojiPath);
   const name = resolvedEmoji ? `${resolvedEmoji} ${fieldName}` : fieldName;
@@ -32,10 +44,14 @@ function createURL(contentType, {
       break;
   }
 
-  contentType.createField(fieldId, {
+  return {
+    id: fieldId,
     name,
     type: "Symbol",
-    required: required,
+    required,
+    localized: false,
+    disabled: false,
+    omitted: false,
     validations: [
       {
         regexp: {
@@ -44,9 +60,7 @@ function createURL(contentType, {
         },
       },
     ],
-  });
-
-  contentType.changeFieldControl(fieldId, "builtin", "singleLine");
+  };
 }
 
 module.exports = {
