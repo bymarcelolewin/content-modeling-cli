@@ -4,7 +4,11 @@
 
 **NOT associated with Contentful** - Learn more at [Intelligent Content Academy](https://www.intelligentcontentacademy.com/)
 
-A CLI tool for content modeling in Contentful, purpose-built for content modeling architects and teams working in Contentful.
+[![License: Custom](https://img.shields.io/badge/license-Custom-lightgrey)](./LICENSE.md)
+![Version: 1.0.0-beta.1](https://img.shields.io/badge/version-1.0.0--beta.1-blue)
+[![npm version](https://img.shields.io/npm/v/content-modeling-cli.svg)](https://www.npmjs.com/package/content-modeling-cli)
+
+⚠️ BETA – A CLI tool for content modeling in Contentful, purpose-built for content modeling architects and teams working in Contentful.
 
 Define content types, fields, and relationships using clean, structured JSON—no scripting or programming required. Create reusable components with predefined options and default values, and apply them across models for consistency and speed.
 
@@ -143,5 +147,11 @@ Congratulations!  You did it.  You created your first project, created a model i
 - Use as is.  No warranty provided.  
 - Do not use it in a production environment.
 - **Not affiliated with Contentful.**
-  
-## More documentation coming soon!
+
+## License
+
+This project is **not open source**. It is source-available and licensed for the exclusive purpose of modeling content in Contentful.
+
+You may integrate it into CI/CD pipelines or internal workflows, but redistribution, republishing, or commercial use are prohibited.
+
+See [LICENSE.md](./LICENSE.md) for full terms.

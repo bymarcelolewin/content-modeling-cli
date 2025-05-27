@@ -31,7 +31,7 @@
     "email": "marcelo@intelligentcontentacademy.com",
     "url": "https://www.intelligentcontentacademy.com"
   },
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE.md",
   "engines": {
     "node": ">=18.0.0"
   },
