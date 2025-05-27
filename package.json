@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A CLI tool for building, templating, and managing content models for Contentful.",
   "bin": {
-    "cmc": "./cli-tools/cmc.js"
+    "cm": "./cli-tools/cm.js"
   },
   "files": [
     "cli-assets",
@@ -47,7 +47,7 @@
     "access": "public"
   },
   "exports": {
-    "./cli": "./cli-tools/cmc.js"
+    "./cli": "./cli-tools/cm.js"
   },
   "_moduleAliases": {
     "@fields": "cli-fields",

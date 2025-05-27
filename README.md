@@ -1,4 +1,4 @@
-![Content Modeling CLI for Contentful](cli-assets/cmc-logo.png)
+![Content Modeling CLI for Contentful](cli-assets/cmcli-logo.png)
 
 © Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reseved.
 
@@ -18,10 +18,10 @@ A CLI tool for content modeling in Contentful, built specifically for content ar
   Clone and reuse complete content models from predefined templates to accelerate setup and ensure governance, consistency, and scalability.
 
 - **Project-Based Organization**  
-  Use `cmc init` to scaffold distinct Content Modeling projects—each containing multiple content models, templates, and localized configurations. Ideal for managing multiple clients, sites, or environments.
+  Use `cm init` to scaffold distinct Content Modeling projects—each containing multiple content models, templates, and localized configurations. Ideal for managing multiple clients, sites, or environments.
 
 - **Built-in Git Version Control**  
-  All content models are stored as structured JSON files and organized by project, making them easy to version and manage with Git or GitHub. With built-in Git initialization support (via ```cmc init --git```), you can start tracking your models from day one—ideal for collaboration, auditing, and CI/CD integration.
+  All content models are stored as structured JSON files and organized by project, making them easy to version and manage with Git or GitHub. With built-in Git initialization support (via ```cm init --git```), you can start tracking your models from day one—ideal for collaboration, auditing, and CI/CD integration.
 
 - **Contentful Configuration per Model**  
   Each model includes its own simple Contentful configuration file, allowing seamless switching between spaces, environments, and teams without changing global settings.
@@ -33,7 +33,7 @@ A CLI tool for content modeling in Contentful, built specifically for content ar
   >**(Framework implemented, full functionality coming soon!)** Developers can extend the CLI with support for custom field types with business logic (local to your project) via a modular, pluggable field registry—adapting the tool to your team’s specific modeling needs.
 
 - **Command Line Simplicity**  
-  Perform all modeling tasks using a single command (`cmc`)—making your process fast, consistent, and easily scriptable for automation or CI/CD integration.
+  Perform all modeling tasks using a single command (`cm`)—making your process fast, consistent, and easily scriptable for automation or CI/CD integration.
 
 ## Getting Started
 
@@ -45,7 +45,7 @@ A CLI tool for content modeling in Contentful, built specifically for content ar
 - Switch to "Content-Modeling-CLI" folder.
 - In your terminal run: ```npm install```.  You will get npm warnings that some packages are deprecated.  You can ignore those.
 - Run ```npm link``` or if you get a permission error, run ```sudo npm link```.
-- Test the CLI by typing in ```cmc --help``` from anywhere.  ```cmc``` should be globally available in your terminal now.
+- Test the CLI by typing in ```cm --help``` from anywhere.  ```cm``` should be globally available in your terminal now.
 
 ## Create Your First Project
 All models and templates are stored in a project, so you need a project before you can create any models.   Projects also come with sample templates you can use to create your first model.
@@ -54,11 +54,11 @@ Let's first create the project. Projects can be stored anywhere you want in the 
 
 Let's create our first project.  You have to be in the terminal.  Perform the following command:
 
-```cmc init --name "My First Project"``` 
+```cm init --name "My First Project"``` 
 
 If you want to track your project changes using git, use the following command:
 
-```cmc init --name "My First Project" --git``` 
+```cm init --name "My First Project" --git``` 
 
 Once you do that, you will see a folder named ```my-first-project```.  In there, you will find the following:
 
@@ -77,11 +77,11 @@ If you create the project with --git, you will see your .git and .gitignore as w
 
 Now that you created your project, you can create as many models as you want.  Models can be created manually or you can use the CLI.  We recommend using the CLI, since it a much faster process.  You can easily create a new model based on a template.  Let's do that.
 
-Make sure you are inside the ```my-first-project``` (or whatever you called the project).  You have to be at the root level of the project, as the CLI uses the .cmcli.json file to know it's a CMC CLI project.
+Make sure you are inside the ```my-first-project``` (or whatever you called the project).  You have to be at the root level of the project, as the CLI uses the .cmcli.json file to know it's a CM CLI project.
 
 Now type:
 
-```cmc create-model --model myblog --template simple-blog ``` 
+```cm create-model --model myblog --template simple-blog ``` 
 
 You will get the following:
 ```
@@ -115,20 +115,20 @@ You can get the CMA token from Contentful.  Click on ⚙️ (gear) at the top ri
 >[!CAUTION]
 >Don't perform the following in a production environment!
 
-```cmc push-model --model myblog```
+```cm push-model --model myblog```
 
 Congratulations!  You did it.  You created your first project, created a model inside of it and pushed it to Contentful!
 
 ## Currently Supported CLI Commands (Version 1.0.0)
 | Command               | Description                                                                                          | Flags                                                                                                                                                 |
 |:---------------------|:-----------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `cmc init`            | Initializes a new CLI project with a standard folder structure and config file.                      | `--name`: Display name of the new project. Will be normalized into a safe folder name.<br>`--git`: Initializes Git at the project root and adds a `.gitignore` to exclude `.contentfulrc.json`. If Git is not installed, you'll be prompted to continue without version control. |
-| `cmc create-model`    | Creates a new content model using a specified template. Will also include the global components and emojis library. | `--model`: Name of the new model folder to create.<br>`--template`: Name of the template to use.                                                     |
-| `cmc push-model`      | Pushes all content types from the specified model folder to Contentful.                              | `--model`: Name of the existing model folder in.                                                                                                      |
-| `cmc add-content-type`| Adds a new content type to an existing model.                                                        | `--model`: Name of the existing model folder.<br>`--name`: Display name of the new content type (e.g., "Article - Blog").                           |
-| `cmc delete-model`    | Deletes an entire content model in Contentful, including its content types and entries. If --force is not included, it will only be a dry run. This will not delete the model folder locally. | `--model`: Name of the model folder to delete.<br>`--force`: Actually deletes the content; otherwise, it performs a dry run.                         |
-| `cmc list-templates`  | Lists all available content model templates and their content types.                                 | —                                                                                                                                                    |
-| `cmc list-models`     | Lists all the content models you created so far.                                                     | —                                                                                                                                                    |
+| `cm init`            | Initializes a new CLI project with a standard folder structure and config file.                      | `--name`: Display name of the new project. Will be normalized into a safe folder name.<br>`--git`: Initializes Git at the project root and adds a `.gitignore` to exclude `.contentfulrc.json`. If Git is not installed, you'll be prompted to continue without version control. |
+| `cm create-model`    | Creates a new content model using a specified template. Will also include the global components and emojis library. | `--model`: Name of the new model folder to create.<br>`--template`: Name of the template to use.                                                     |
+| `cm push-model`      | Pushes all content types from the specified model folder to Contentful.                              | `--model`: Name of the existing model folder in.                                                                                                      |
+| `cm add-content-type`| Adds a new content type to an existing model.                                                        | `--model`: Name of the existing model folder.<br>`--name`: Display name of the new content type (e.g., "Article - Blog").                           |
+| `cm delete-model`    | Deletes an entire content model in Contentful, including its content types and entries. If --force is not included, it will only be a dry run. This will not delete the model folder locally. | `--model`: Name of the model folder to delete.<br>`--force`: Actually deletes the content; otherwise, it performs a dry run.                         |
+| `cm list-templates`  | Lists all available content model templates and their content types.                                 | —                                                                                                                                                    |
+| `cm list-models`     | Lists all the content models you created so far.                                                     | —                                                                                                                                                    |
 
 ## Further Information
 - Learn more at [Intelligent Content Academy](https://www.intelligentcontentacademy.com/)
