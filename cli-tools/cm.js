@@ -27,7 +27,7 @@ program
     'Use "as is". No warranty provided.\n\n' +
     '** Do not use in a production environment. **'
   )
-  .version('1.0.0-beta.1');
+  .version('1.0.0-beta.2');
 
 // ---------------------------------------------
 // cm init --name <project name> [--git]
