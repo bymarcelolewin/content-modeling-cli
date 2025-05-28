@@ -1,11 +1,10 @@
 //======================================
 // file: delete-content-model.js
-// version: 1.2
-// last updated: 05-22-2025
+// version: 1.5
+// last updated: 05-28-2025
 //======================================
 
 require("module-alias/register");
-
 const fs = require("fs");
 const path = require("path");
 const readline = require("readline");
@@ -17,9 +16,8 @@ const loadProjectRoot = require("@loadProjectRoot");
 // --------------------------------------------
 const args = process.argv.slice(2);
 const isForce = args.includes("--force");
-const modelArg = args.find((arg, idx) => arg === "--model" && args[idx + 1])
-  ? args[args.indexOf("--model") + 1]
-  : null;
+const modelIndex = args.indexOf("--model");
+const modelArg = modelIndex !== -1 ? args[modelIndex + 1] : null;
 const isDryRun = !isForce;
 
 if (!modelArg) {
@@ -32,7 +30,7 @@ if (!modelArg) {
 // --------------------------------------------
 if (!isDryRun) {
   console.log(
-    "\x1b[31m************************************************\x1b[0m"
+    "\n\x1b[31m************************************************\x1b[0m"
   );
   console.log("🚨 \x1b[1m\x1b[31mREAD THIS! IMPORTANT!\x1b[0m 🚨");
   console.log();
@@ -43,6 +41,8 @@ if (!isDryRun) {
     "\x1b[31m************************************************\x1b[0m"
   );
   console.log("\x1b[0m");
+} else {
+  console.log("\n\x1b[36m💡 DRY RUN: No changes will be made. Use --force to apply.\x1b[0m\n");
 }
 
 // --------------------------------------------
@@ -173,7 +173,7 @@ async function deleteAllContentTypes() {
         }
       } else {
         console.log(
-          "\n⛔ Skipping deletion of entries. Those content types will NOT be deleted."
+          "\n🔴 Skipping deletion of entries. Those content types will NOT be deleted."
         );
       }
     }

@@ -1,13 +1,12 @@
 //======================================
 // file: resolve-emoji.js
-// version: 1.0
-// last updated: 05-21-2025
+// version: 1.1
+// last updated: 05-28-2025
 //======================================
-
-require("module-alias/register");
 
 const fs = require("fs");
 const path = require("path");
+const loadProjectRoot = require("@loadProjectRoot");
 
 let emojis = {};
 
@@ -20,7 +19,8 @@ let emojis = {};
 function loadEmojis(emojiPath) {
   if (process.env.SKIP_EMOJI_RESOLUTION === "true") return {};
 
-  const defaultEmojiPath = path.join(__dirname, "../project/content-models/emojis.json");
+  const projectRoot = loadProjectRoot();
+  const defaultEmojiPath = path.join(projectRoot, "content-models", "emojis.json");
   const finalPath = emojiPath || defaultEmojiPath;
 
   if (!fs.existsSync(finalPath)) {

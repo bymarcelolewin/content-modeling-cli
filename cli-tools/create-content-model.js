@@ -1,11 +1,10 @@
 //======================================
 // file: create-content-model.js
-// version: 1.1
-// last updated: 05-22-2025
+// version: 1.2
+// last updated: 05-28-2025
 //======================================
 
 require("module-alias/register");
-
 const fs = require("fs");
 const path = require("path");
 const fse = require("fs-extra");

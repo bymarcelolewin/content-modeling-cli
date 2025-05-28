@@ -1,8 +1,10 @@
 //======================================
 // file: init-project.js
-// version: 1.2
-// last updated: 05-23-2025
+// version: 1.3
+// last updated: 05-28-2025
 //======================================
+
+require("module-alias/register");
 
 const fs = require("fs");
 const path = require("path");
@@ -98,16 +100,19 @@ if (gitIndex !== -1) {
       output: process.stdout
     });
 
-    rl.question("\n⚠️ Git is not installed or not available in your PATH.\nWould you like to continue without initializing Git? (y/n) ", (answer) => {
-      rl.close();
-      if (answer.toLowerCase() === "y") {
-        createProject();
-        finalize(false);
-      } else {
-        console.log("❌ Project creation aborted by user.");
-        process.exit(1);
+    rl.question(
+      "\n⚠️ Git is not installed or not available in your PATH.\nWould you like to continue without initializing Git? (y/n) ",
+      (answer) => {
+        rl.close();
+        if (answer.toLowerCase() === "y") {
+          createProject();
+          finalize(false);
+        } else {
+          console.log("❌ Project creation aborted by user.");
+          process.exit(1);
+        }
       }
-    });
+    );
   } else {
     createProject();
 
@@ -119,6 +124,7 @@ if (gitIndex !== -1) {
 .DS_Store
 **/.contentfulrc.json
       `.trimStart();
+
       fs.writeFileSync(gitignorePath, gitignoreContents, "utf-8");
 
       finalize(true);

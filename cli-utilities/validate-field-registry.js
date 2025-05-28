@@ -1,18 +1,17 @@
 //======================================
 // file: validate-field-registry.js
-// version: 1.1
-// last updated: 05-22-2025
+// version: 1.3
+// last updated: 05-28-2025
 //======================================
-
-require("module-alias/register");
 
 const fs = require("fs");
 const path = require("path");
 
-function validateFieldRegistry() {
-  const registryPath = path.join(__dirname, "../cli-fields/field-registry.json");
-  const fieldsDir = path.join(__dirname, "../cli-fields");
+// Use a known file in @fields to safely resolve the fieldsDir
+const fieldsDir = path.dirname(require.resolve("@fields/createText.js"));
+const registryPath = path.join(fieldsDir, "field-registry.json");
 
+function validateFieldRegistry() {
   let hasErrors = false;
 
   if (!fs.existsSync(registryPath)) {

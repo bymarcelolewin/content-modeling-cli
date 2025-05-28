@@ -1,31 +1,32 @@
 //======================================
 // file: list-templates.js
-// version: 1.1
-// last updated: 05-22-2025
+// version: 1.2
+// last updated: 05-28-2025
 //======================================
 
 require("module-alias/register");
 
 const fs = require("fs");
 const path = require("path");
-
-// ✅ Updated path to new templates directory
 const loadProjectRoot = require("@loadProjectRoot");
+
+// --------------------------------------------
+// 📂 Resolve templates directory
+// --------------------------------------------
 const templatesDir = path.join(loadProjectRoot(), "content-model-templates", "templates");
 
+// --------------------------------------------
+// 🧾 Attempt to read and display templates
+// --------------------------------------------
 try {
   const folders = fs
     .readdirSync(templatesDir, { withFileTypes: true })
     .filter((dirent) => dirent.isDirectory())
     .map((dirent) => {
       const name = dirent.name;
-      const location = `templates/${dirent.name}`;
+      const location = `templates/${name}`;
 
-      const contentTypesPath = path.join(
-        templatesDir,
-        dirent.name,
-        "content-types"
-      );
+      const contentTypesPath = path.join(templatesDir, name, "content-types");
       let contentTypes = [];
 
       if (fs.existsSync(contentTypesPath)) {
@@ -38,14 +39,14 @@ try {
       return {
         "Template Name": name,
         "Template Location": location,
-        "Content Types":
-          contentTypes.length > 0 ? contentTypes.join(", ") : "[none]",
+        "Content Types": contentTypes.length > 0 ? contentTypes.join(", ") : "[none]",
       };
     });
 
   if (folders.length === 0) {
-    console.log("No templates found in templates/ folder.");
+    console.log("⚠️  No templates found in content-model-templates/templates/");
   } else {
+    console.log("📁 Available Templates:\n");
     console.table(folders);
   }
 } catch (err) {

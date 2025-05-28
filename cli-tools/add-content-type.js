@@ -1,10 +1,10 @@
 //======================================
 // file: add-content-type.js
-// version: 1.2
-// last updated: 05-23-2025
+// version: 1.3
+// last updated: 05-28-2025
 //======================================
 
-require("module-alias/register"); // 🔗 Enable support for @expand, @validateRegistry, etc.
+require("module-alias/register"); 
 
 const fs = require("fs");
 const path = require("path");

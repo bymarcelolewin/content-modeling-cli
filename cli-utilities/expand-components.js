@@ -1,13 +1,12 @@
 //======================================
 // file: expand-components.js
-// version: 1.3
-// last updated: 05-23-2025
+// version: 1.5
+// last updated: 05-28-2025
 //======================================
-
-require("module-alias/register");
 
 const fs = require("fs");
 const path = require("path");
+const { validateUniqueFieldIds } = require("@validateFieldIds");
 
 /**
  * Expands "component" field types in a content type definition.
@@ -72,21 +71,6 @@ function expandComponents(contentTypeJson, componentsDir) {
     ...contentTypeJson,
     fields: expandedFields,
   };
-}
-
-function validateUniqueFieldIds(fields, contentTypeId) {
-  const seen = new Set();
-
-  for (const field of fields) {
-    if (!field.fieldId) continue;
-    if (seen.has(field.fieldId)) {
-      throw new Error(
-        `❌ Duplicate fieldId "${field.fieldId}" found in content type "${contentTypeId}".\n` +
-        `   ➤ This may be caused by an overlapping field in a component.`
-      );
-    }
-    seen.add(field.fieldId);
-  }
 }
 
 module.exports = {

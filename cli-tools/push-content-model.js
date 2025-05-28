@@ -1,7 +1,7 @@
 //======================================
 // file: push-content-model.js
-// version: 3.21
-// last updated: 05-27-2025
+// version: 3.24
+// last updated: 05-28-2025
 //======================================
 
 require("module-alias/register");
@@ -10,11 +10,15 @@ const path = require("path");
 const fs = require("fs");
 const readline = require("readline");
 const contentful = require("contentful-management");
+
 const resolveEmoji = require("@resolve-emoji");
 const { expandComponents } = require("@expand");
 const loadProjectRoot = require("@loadProjectRoot");
 const fieldRegistry = require("@fields/field-registry.json");
 
+// --------------------------------------------
+// 🧠 Prompt utility
+// --------------------------------------------
 function promptUser(question) {
   const rl = readline.createInterface({
     input: process.stdin,
@@ -29,7 +33,7 @@ function promptUser(question) {
 }
 
 // --------------------------------------------
-// 🧠 Parse CLI Arguments
+// 🧠 Parse CLI arguments
 // --------------------------------------------
 const args = process.argv.slice(2);
 const modelFlagIndex = args.indexOf("--model");
@@ -44,7 +48,7 @@ if (!modelName) {
 }
 
 // --------------------------------------------
-// 🛠 Setup paths
+// 🛠 Resolve paths
 // --------------------------------------------
 const projectRoot = loadProjectRoot();
 const modelFolder = path.join(projectRoot, "content-models", "models", modelName);
@@ -83,7 +87,7 @@ if (
 }
 
 // --------------------------------------------
-// 🔌 Create CMA client
+// 🔌 Create Contentful Management client
 // --------------------------------------------
 const client = contentful.createClient({
   accessToken: managementToken,
@@ -91,7 +95,7 @@ const client = contentful.createClient({
 });
 
 // --------------------------------------------
-// 🧱 Build type → function map
+// 🧱 Build field-type registry map
 // --------------------------------------------
 const typeToHandler = {};
 fieldRegistry.forEach(({ type, function: fn, file }) => {
@@ -103,7 +107,7 @@ fieldRegistry.forEach(({ type, function: fn, file }) => {
 });
 
 // --------------------------------------------
-// 📦 Load and expand content types
+// 📦 Read content type files
 // --------------------------------------------
 const files = fs.readdirSync(contentTypesFolder).filter(f => f.endsWith(".json"));
 if (files.length === 0) {
@@ -112,7 +116,7 @@ if (files.length === 0) {
 }
 
 // --------------------------------------------
-// 🚀 Main logic
+// 🚀 Main push function
 // --------------------------------------------
 async function push() {
   let space, env;
@@ -123,6 +127,20 @@ async function push() {
   } catch {
     console.error("❌ CMA connection failed. Please verify your .contentfulrc.json settings.");
     process.exit(1);
+  }
+
+  // --------------------------------------------
+  // 🟡 Dry Run vs Force Warning
+  // --------------------------------------------
+  if (!isDryRun) {
+    console.log("\n\x1b[31m************************************************\x1b[0m");
+    console.log("🚨 \x1b[1m\x1b[31mREAD THIS! IMPORTANT!\x1b[0m 🚨");
+    console.log();
+    console.log("You are running the script in --force mode.");
+    console.log("This will CREATE the content model in Contentful.");
+    console.log("\x1b[31m************************************************\x1b[0m");
+  } else {
+    console.log("\n\x1b[36m🟡 DRY RUN: No changes will be made. Use --force to apply.\x1b[0m");
   }
 
   console.log("\n---------------------------------------");
@@ -165,9 +183,13 @@ async function push() {
     updates.push({ id: contentTypeId, name: contentTypeName, fields, description, entryField });
   }
 
+  // --------------------------------------------
+  // 📋 Display model preview
+  // --------------------------------------------
   console.log("\n---------------------------------------");
   console.log("MODEL CHANGES TO BE APPLIED");
   console.log("---------------------------------------");
+
   updates.forEach((ct) => {
     console.log(`\n📦 ${ct.name} (ID: ${ct.id})`);
     ct.fields.forEach((f) => {
@@ -181,6 +203,9 @@ async function push() {
     return;
   }
 
+  // --------------------------------------------
+  // 🛠️ Apply updates to Contentful
+  // --------------------------------------------
   const summary = [];
 
   for (const ctDef of updates) {
@@ -189,13 +214,13 @@ async function push() {
     try {
       await env.getContentType(id);
       console.log(`🔍 Found existing content type: ${id}`);
-      console.log(`⚠️  Skipping '${id}' because it already exists.`);
+      console.log(`🔴  Skipping '${id}' because it already exists.`);
       summary.push({ id, action: "skipped-exists" });
       continue;
     } catch (err) {
       if (err.name === "NotFound") {
         if (isDryRun) {
-          console.log(`🧪 [Dry Run] Would create & publish: ${id}`);
+          console.log(`🟡 [Dry Run] Would create & publish: ${id}`);
           summary.push({ id, action: "dry-run" });
         } else {
           const ct = await env.createContentTypeWithId(id, {
@@ -205,7 +230,7 @@ async function push() {
             fields,
           });
           await ct.publish();
-          console.log(`✅ Created & published: ${id}`);
+          console.log(`🟢 Created & published: ${id}`);
           summary.push({ id, action: "created" });
         }
       } else {
@@ -215,19 +240,25 @@ async function push() {
     }
   }
 
+  // --------------------------------------------
+  // ✅ Final summary
+  // --------------------------------------------
   console.log("\n---------------------------------------");
   console.log("SUMMARY");
   console.log("---------------------------------------");
+
   summary.forEach(({ id, action }) => {
-    const icon = action === "created" ? "🆕"
-               : action === "dry-run" ? "🧪"
-               : action === "skipped-exists" ? "⏭️"
+    const icon = action === "created"         ? "🟢"
+               : action === "dry-run"         ? "🟡"
+               : action === "skipped-exists"  ? "🔴"
                : "❌";
+
     const label = action === "skipped-exists"
       ? "Skipped - Already Exists"
       : action === "dry-run"
       ? "Dry Run – No changes applied"
       : action;
+
     console.log(`${icon} ${id}: ${label}`);
   });
 
@@ -237,6 +268,9 @@ async function push() {
   }
 }
 
+// --------------------------------------------
+// 🚀 Kick off
+// --------------------------------------------
 push().catch(() => {
   console.error("❌ Fatal error: Could not complete push process.");
   process.exit(1);
