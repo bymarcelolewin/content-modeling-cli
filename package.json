@@ -17,7 +17,8 @@
     "README.md"
   ],
   "scripts": {
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0",
+    "release:beta": "npm version prerelease --preid=beta && npm publish --tag beta && npm dist-tag add content-modeling-cli@$(node -p \"require('./package.json').version\") latest && git push && git push --tags"
   },
   "keywords": [
     "contentful",
