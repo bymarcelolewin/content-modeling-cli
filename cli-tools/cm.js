@@ -12,7 +12,7 @@ const { Command } = require('commander');
 const { spawn } = require('child_process');
 const path = require('path');
 const chalk = require('chalk');
-
+const pkg = require('../package.json'); 
 const program = new Command();
 
 program
@@ -27,7 +27,7 @@ program
     'Use "as is". No warranty provided.\n\n' +
     '** Do not use in a production environment. **'
   )
-  .version('1.0.0-beta.2');
+  .version(pkg.version);
 
 // ---------------------------------------------
 // cm init --name <project name> [--git]
