@@ -1,4 +1,4 @@
-## Current Features
+# Current Features
 
 - **No-Code Content Modeling**  
   Define content types, fields, and relationships using clean, structured JSON—no scripting or programming required.

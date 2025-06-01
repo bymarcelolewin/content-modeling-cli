@@ -1,4 +1,4 @@
-## Create Your First Project
+# Create Your First Project
 All models and templates are stored in a project, so you need a project before you can create any models.   Projects also come with sample templates you can use to create your first model.
 
 Let's first create the project. Projects can be stored anywhere you want in the same machine that you installed the CLI.

@@ -1,4 +1,4 @@
-Content Modeling CLI License v1.1 – May 2025
+# Content Modeling CLI License v1.1 – June 2025
 Copyright (c) 2025 Red Pill Blue Pill Studios, LLC
 
 Permission is granted to use this software solely for the purpose of creating and managing content models within the Contentful platform.
@@ -15,4 +15,4 @@ Commercial use—including integration into SaaS platforms, hosted services, res
 
 This software is provided "AS IS", without warranty of any kind.
 
-For licensing inquiries, contact: marcelo@intelligentcontentacademy.com
+For licensing inquiries, contact: marcelo@contentmodeling.io

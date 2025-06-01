@@ -1,4 +1,4 @@
-## Installing from NPM (Recommended)
+# Installing from NPM (Recommended)
 
 The easiest way to install the CLI is via NPM:
 
@@ -12,7 +12,7 @@ If you get a permissions error, try:
 sudo npm install -g content-modeling-cli@beta
 ```
 
-## Installing from Source
+# Installing from Source
 
 This option is for developers who want to work directly with the source code.
 
@@ -50,7 +50,7 @@ This option is for developers who want to work directly with the source code.
 
 ---
 
-## Test the Install
+# Test the Install
 
 To confirm everything is working, run:
 

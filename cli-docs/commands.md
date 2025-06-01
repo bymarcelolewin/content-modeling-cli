@@ -1,4 +1,4 @@
-## CLI Commands
+# CLI Commands
 | Command               | Description                                                                                          | Flags                                                                                                                                                 |
 |:---------------------|:-----------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `cm init`            | Initializes a new CLI project with a standard folder structure and config file.                      | `--name`: Display name of the new project. Will be normalized into a safe folder name.<br>`--git`: Initializes Git at the project root and adds a `.gitignore` to exclude `.contentfulrc.json`. If Git is not installed, you'll be prompted to continue without version control. |
