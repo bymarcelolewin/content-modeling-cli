@@ -33,4 +33,4 @@ This project is **not open source**. It is source-available and licensed for the
 
 You may integrate it into CI/CD pipelines or internal workflows, but redistribution, republishing, or commercial use are prohibited.
 
-See [LICENSE.md](../LICENSE.md) for full terms.
+See [LICENSE.md](LICENSE.md) for full terms.

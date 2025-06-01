@@ -4,7 +4,7 @@
 
 **NOT associated with Contentful** - Learn more at [Intelligent Content Academy](https://www.intelligentcontentacademy.com/)
 
-[![License: Custom](https://img.shields.io/badge/license-Custom-lightgrey)](./LICENSE.md)
+[![License: Custom](https://img.shields.io/badge/license-Custom-lightgrey)](../LICENSE.md)
 [![npm version](https://img.shields.io/npm/v/content-modeling-cli.svg)](https://www.npmjs.com/package/content-modeling-cli)
 
 ⚠️ BETA – A CLI tool for content modeling in Contentful, purpose-built for content modeling architects and teams working in Contentful.
