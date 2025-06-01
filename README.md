@@ -18,13 +18,7 @@ With built-in Git support, you can version, track, and collaborate on your model
 Spend less time clicking through the UI and more time designing scalable, reusable content models—fast.
 
 ## Documentation
-- [Current Features](cli-docs/current-features.md)
-- [Upcoming Features](cli-docs/upcoming-features.md)
-- [Getting Started](cli-docs/getting-started.md)
-- [Installation](cli-docs/installation.md)
-- [Create Your First Project](cli-docs/create-first-project.md)
-- [List of Commands](cli-docs/commands.md)
-- [List of Fields](cli-docs/fields.md)
+Ready to get started using it?   Check out our [docs](cli-docs/README.md)!
 
 ## Further Information
 - Learn more at [ContentModeling.io](https://www.contentmodeling.io/)
