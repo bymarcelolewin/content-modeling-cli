@@ -21,7 +21,7 @@ Spend less time clicking through the UI and more time designing scalable, reusab
 - [Current Features](current-features.md)
 - [Upcoming Features](upcoming-features.md)
 - [Getting Started](getting-started.md)
-- [Installion](installation.md)
+- [Installation](installation.md)
 - [Create Your First Project](create-first-project.md)
 - [List of Commands](commands.md)
 - [List of Fields](fields.md)

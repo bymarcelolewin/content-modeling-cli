@@ -21,7 +21,7 @@ Spend less time clicking through the UI and more time designing scalable, reusab
 - [Current Features](cli-docs/current-features.md)
 - [Upcoming Features](cli-docs/upcoming-features.md)
 - [Getting Started](cli-docs/getting-started.md)
-- [Installion](cli-docs/installation.md)
+- [Installation](cli-docs/installation.md)
 - [Create Your First Project](cli-docs/create-first-project.md)
 - [List of Commands](cli-docs/commands.md)
 - [List of Fields](cli-docs/fields.md)
