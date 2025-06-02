@@ -2,8 +2,8 @@
 
 [<- Back to Documentation](../README.md)
 
-- **No-Code Content Modeling**  
-  Define content types, fields, and relationships using clean, structured JSON—no scripting or programming required.
+- **AI-Ready Content Models**  
+  Content models are defined with clean, structured JSON—making them ideal for AI applications, including generative workflows, personalization engines, and retrieval-augmented generation (RAG).
 
 - **Reusable Components with Defaults**  
   Create reusable field groups (components) that include predefined options and default values (e.g., a multi-select field with default selections) for fast, consistent reuse across content models.
