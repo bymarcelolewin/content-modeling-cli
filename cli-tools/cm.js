@@ -20,8 +20,8 @@ program
   .description(
     chalk.green('Content Modeling CLI') + ' for Contentful ⚠️  BETA\n' +
     '© Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reserved.\n\n' +
-    'Learn more at https://www.intelligentcontentacademy.com\n' +
-    'For help contact marcelo@intelligentcontentacademy.com\n\n' +
+    'Learn more at https://www.contentmodeling.io\n' +
+    'For help contact marcelo@contentmodeling.io\n\n' +
     'Licensed for Contentful modeling only. See LICENSE.md in the project or NPM page for full terms.\n\n' +
     'Not associated with Contentful.\n' +
     'Use "as is". No warranty provided.\n\n' +
