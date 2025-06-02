@@ -28,6 +28,7 @@ Spend less time clicking through the UI and more time designing scalable, reusab
 - [Fields](fields/README.md)
 - Components (coming soon...)
 - Templates (coming soon...)
+- Emojis Library (coming soon...)
 
 ### Features
 - [Current Features](features/current-features.md)

@@ -10,6 +10,7 @@
   "files": [
     "cli-assets",
     "cli-components",
+    "cli-docs",
     "cli-fields",
     "cli-project-template",
     "cli-tools",
@@ -29,10 +30,10 @@
   ],
   "author": {
     "name": "Marcelo Lewin",
-    "email": "marcelo@intelligentcontentacademy.com",
-    "url": "https://www.intelligentcontentacademy.com"
+    "email": "marcelo@contentmodeling.io",
+    "url": "https://www.contentmodeling.io"
   },
-  "homepage": "https://www.intelligentcontentacademy.com",
+  "homepage": "https://www.contentmodeling.io",
   "repository": {
     "type": "git",
     "url": "https://github.com/bymarcelolewin/Content-Modeling-CLI.git"
