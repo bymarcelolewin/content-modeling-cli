@@ -1,5 +1,7 @@
 # Current Features
 
+[<- Back to Documentation](../README.md)
+
 - **No-Code Content Modeling**  
   Define content types, fields, and relationships using clean, structured JSON—no scripting or programming required.
 
@@ -24,5 +26,7 @@
 - **Command Line Simplicity**  
   Perform all modeling tasks using a single command (`cm`)—making your process fast, consistent, and easily scriptable for automation or CI/CD integration.
   
-  ---
-  [<- Back to Documentation](./README.md)
+---
+<br>
+
+[<- Back to Documentation](../README.md)

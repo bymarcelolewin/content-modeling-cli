@@ -1,4 +1,6 @@
 # Create Your First Project
+[<- Back](./cmcli-installation.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Back to Documentation -->](../README.md)
+
 All models and templates are stored in a project, so you need a project before you can create any models.   Projects also come with sample templates you can use to create your first model.
 
 Let's first create the project. Projects can be stored anywhere you want in the same machine that you installed the CLI.
@@ -71,4 +73,6 @@ You can get the CMA token from Contentful.  Click on ⚙️ (gear) at the top ri
 Congratulations!  You did it.  You created your first project, created a model inside of it and pushed it to Contentful!
 
 ---
-[<- Back to Documentation](./README.md)
+<br>
+
+[<- Back](./cmcli-installation.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Back to Documentation -->](../README.md)

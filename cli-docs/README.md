@@ -19,15 +19,21 @@ With built-in Git support, you can version, track, and collaborate on your model
 Spend less time clicking through the UI and more time designing scalable, reusable content models—fast.
 
 # Documentation
-- [Current Features](current-features.md)
-- [Upcoming Features](upcoming-features.md)
----
-- [Getting Started](getting-started.md)
-- [Installation](installation.md)
-- [Create Your First Project](create-first-project.md)
----
-- [List of Commands](commands.md)
-- [List of Fields](fields.md)
+
+### Getting Started
+- [Getting Started Tutorial](getting-started/README.md)
+
+### Objects
+- [CLI Commands](commands/README.md)
+- [Fields](fields/README.md)
+- Components (coming soon...)
+- Templates (coming soon...)
+
+### Features
+- [Current Features](features/current-features.md)
+- [Upcoming Features](features/upcoming-features.md)
+
+<br>
 
 # More Information
 - Learn more at [ContentModeling.io](https://www.contentmodeling.io/)

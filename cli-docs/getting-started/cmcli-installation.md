@@ -1,5 +1,7 @@
 # Installing from NPM (Recommended)
 
+[<- Back](./pre-installation-requirements.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Next ->](./create-first-project.md)  
+
 The easiest way to install the CLI is via NPM:
 
 ```bash
@@ -61,4 +63,6 @@ cm --help
 You should see the CLI help menu. The `cm` command is now available globally from any terminal window. You can also use `contentmodel` if you prefer.
 
 ---
-[<- Back to Documentation](./README.md)
+<br>
+
+[<- Back](./pre-installation-requirements.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Next ->](./create-first-project.md)  
