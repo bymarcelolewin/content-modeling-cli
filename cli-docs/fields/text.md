@@ -1,4 +1,4 @@
-### Text (`global.text`)
+### Text (`text`)
 Returns a CMA-compatible field definition for various text types.
 
 | Field        | Type      | Possible Values                                | Default           | Required | Description                                                                 |
@@ -14,14 +14,14 @@ Returns a CMA-compatible field definition for various text types.
 **Single-line (default):**
 ```json
 {
-  "type": "global.text"
+  "type": "text"
 }
 ```
 
 **Single-line (override):**
 ```json
 {
-  "type": "global.text",
+  "type": "text",
   "fieldName": "Short Label",
   "fieldId": "shortLabel",
   "textType": "single-line",
@@ -32,7 +32,7 @@ Returns a CMA-compatible field definition for various text types.
 **Multi-line (default):**
 ```json
 {
-  "type": "global.text",
+  "type": "text",
   "textType": "multi-line"
 }
 ```
@@ -40,7 +40,7 @@ Returns a CMA-compatible field definition for various text types.
 **Multi-line (override):**
 ```json
 {
-  "type": "global.text",
+  "type": "text",
   "fieldName": "Summary",
   "fieldId": "summary",
   "textType": "multi-line",
@@ -51,7 +51,7 @@ Returns a CMA-compatible field definition for various text types.
 **Markdown (default):**
 ```json
 {
-  "type": "global.text",
+  "type": "text",
   "textType": "markdown"
 }
 ```
@@ -59,7 +59,7 @@ Returns a CMA-compatible field definition for various text types.
 **Markdown (override):**
 ```json
 {
-  "type": "global.text",
+  "type": "text",
   "fieldName": "Body (Markdown)",
   "fieldId": "bodyMarkdown",
   "textType": "markdown",
@@ -70,7 +70,7 @@ Returns a CMA-compatible field definition for various text types.
 **Rich-text (default):**
 ```json
 {
-  "type": "global.text",
+  "type": "text",
   "textType": "rich-text"
 }
 ```
@@ -78,7 +78,7 @@ Returns a CMA-compatible field definition for various text types.
 **Rich-text (override):**
 ```json
 {
-  "type": "global.text",
+  "type": "text",
   "fieldName": "Full Body",
   "fieldId": "fullBody",
   "textType": "rich-text",
@@ -96,24 +96,24 @@ Returns a CMA-compatible field definition for various text types.
   "description": "This content type lets you create an article.",
   "fields": [
     {
-      "type": "global.title"
+      "type": "title"
     },
     {
-      "type": "global.text",
+      "type": "text",
       "fieldName": "Summary",
       "fieldId": "summary",
       "textType": "multi-line",
       "emoji": "📄"
     },
     {
-      "type": "global.text",
+      "type": "text",
       "fieldName": "Body (Markdown)",
       "fieldId": "bodyMarkdown",
       "textType": "markdown",
       "emoji": "📝"
     },
     {
-      "type": "global.text",
+      "type": "text",
       "fieldName": "Full Body",
       "fieldId": "fullBody",
       "textType": "rich-text",

@@ -1,4 +1,4 @@
-### Title (`global.title`)
+### Title (`title`)
 Returns a CMA-compatible Symbol field intended for content titles.
 
 | Field        | Type      | Possible Values     | Default     | Required | Description                                                                 |
@@ -12,7 +12,7 @@ Returns a CMA-compatible Symbol field intended for content titles.
 
 ```json
 {
-  "type": "global.title",
+  "type": "title",
   "fieldName": "Headline",
   "fieldId": "headline",
   "emoji": "📰"
@@ -22,7 +22,7 @@ Returns a CMA-compatible Symbol field intended for content titles.
 **Example with defaults:**
 ```json
 {
-  "type": "global.title"
+  "type": "title"
 }
 ```
 
@@ -36,7 +36,7 @@ Returns a CMA-compatible Symbol field intended for content titles.
   "description": "This content type lets you create an article.",
   "fields": [
     {
-      "type": "global.title",
+      "type": "title",
       "fieldName": "Headline",
       "fieldId": "headline",
       "emoji": "📰"

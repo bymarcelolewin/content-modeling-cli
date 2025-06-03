@@ -1,4 +1,4 @@
-### Code ID (`global.codeId`)
+### Code ID (`codeId`)
 Creates a developer-friendly ID field for your developers to use in entries.
 
 | Field        | Type      | Possible Values               | Default                    | Required | Description                                                         |
@@ -14,7 +14,7 @@ Creates a developer-friendly ID field for your developers to use in entries.
 
 ```json
 {
-  "type": "global.codeId",
+  "type": "codeId",
   "fieldName": "Content Block ID",
   "fieldId": "contentBlockId",
   "validate": "snake_case",
@@ -25,7 +25,7 @@ Creates a developer-friendly ID field for your developers to use in entries.
 **Example with defaults:**
 ```json
 {
-  "type": "global.codeId"
+  "type": "codeId"
 }
 ```
 
@@ -39,10 +39,10 @@ Creates a developer-friendly ID field for your developers to use in entries.
   "description": "This content type lets you create an article.",
   "fields": [
     {
-      "type": "global.title"
+      "type": "title"
     },
     {
-      "type": "global.codeId"
+      "type": "codeId"
     }
   ]
 }

@@ -1,4 +1,4 @@
-### Reference (`global.reference`)
+### Reference (`reference`)
 Returns a CMA-compatible reference field for entries.
 
 | Field                 | Type            | Possible Values                                           | Default          | Required | Description                                                                 |
@@ -13,7 +13,7 @@ Returns a CMA-compatible reference field for entries.
 
 ```json
 {
-  "type": "global.reference",
+  "type": "reference",
   "fieldName": "Related Articles",
   "fieldId": "relatedArticles",
   "allowedEntries": "zero-to-many",
@@ -25,7 +25,7 @@ Returns a CMA-compatible reference field for entries.
 **Example with defaults:**
 ```json
 {
-  "type": "global.reference",
+  "type": "reference",
   "allowedContentTypes": ["referenceType"]
 }
 ```
@@ -40,10 +40,10 @@ Returns a CMA-compatible reference field for entries.
   "description": "This content type lets you create an article.",
   "fields": [
     {
-      "type": "global.title"
+      "type": "title"
     },
     {
-      "type": "global.reference",
+      "type": "reference",
       "fieldName": "Related Articles",
       "fieldId": "relatedArticles",
       "allowedEntries": "zero-to-many",

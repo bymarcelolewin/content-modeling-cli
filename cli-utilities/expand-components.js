@@ -20,46 +20,30 @@ function expandComponents(contentTypeJson, componentsDir) {
   const expandedFields = [];
 
   for (const field of contentTypeJson.fields) {
-    if (typeof field.type === "string" && field.type.endsWith(".component")) {
-      const [namespace, typeName] = field.type.split(".");
-
-      if (typeName !== "component") {
-        throw new Error(`❌ Invalid component type "${field.type}" in "${contentTypeJson.id}".`);
+    if (field.type === "component") {
+      const componentId = field.componentId;
+      if (!componentId) {
+        throw new Error(`❌ Missing "componentId" in a component field in "${contentTypeJson.id}".`);
       }
 
-      if (namespace === "local") {
-        const componentId = field.componentId;
-        if (!componentId) {
-          throw new Error(`❌ Missing "componentId" in a field of type "local.component" in "${contentTypeJson.id}".`);
-        }
+      const componentPath = path.join(componentsDir, `${componentId}.json`);
 
-        const componentPath = path.join(componentsDir, `${componentId}.json`);
-
-        if (!fs.existsSync(componentPath)) {
-          throw new Error(`❌ Component "${componentId}" not found at path: ${componentPath}`);
-        }
-
-        const componentJson = JSON.parse(fs.readFileSync(componentPath, "utf-8"));
-
-        if (!Array.isArray(componentJson.fields)) {
-          throw new Error(`❌ Component "${componentId}" does not contain a valid "fields" array.`);
-        }
-
-        const fieldsWithSource = componentJson.fields.map(f => ({
-          ...f,
-          __sourceComponent: componentId,
-          __sourceComponentNamespace: namespace
-        }));
-
-        expandedFields.push(...fieldsWithSource);
-      } else if (namespace === "global") {
-        throw new Error(`❌ "global.component" is not supported yet in "${contentTypeJson.id}".`);
-      } else {
-        throw new Error(`❌ Unknown component namespace "${namespace}" in "${contentTypeJson.id}".`);
+      if (!fs.existsSync(componentPath)) {
+        throw new Error(`❌ Component "${componentId}" not found at path: ${componentPath}`);
       }
 
-    } else if (field.type === "component") {
-      throw new Error(`❌ Field type "component" is missing a namespace in "${contentTypeJson.id}". Use "local.component" instead.`);
+      const componentJson = JSON.parse(fs.readFileSync(componentPath, "utf-8"));
+
+      if (!Array.isArray(componentJson.fields)) {
+        throw new Error(`❌ Component "${componentId}" does not contain a valid "fields" array.`);
+      }
+
+      const fieldsWithSource = componentJson.fields.map(f => ({
+        ...f,
+        __sourceComponent: componentId
+      }));
+
+      expandedFields.push(...fieldsWithSource);
     } else {
       expandedFields.push(field);
     }

@@ -1,4 +1,4 @@
-### URL (`global.url`)
+### URL (`url`)
 Returns a CMA-compatible Symbol field for URL or path validation.
 
 | Field        | Type      | Possible Values          | Default           | Required | Description                                                                 |
@@ -13,7 +13,7 @@ Returns a CMA-compatible Symbol field for URL or path validation.
 
 ```json
 {
-  "type": "global.url",
+  "type": "url",
   "fieldName": "Article URL",
   "fieldId": "articleURL",
   "validate": "path",
@@ -24,7 +24,7 @@ Returns a CMA-compatible Symbol field for URL or path validation.
 **Example with defaults:**
 ```json
 {
-  "type": "global.url"
+  "type": "url"
 }
 ```
 
@@ -38,10 +38,10 @@ Returns a CMA-compatible Symbol field for URL or path validation.
   "description": "This content type lets you create an article.",
   "fields": [
     {
-      "type": "global.title"
+      "type": "title"
     },
     {
-      "type": "global.url",
+      "type": "url",
       "fieldName": "Article URL",
       "fieldId": "articleURL",
       "validate": "path",

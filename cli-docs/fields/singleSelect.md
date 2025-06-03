@@ -1,4 +1,4 @@
-### Single Select (`global.singleSelect`)
+### Single Select (`singleSelect`)
 Returns a CMA-compatible Symbol field with a single-select value from a list.
 
 | Field          | Type            | Possible Values           | Default       | Required | Description                                                                  |
@@ -14,7 +14,7 @@ Returns a CMA-compatible Symbol field with a single-select value from a list.
 
 ```json
 {
-  "type": "global.singleSelect",
+  "type": "singleSelect",
   "fieldName": "Post Type",
   "fieldId": "postType",
   "options": ["News", "Tutorial", "Update"],
@@ -26,7 +26,7 @@ Returns a CMA-compatible Symbol field with a single-select value from a list.
 **Example with defaults:**
 ```json
 {
-  "type": "global.singleSelect",
+  "type": "singleSelect",
   "options": ["Small", "Medium", "Large"]
 }
 ```
@@ -41,10 +41,10 @@ Returns a CMA-compatible Symbol field with a single-select value from a list.
   "description": "This content type lets you create an article.",
   "fields": [
     {
-      "type": "global.title"
+      "type": "title"
     },
     {
-      "type": "global.singleSelect",
+      "type": "singleSelect",
       "options": ["Small", "Medium", "Large"]
     }
   ]

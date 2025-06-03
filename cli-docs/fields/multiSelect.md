@@ -1,4 +1,4 @@
-### Multi-Select (`global.multiSelect`)
+### Multi-Select (`multiSelect`)
 Returns a CMA-compatible Array field with Symbol items and value restrictions.
 
 | Field           | Type              | Possible Values           | Default     | Required | Description                                                                  |
@@ -14,7 +14,7 @@ Returns a CMA-compatible Array field with Symbol items and value restrictions.
 
 ```json
 {
-  "type": "global.multiSelect",
+  "type": "multiSelect",
   "fieldName": "Topics",
   "fieldId": "topics",
   "options": ["Design", "Engineering", "Marketing"],
@@ -26,7 +26,7 @@ Returns a CMA-compatible Array field with Symbol items and value restrictions.
 **Example with defaults:**
 ```json
 {
-  "type": "global.multiSelect",
+  "type": "multiSelect",
   "options": ["One", "Two"]
 }
 ```
@@ -41,10 +41,10 @@ Returns a CMA-compatible Array field with Symbol items and value restrictions.
   "description": "This content type lets you create an article.",
   "fields": [
     {
-      "type": "global.title"
+      "type": "title"
     },
     {
-      "type": "global.multiSelect",
+      "type": "multiSelect",
       "fieldName": "Topics",
       "fieldId": "topics",
       "options": ["Design", "Engineering", "Marketing"],

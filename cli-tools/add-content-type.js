@@ -70,7 +70,7 @@ const contentTypeDefinition = {
   description: "Describe this content type.",
   fields: [
     {
-      type: "global.title"
+      type: "title"
     }
   ]
 };

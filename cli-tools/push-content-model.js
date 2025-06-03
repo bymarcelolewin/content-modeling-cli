@@ -107,7 +107,7 @@ fieldRegistry.forEach(({ type, function: fn, file }) => {
 });
 
 // --------------------------------------------
-// 📦 Read content type files
+// Read content type files
 // --------------------------------------------
 const files = fs.readdirSync(contentTypesFolder).filter(f => f.endsWith(".json"));
 if (files.length === 0) {
@@ -169,13 +169,10 @@ async function push() {
     const contentTypeName = raw.emoji ? `${raw.emoji} ${name}` : name;
 
     const fields = expanded.fields.map((field) => {
-      const [ns, typeName] = field.type.split(".");
-      if (!ns || !typeName || ns !== "global") {
-        throw new Error(`❌ Unsupported field type: ${field.type} in ${file}`);
-      }
-      const handler = typeToHandler[typeName];
+      const fieldType = field.type;
+      const handler = typeToHandler[fieldType];
       if (!handler) {
-        throw new Error(`❌ No handler found for type '${typeName}'`);
+        throw new Error(`❌ No handler found for type '${fieldType}' in ${file}`);
       }
       return handler({ ...field, emojiPath: emojisPath });
     });
@@ -191,7 +188,7 @@ async function push() {
   console.log("---------------------------------------");
 
   updates.forEach((ct) => {
-    console.log(`\n📦 ${ct.name} (ID: ${ct.id})`);
+    console.log(`\n>>> ${ct.name} (ID: ${ct.id}) <<<`);
     ct.fields.forEach((f) => {
       console.log(`- ${f.name}`);
     });
@@ -271,7 +268,8 @@ async function push() {
 // --------------------------------------------
 // 🚀 Kick off
 // --------------------------------------------
-push().catch(() => {
+push().catch((err) => {
   console.error("❌ Fatal error: Could not complete push process.");
+  console.error(err);
   process.exit(1);
 });

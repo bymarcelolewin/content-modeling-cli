@@ -21,7 +21,7 @@ Once you do that, you will see a folder named ```my-first-project```.  In there,
    |- content-models
       |- ok-to-delete.txt <- You can delete this file
    |- content-model-templates
-      |- components <- Local Components
+      |- components <- Components
       |- templates <- Content Model Templates including Content Types
       |- emojis.json <- Emojis Library
 ```
