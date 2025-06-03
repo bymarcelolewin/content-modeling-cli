@@ -1,7 +1,7 @@
 //======================================
 // file: createCodeId.js
-// version: 2.0
-// last updated: 05-27-2025
+// version: 2.1
+// last updated: 06-02-2025
 //======================================
 
 const resolveEmoji = require("@resolve-emoji");
@@ -16,7 +16,6 @@ const resolveEmoji = require("@resolve-emoji");
  * @param {boolean} options.unique - Whether the field value must be unique
  * @param {string} options.validate - "camelCase" or "snake_case"
  * @param {string} options.emoji - Optional emoji key or literal
- * @param {string} options.emojiPath - Path to emojis.json
  * @returns {Object} A CMA-compatible field definition
  */
 function createCodeId({
@@ -26,7 +25,6 @@ function createCodeId({
   unique = true,
   validate = "camelCase",
   emoji = "emoji.field.developer",
-  emojiPath = undefined,
 } = {}) {
   const validations = [];
 
@@ -56,7 +54,7 @@ function createCodeId({
     },
   });
 
-  const resolvedEmoji = resolveEmoji(emoji, emojiPath);
+  const resolvedEmoji = resolveEmoji(emoji);
   const name = resolvedEmoji ? `${resolvedEmoji} ${fieldName}` : fieldName;
 
   return {

@@ -1,7 +1,7 @@
 //======================================
 // file: resolve-emoji.js
-// version: 1.1
-// last updated: 05-28-2025
+// version: 1.2
+// last updated: 06-02-2025
 //======================================
 
 const fs = require("fs");
@@ -11,34 +11,31 @@ const loadProjectRoot = require("@loadProjectRoot");
 let emojis = {};
 
 /**
- * Loads the emojis.json file from the given path, or defaults to content-models root.
+ * Loads the emojis.json file from the default content-models root.
  * Skips loading if SKIP_EMOJI_RESOLUTION is set to "true".
- * @param {string} [emojiPath] - Optional absolute path to emojis.json
  * @returns {Object} - Parsed emoji map
  */
-function loadEmojis(emojiPath) {
+function loadEmojis() {
   if (process.env.SKIP_EMOJI_RESOLUTION === "true") return {};
 
   const projectRoot = loadProjectRoot();
-  const defaultEmojiPath = path.join(projectRoot, "content-models", "emojis.json");
-  const finalPath = emojiPath || defaultEmojiPath;
+  const emojiPath = path.join(projectRoot, "content-models", "emojis.json");
 
-  if (!fs.existsSync(finalPath)) {
-    throw new Error(`❌ emojis.json not found at expected path: ${finalPath}`);
+  if (!fs.existsSync(emojiPath)) {
+    throw new Error(`❌ emojis.json not found at expected path: ${emojiPath}`);
   }
 
-  return JSON.parse(fs.readFileSync(finalPath, "utf-8"));
+  return JSON.parse(fs.readFileSync(emojiPath, "utf-8"));
 }
 
 /**
  * Resolves an emoji from a direct character or a path like "emoji.field.developer".
  * @param {string} emoji - Emoji character or emoji path
- * @param {string} [emojiPath] - Optional path to emojis.json (resolved externally or via fallback)
  * @returns {string}
  */
-function resolveEmoji(emoji, emojiPath) {
+function resolveEmoji(emoji) {
   if (!emojis || Object.keys(emojis).length === 0) {
-    emojis = loadEmojis(emojiPath);
+    emojis = loadEmojis();
   }
 
   if (!emoji || typeof emoji !== "string") return "";

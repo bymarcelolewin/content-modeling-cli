@@ -1,7 +1,7 @@
 //======================================
 // file: push-content-model.js
-// version: 3.24
-// last updated: 05-28-2025
+// version: 3.25
+// last updated: 06-02-2025
 //======================================
 
 require("module-alias/register");
@@ -54,7 +54,6 @@ const projectRoot = loadProjectRoot();
 const modelFolder = path.join(projectRoot, "content-models", "models", modelName);
 const contentTypesFolder = path.join(modelFolder, "content-types");
 const componentsFolder = path.join(projectRoot, "content-models", "components");
-const emojisPath = path.join(projectRoot, "content-models", "emojis.json");
 const configPath = path.join(modelFolder, ".contentfulrc.json");
 
 // --------------------------------------------
@@ -161,7 +160,7 @@ async function push() {
   for (const file of files) {
     const fullPath = path.join(contentTypesFolder, file);
     const raw = JSON.parse(fs.readFileSync(fullPath, "utf8"));
-    raw.emoji = resolveEmoji(raw.emoji, emojisPath);
+    raw.emoji = resolveEmoji(raw.emoji);
 
     const expanded = expandComponents(raw, componentsFolder);
     const { id, name, description, entryField } = expanded;
@@ -174,7 +173,7 @@ async function push() {
       if (!handler) {
         throw new Error(`❌ No handler found for type '${fieldType}' in ${file}`);
       }
-      return handler({ ...field, emojiPath: emojisPath });
+      return handler(field);
     });
 
     updates.push({ id: contentTypeId, name: contentTypeName, fields, description, entryField });
@@ -270,6 +269,6 @@ async function push() {
 // --------------------------------------------
 push().catch((err) => {
   console.error("❌ Fatal error: Could not complete push process.");
-  console.error(err);
+  //console.error(err);
   process.exit(1);
 });

@@ -1,7 +1,7 @@
 //======================================
 // file: createReference.js
-// version: 2.0
-// last updated: 05-27-2025
+// version: 2.1
+// last updated: 06-02-2025
 //======================================
 
 const resolveEmoji = require("@resolve-emoji");
@@ -15,7 +15,6 @@ const resolveEmoji = require("@resolve-emoji");
  * @param {string} options.allowedEntries - one, zero-to-one, one-to-many, zero-to-many
  * @param {string[]} options.allowedContentTypes - List of allowed content type IDs
  * @param {string} options.emoji - Optional emoji key or literal
- * @param {string} options.emojiPath - Path to emojis.json
  * @returns {Object} CMA-compatible field definition
  */
 function createReference({
@@ -24,7 +23,6 @@ function createReference({
   allowedEntries = "one-to-many",
   allowedContentTypes = [],
   emoji = "",
-  emojiPath = undefined,
 } = {}) {
   if (
     !Array.isArray(allowedContentTypes) ||
@@ -35,7 +33,7 @@ function createReference({
     );
   }
 
-  const resolvedEmoji = resolveEmoji(emoji, emojiPath);
+  const resolvedEmoji = resolveEmoji(emoji);
   const name = resolvedEmoji ? `${resolvedEmoji} ${fieldName}` : fieldName;
 
   const linkValidation = [

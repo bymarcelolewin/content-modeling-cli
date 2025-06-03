@@ -1,7 +1,7 @@
 //======================================
 // file: createURL.js
-// version: 2.0
-// last updated: 05-27-2025
+// version: 2.1
+// last updated: 06-02-2025
 //======================================
 
 const resolveEmoji = require("@resolve-emoji");
@@ -15,7 +15,6 @@ const resolveEmoji = require("@resolve-emoji");
  * @param {boolean} options.required - Whether the field is required
  * @param {"url"|"path"|"both"} options.validate - Validation type
  * @param {string} options.emoji - Optional emoji key or literal
- * @param {string} options.emojiPath - Path to emojis.json
  * @returns {Object} CMA-compatible field definition
  */
 function createURL({
@@ -24,9 +23,8 @@ function createURL({
   required = true,
   validate = "both",
   emoji = "",
-  emojiPath = undefined,
 } = {}) {
-  const resolvedEmoji = resolveEmoji(emoji, emojiPath);
+  const resolvedEmoji = resolveEmoji(emoji);
   const name = resolvedEmoji ? `${resolvedEmoji} ${fieldName}` : fieldName;
 
   let pattern;

@@ -1,7 +1,7 @@
 //======================================
 // file: createText.js
-// version: 2.0
-// last updated: 05-27-2025
+// version: 2.1
+// last updated: 06-02-2025
 //======================================
 
 const resolveEmoji = require("@resolve-emoji");
@@ -15,7 +15,6 @@ const resolveEmoji = require("@resolve-emoji");
  * @param {boolean} options.required - Whether the field is required
  * @param {string} options.textType - single-line | multi-line | markdown | rich-text
  * @param {string} options.emoji - Optional emoji key or literal
- * @param {string} options.emojiPath - Path to emojis.json
  * @returns {Object} CMA-compatible field definition
  */
 function createText({
@@ -24,9 +23,8 @@ function createText({
   required = false,
   textType = "single-line",
   emoji = "",
-  emojiPath = undefined,
 } = {}) {
-  const resolvedEmoji = resolveEmoji(emoji, emojiPath);
+  const resolvedEmoji = resolveEmoji(emoji);
   const name = resolvedEmoji ? `${resolvedEmoji} ${fieldName}` : fieldName;
 
   let fieldConfig;
