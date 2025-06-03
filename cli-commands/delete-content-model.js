@@ -63,12 +63,16 @@ try {
   process.exit(1);
 }
 
-const { managementToken, activeSpaceId, activeEnvironmentId, host } = config;
+const { managementToken, activeSpaceId, activeEnvironmentId } = config;
 
 if (!managementToken || !activeSpaceId || !activeEnvironmentId) {
   console.error("❌ Missing required fields in .contentfulrc.json");
   process.exit(1);
 }
+
+// Load up host here from .cmcli.json file.
+const resolveCMAHost = require("@resolve-cma");
+const host = resolveCMAHost();
 
 function promptUser(question) {
   const rl = readline.createInterface({
@@ -86,7 +90,7 @@ function promptUser(question) {
 async function deleteAllContentTypes() {
   const client = contentful.createClient({
     accessToken: managementToken,
-    host: host || "api.contentful.com",
+    host: host,
   });
 
   try {

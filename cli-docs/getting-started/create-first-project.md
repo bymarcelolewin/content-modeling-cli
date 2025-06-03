@@ -54,11 +54,20 @@ Specifically, you'll need:
   "managementToken": "your-cma-token-here",
   "activeSpaceId": "your-contentful-space-here",
   "activeEnvironmentId": "your-contentful-environment-here",
-  "host": "api.contentful.com"
 }
 ```
 
 You can get the CMA token from Contentful.  Click on ⚙️ (gear) at the top right, then select CMA Tokens and create one.
+
+By default, we'll use the api.contentful.com as the API host.  But if you need to change it, in your project folder, you'll find a `.cmcli.json` file.  In there, look for the `cmaHost` key if you need to change it, for example, for EU.  Make sure you save the file after you changed it.  This will be used for all your content models for that project.
+
+```
+{
+  "projectName": "Your Project",
+  "projectFolder": "your-project",
+  "cmaHost": "https://api.contentful.com"
+}
+```
 
 ## Push Your First Model Into Contentful
 

@@ -1,4 +1,5 @@
 {
   "projectName": "Project Name",
-  "projectFolder": "project-name"
+  "projectFolder": "project-name",
+  "cmaHost": "api.contentful.com"
 }

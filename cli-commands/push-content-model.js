@@ -67,7 +67,7 @@ try {
   process.exit(1);
 }
 
-const { managementToken, activeSpaceId, activeEnvironmentId, host } = config;
+const { managementToken, activeSpaceId, activeEnvironmentId } = config;
 
 const isPlaceholder = (val) =>
   !val || val.includes("your-contentful") || val.includes("your-cma-token");
@@ -85,12 +85,16 @@ if (
   process.exit(1);
 }
 
+// Load up host here from .cmcli.json file.
+const resolveCMAHost = require("@resolve-cma");
+const host = resolveCMAHost();
+
 // --------------------------------------------
 // 🔌 Create Contentful Management client
 // --------------------------------------------
 const client = contentful.createClient({
   accessToken: managementToken,
-  host: host || "api.contentful.com",
+  host: host,
 });
 
 // --------------------------------------------
