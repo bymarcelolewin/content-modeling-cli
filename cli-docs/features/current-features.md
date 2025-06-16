@@ -5,6 +5,9 @@
 - **AI-Ready Content Models**  
   Content models are defined with clean, structured JSON—making them ideal for AI applications, including generative workflows, personalization engines, and retrieval-augmented generation (RAG).
 
+- **Full MCP Server Support**  
+  With its full MCP server implementation, the Content Modeling CLI exposes every command over JSON so any MCP-compatible client can access it—and allowing you to drive the CLI using natural language instead of traditional shell commands.
+
 - **Reusable Components with Defaults**  
   Create reusable field groups (components) that include predefined options and default values (e.g., a multi-select field with default selections) for fast, consistent reuse across content models.
 

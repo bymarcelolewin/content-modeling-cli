@@ -1,4 +1,21 @@
+# macOS
 .DS_Store
-content-models/**/.contentfulrc.json
+
+# Node
 node_modules/
+npm-debug.log
+yarn-error.log
+
+# Contentful local creds
+content-models/**/.contentfulrc.json
+
+# temp / logs
+*.log
 *.tgz
+
+# Environment
+.env
+
+# (If you’ve ever generated coverage or build output)
+coverage/
+dist/

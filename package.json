@@ -1,23 +1,25 @@
 {
   "name": "content-modeling-cli",
   "version": "1.0.0-beta.10",
-  "description": "⚠️ BETA – A CLI tool for building, templating, and managing content models for Contentful using simple JSON files.",
+  "description": "⚠️ BETA : A CLI tool for building, templating, and managing content models for Contentful using simple JSON files. It can also run as an MCP server for use with Anthropic's Claude and other MCP clients.",
   "main": "cli-commands/cm.js",
   "bin": {
     "cm": "./cli-commands/cm.js",
-    "contentmodel": "./cli-commands/cm.js"
+    "contentmodel": "./cli-commands/cm.js",
+    "cm-mcp-server": "./mcp-server/index.mjs"
   },
   "files": [
-    "cli-assets",
     "cli-commands",
     "cli-docs",
     "cli-fields",
     "cli-project-template",
     "cli-utilities",
+    "mcp-server",
     "README.md"
   ],
   "scripts": {
     "test": "echo \"No test specified\" && exit 0",
+    "start:mcp-server": "node mcp-server/index.mjs",
     "release:beta": "npm version prerelease --preid=beta && npm publish --tag beta && npm dist-tag add content-modeling-cli@$(node -p \"require('./package.json').version\") latest && git push && git push --tags"
   },
   "keywords": [
@@ -25,7 +27,11 @@
     "contentful-cli",
     "cli",
     "content-modeling",
-    "headless-cms"
+    "headless-cms",
+    "cm",
+    "mcp",
+    "anthropic",
+    "model-context-protocol"
   ],
   "author": {
     "name": "Marcelo Lewin",
@@ -46,7 +52,9 @@
     "commander": "^13.1.0",
     "contentful-management": "^11.52.2",
     "fs-extra": "^11.3.0",
-    "module-alias": "^2.2.3"
+    "module-alias": "^2.2.3",
+    "@modelcontextprotocol/sdk": "^1.12.3",
+    "zod": "^3.25.64"
   },
   "publishConfig": {
     "access": "public"

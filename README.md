@@ -1,4 +1,4 @@
-![Content Modeling CLI for Contentful](./cli-assets/cmcli-logo.png)
+![Content Modeling CLI for Contentful](./cli-docs/assets/cmcli-logo.png)
 
 © Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reseved.
 
@@ -18,6 +18,8 @@ With built-in Git support, you can version, track, and collaborate on your model
 
 And because your models are fully structured, they’re AI-ready—ideal for powering generative workflows, personalization engines, and retrieval-augmented generation (RAG).
 
+All commands are also fully accessible as an MCP server via any MCP client.
+
 Spend less time clicking through the UI and more time designing scalable, reusable content models—fast.
 
 # Ready to get started?
@@ -26,6 +28,7 @@ Check out our [documentation](cli-docs/README.md)!
 # More Information
 - Learn more at [ContentModeling.io](https://www.contentmodeling.io/)
 - Need help, contact [Marcelo Lewin](mailto:marcelo@contentmodeling.io)
+- Check out the [latest release notes](cli-docs/release_notes.md).
 - Use as is.  No warranty provided.  
 - Do not use it in a production environment.
 

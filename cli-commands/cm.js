@@ -2,8 +2,8 @@
 
 //======================================
 // file: cm.js
-// version: 1.4
-// last updated: 05-26-2025
+// version: 1.11
+// last updated: 06-13-2025
 //======================================
 
 require("module-alias/register");
@@ -11,8 +11,9 @@ require("module-alias/register");
 const { Command } = require('commander');
 const { spawn } = require('child_process');
 const path = require('path');
+const { pathToFileURL } = require('url');
 const chalk = require('chalk');
-const pkg = require('../package.json'); 
+const pkg = require('../package.json');
 const program = new Command();
 
 program
@@ -40,11 +41,7 @@ program
   .action((options) => {
     const script = path.join(__dirname, 'init-project.js');
     const args = ['--name', options.name];
-
-    if (options.git) {
-      args.push('--git');
-    }
-
+    if (options.git) args.push('--git');
     spawn('node', [script, ...args], { stdio: 'inherit' });
   });
 
@@ -56,19 +53,16 @@ program
   .description('Creates a content model folder inside content-models/models using an existing template from templates folder.')
   .option('--model <name>', '[required with --template] The name of the new model folder')
   .option('--template <template>', '[required with --model] The template to use (e.g., "simple-blog")')
-  .action((options, command) => {
+  .action((options) => {
     const script = path.join(__dirname, 'create-content-model.js');
-
-    const usingModel = typeof options.model !== 'undefined';
-    const usingTemplate = typeof options.template !== 'undefined';
-
+    const usingModel = Boolean(options.model);
+    const usingTemplate = Boolean(options.template);
     if (!(usingModel && usingTemplate)) {
       console.error('\n❌ You must provide both --model and --template together.\n');
       console.error('Usage:');
       console.error('  cm create-model --template <template> --model <name>\n');
       process.exit(1);
     }
-
     const args = ['--model', options.model, '--template', options.template];
     spawn('node', [script, ...args], { stdio: 'inherit' });
   });
@@ -79,7 +73,7 @@ program
 program
   .command('push-model')
   .description('Pushes an existing content model from the content-models/models folder to Contentful.')
-  .requiredOption('--model <model>', 'Name of the content model folder that contains all your content types, located inside the content-models folder.')
+  .requiredOption('--model <model>', 'Name of the content model folder')
   .option('--force', 'Actually push the model to Contentful (dry run by default)')
   .action((options) => {
     const script = path.join(__dirname, 'push-content-model.js');
@@ -94,7 +88,7 @@ program
 program
   .command('add-content-type')
   .description('Adds a new content type to an existing model folder.')
-  .requiredOption('--model <model>', 'Name of the existing model folder (inside content-models)')
+  .requiredOption('--model <model>', 'Name of the existing model folder')
   .requiredOption('--name <name>', 'Display name for the new content type (e.g., "Article - Blog")')
   .action((options) => {
     const script = path.join(__dirname, 'add-content-type.js');
@@ -123,9 +117,12 @@ program
 program
   .command('list-templates')
   .description('List all available content model templates and their content types')
-  .action(() => {
+  .option('--json', 'Outputs JSON for the MCP client')
+  .action((options) => {
     const script = path.join(__dirname, 'list-templates.js');
-    spawn('node', [script], { stdio: 'inherit' });
+    const args = [];
+    if (options.json) args.push('--json');
+    spawn('node', [script, ...args], { stdio: 'inherit' });
   });
 
 // ---------------------------------------------
@@ -134,9 +131,12 @@ program
 program
   .command('list-models')
   .description('List all available content models in the content-models/models folder')
-  .action(() => {
+  .option('--json', 'Outputs JSON for the MCP client')
+  .action((options) => {
     const script = path.join(__dirname, 'list-content-models.js');
-    spawn('node', [script], { stdio: 'inherit' });
+    const args = [];
+    if (options.json) args.push('--json');
+    spawn('node', [script, ...args], { stdio: 'inherit' });
   });
 
 // ---------------------------------------------
@@ -149,16 +149,34 @@ program
   .action((options) => {
     const script = path.join(__dirname, 'dev.js');
     const args = [];
-
-    if (options.validateFieldRegistry) {
-      args.push('--validate-field-registry');
-    }
-
-    if (args.length === 0) {
-      args.push('--help');
-    }
-
+    if (options.validateFieldRegistry) args.push('--validate-field-registry');
+    if (args.length === 0) args.push('--help');
     spawn('node', [script, ...args], { stdio: 'inherit' });
+  });
+
+// ---------------------------------------------
+// cm mcp-server [--project-path <path>]
+// ---------------------------------------------
+program
+  .command('mcp-server')
+  .description('Runs the MCP server over stdio for Claude or other MCP clients')
+  .option('--project-path <path>', 'Set the project directory for the MCP server')
+  .action(async (options) => {
+    try {   
+      const fileUrl = pathToFileURL(path.join(__dirname, '../mcp-server/index.mjs')).href;
+      const { runMcpServer } = await import(fileUrl);
+      
+      // Pass the project-path option to the MCP server
+      const serverOptions = {};
+      if (options.projectPath) {
+        serverOptions.projectPath = options.projectPath;
+      }
+      
+      await runMcpServer(serverOptions);
+    } catch (err) {
+      console.error(err);
+      process.exit(1);
+    }
   });
 
 // Enhance help output: make command names green

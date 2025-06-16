@@ -1,13 +1,13 @@
-# Node/NPM artifacts
+# don’t publish local node_modules or npm debug
 node_modules/
 npm-debug.log
 
-# Editor/IDE metadata
+# IDE/editor stuff
 .vscode/
 .idea/
 .DS_Store
 
-# Git
+# Git metadata
 .git
 .gitignore
 

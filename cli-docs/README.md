@@ -1,4 +1,4 @@
-![Content Modeling CLI for Contentful](../cli-assets/cmcli-logo.png)
+![Content Modeling CLI for Contentful](./assets/cmcli-logo.png)
 
 © Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reseved.
 
@@ -7,23 +7,11 @@
 [![License: Custom](https://img.shields.io/badge/license-Custom-lightgrey)](../LICENSE.md)
 [![npm version](https://img.shields.io/npm/v/content-modeling-cli.svg)](https://www.npmjs.com/package/content-modeling-cli)
 
-# Content Modeling CLI
-⚠️ BETA – A CLI tool for content modeling in Contentful, purpose-built for content modeling architects, developers and teams working in Contentful.
+# Content Modeling CLI Documentation
 
-Define content types, fields, and relationships using clean, structured JSON—no scripting or programming required. Create reusable components with predefined options and default values, and apply them across models for consistency and speed.
-
-Templatize entire content models, enhance clarity with emoji support via a centralized library, and organize your work using a project-based structure.
-
-With built-in Git support, you can version, track, and collaborate on your models just like code—making your modeling process scalable, maintainable, and team-friendly.
-
-And because your models are fully structured, they’re AI-ready—ideal for powering generative workflows, personalization engines, and retrieval-augmented generation (RAG).
-
-Spend less time clicking through the UI and more time designing scalable, reusable content models—fast.
-
-# Documentation
-
-### Getting Started
-- [Getting Started Tutorial](getting-started/README.md)
+### Tutorials
+- [Getting Started Tutorial](tutorials/getting-started/README.md)
+- [MCP Server Setup in Claude Tutorial](tutorials/mcp-server-calude-setup/README.md)
 
 ### Objects
 - [CLI Commands](commands/README.md)
