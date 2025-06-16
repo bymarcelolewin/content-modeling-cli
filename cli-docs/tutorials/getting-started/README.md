@@ -1,4 +1,4 @@
-# Getting Started Tutorial
+# Tutorial: Getting Started
 
 - [Pre-installation Requirements](pre-installation-requirements.md)
 - [CM CLI Installation](cmcli-installation.md)
