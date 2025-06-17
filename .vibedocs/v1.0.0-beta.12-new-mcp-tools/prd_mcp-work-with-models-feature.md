@@ -35,13 +35,13 @@ Currently, the MCP server supports project-level operations (change/show project
 
 ### Project Validation
 Tools must validate the following before operating:
-1. Current working directory contains `.cmcli` file (valid CM CLI project)
+1. Current working directory contains `.cmcli.json` file (valid CM CLI project)
 2. `content-models/` directory exists in project root
 3. At least one model exists in `content-models/` directory
 4. For model changes: target model folder exists in `content-models/`
 
 ### Error Handling
-- **No project**: "Error: Not in a valid CM CLI project (missing .cmcli file)"
+- **No project**: "Error: Not in a valid CM CLI project (missing .cmcli.json file)"
 - **No content-models folder**: "Error: No content-models directory found in project"
 - **No models available**: "Error: No content models found in project"
 - **Invalid model**: "Error: Model 'xyz' not found. Available models: [list]"
