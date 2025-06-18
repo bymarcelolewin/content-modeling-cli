@@ -27,18 +27,24 @@ console.log(
   )
 );
 
-program
-  .name('cm')
-  .description(
-    chalk.green('Content Modeling MCP Server and CLI') + ' for Contentful ⚠️  BETA\n' +
-    '© Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reserved.\n\n' +
+console.log(
+  chalk.green('Content Modeling MCP Server and CLI') + ' for Contentful ⚠️  BETA\n' +
+  '© Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reserved.\n');
+
+if (process.argv.length <= 2 || process.argv.includes('--version')) {
+  console.log(
     'Learn more at https://www.contentmodeling.io\n' +
     'For help contact marcelo@contentmodeling.io\n\n' +
     'Licensed for Contentful modeling only. See LICENSE.md in the project or NPM page for full terms.\n\n' +
     'Not associated with Contentful.\n' +
     'Use "as is". No warranty provided.\n\n' +
-    '** Do not use in a production environment. **'
-  )
+    '** Do not use in a production environment. **\n'
+  );
+}
+
+
+program
+  .name('cm')
   .version(pkg.version);
 
 // ---------------------------------------------
