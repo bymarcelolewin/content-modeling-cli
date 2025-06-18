@@ -1,8 +1,8 @@
-# Content Modeling CLI - Project Overview
+# Content Modeling MCP Server and CLI - Project Overview
 
 ## Project Description
 
-The Content Modeling CLI is a comprehensive tool for building, templating, and managing content models for Contentful using structured JSON files. Currently in beta (v1.0.0-beta.11), it serves dual purposes as both a command-line interface and an MCP (Model Context Protocol) server for AI-powered workflows.
+The Content Modeling MCP Server and CLI is a comprehensive tool for building, templating, and managing content models for Contentful using structured JSON files. Currently in beta (v1.0.0-beta.11), it serves dual purposes as both a command-line interface and an MCP (Model Context Protocol) server for AI-powered workflows.
 
 ## Key Features
 

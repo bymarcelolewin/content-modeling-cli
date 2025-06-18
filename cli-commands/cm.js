@@ -2,8 +2,8 @@
 
 //======================================
 // file: cm.js
-// version: 1.11
-// last updated: 06-13-2025
+// version: 1.12
+// last updated: 06-18-2025
 //======================================
 
 require("module-alias/register");
@@ -13,13 +13,25 @@ const { spawn } = require('child_process');
 const path = require('path');
 const { pathToFileURL } = require('url');
 const chalk = require('chalk');
+const figlet = require('figlet'); // ✅ New
 const pkg = require('../package.json');
 const program = new Command();
+
+// ✅ Show cool ASCII banner
+console.log(
+  chalk.green(
+    figlet.textSync('CM', {
+      font: 'Standard',
+      horizontalLayout: 'default',
+      verticalLayout: 'default'
+    })
+  )
+);
 
 program
   .name('cm')
   .description(
-    chalk.green('Content Modeling CLI') + ' for Contentful ⚠️  BETA\n' +
+    chalk.green('Content Modeling MCP Server and CLI') + ' for Contentful ⚠️  BETA\n' +
     '© Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reserved.\n\n' +
     'Learn more at https://www.contentmodeling.io\n' +
     'For help contact marcelo@contentmodeling.io\n\n' +
@@ -35,7 +47,7 @@ program
 // ---------------------------------------------
 program
   .command('init')
-  .description('Initialize a new Content Modeling CLI project')
+  .description('Initialize a new Content Modeling MCP Server and CLI project')
   .requiredOption('--name <project>', 'Name of the new project (e.g., "My Project")')
   .option('--git', 'Initialize Git in the root of the project with a default .gitignore')
   .action((options) => {
@@ -117,12 +129,9 @@ program
 program
   .command('list-templates')
   .description('List all available content model templates and their content types')
-  .option('--json', 'Outputs JSON for the MCP client')
   .action((options) => {
     const script = path.join(__dirname, 'list-templates.js');
-    const args = [];
-    if (options.json) args.push('--json');
-    spawn('node', [script, ...args], { stdio: 'inherit' });
+    spawn('node', [script], { stdio: 'inherit' });
   });
 
 // ---------------------------------------------
@@ -131,12 +140,9 @@ program
 program
   .command('list-models')
   .description('List all available content models in the content-models/models folder')
-  .option('--json', 'Outputs JSON for the MCP client')
   .action((options) => {
     const script = path.join(__dirname, 'list-content-models.js');
-    const args = [];
-    if (options.json) args.push('--json');
-    spawn('node', [script, ...args], { stdio: 'inherit' });
+    spawn('node', [script], { stdio: 'inherit' });
   });
 
 // ---------------------------------------------

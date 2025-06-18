@@ -1,4 +1,4 @@
-![Content Modeling CLI for Contentful](./assets/cmcli-logo.png)
+![Content Modeling MCP Server and CLI for Contentful](./assets/cmcli-logo.png)
 
 © Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reseved.
 
@@ -7,7 +7,7 @@
 [![License: Custom](https://img.shields.io/badge/license-Custom-lightgrey)](../LICENSE.md)
 [![npm version](https://img.shields.io/npm/v/content-modeling-cli.svg)](https://www.npmjs.com/package/content-modeling-cli)
 
-# Content Modeling CLI Documentation
+# Content Modeling MCP Server and CLI Documentation
 
 ### Tutorials
 - [Getting Started Tutorial](tutorials/getting-started/README.md)

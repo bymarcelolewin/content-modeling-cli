@@ -1,12 +1,13 @@
 //======================================
 // file: showCurrentModel.mjs
-// version: 1.0
-// last updated: 06-17-2025
+// version: 1.1
+// last updated: 06-18-2025
 //======================================
 
 import fs from "fs";
 import path from "path";
-import { validateProjectStructure, getAvailableModels } from "../utils/modelValidation.mjs";
+import { validateProjectStructure } from "../utils/modelValidation.mjs";
+import { getAvailableModels } from "../utils/userProjectReader.mjs";
 
 export const name = "showCurrentModel";
 export const description = "Display the currently selected content model";

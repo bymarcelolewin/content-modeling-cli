@@ -2,7 +2,7 @@
 
 ## Overview
 
-This feature adds MCP tools to manage the "current selected model" context within a Content Modeling CLI project. This enables AI clients (like Claude Desktop) to maintain state about which content model they're working with, facilitating more intelligent model-specific operations in future tools.
+This feature adds MCP tools to manage the "current selected model" context within a Content Modeling MCP Server and CLI project. This enables AI clients (like Claude Desktop) to maintain state about which content model they're working with, facilitating more intelligent model-specific operations in future tools.
 
 ## Background
 

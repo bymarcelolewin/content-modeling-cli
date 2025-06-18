@@ -1,17 +1,17 @@
-# Product Requirements Document: Content Modeling CLI MCP Server Initial Development
+# Product Requirements Document: Content Modeling MCP Server and CLI MCP Server Initial Development
 
 ## 1. Introduction
-This document outlines the requirements for integrating an MCP (Model Context Protocol) server with the existing Content Modeling CLI. The goal is to expose CLI commands as MCP tools.
+This document outlines the requirements for integrating an MCP (Model Context Protocol) server with the existing Content Modeling MCP Server and CLI. The goal is to expose CLI commands as MCP tools.
 
 ## 2. Goals
-- Establish a functional MCP server for the Content Modeling CLI.
+- Establish a functional MCP server for the Content Modeling MCP Server and CLI.
 - Expose key CLI commands as callable tools within the MCP framework.
 - Enable automated content model management through MCP tasks.
 
 ## 3. Scope
 This phase will focus on:
 - Setting up the basic MCP server.
-- Implementing a test endpoint (e.g., "Give me the latest version of the content modeling cli.").
+- Implementing a test endpoint (e.g., "Give me the latest version of the Content Modeling MCP Server and CLI.").
 - Integrating the `cm.js` commands as MCP tools, starting with one command and then iteratively adding others.
 
 ## 4. Functional Requirements
@@ -21,7 +21,7 @@ This phase will focus on:
 - It should be able to receive and process requests from the MCP client.
 
 ### 4.2. Test Endpoint
-- A simple endpoint, such as "content modeling version," should be implemented to verify server connectivity and basic functionality. This endpoint should return the version of the Content Modeling CLI.
+- A simple endpoint, such as "content modeling version," should be implemented to verify server connectivity and basic functionality. This endpoint should return the version of the Content Modeling MCP Server and CLI.
 
 ### 4.3. CLI Command Integration (as MCP Tools)
 - Each relevant command from `cli-commands/cm.js` (and subsequently other `cli-commands` files) should be exposed as an individual MCP tool.

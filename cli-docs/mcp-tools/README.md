@@ -1,7 +1,7 @@
 # MCP Server Tools
 [<- Back to Documentation](../README.md)
 
-These are the latest supported tools in the Content Modeling CLI MCP Server.  Make sure you have the latest version installed. If some of these tools are missing, you may be running in an older version.
+These are the latest supported tools in the Content Modeling MCP Server and CLI.  Make sure you have the latest version installed. If some of these tools are missing, you may be running in an older version.
 
 | Category                 | Tool                 | Description                                                            |
 | ------------------------ | -------------------- | ---------------------------------------------------------------------- |

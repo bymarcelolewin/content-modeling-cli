@@ -1,11 +1,12 @@
 //======================================
 // file: modelValidation.mjs
-// version: 1.0
-// last updated: 06-17-2025
+// version: 1.1
+// last updated: 06-18-2025
 //======================================
 
 import fs from "fs";
 import path from "path";
+import { getAvailableModels } from "./userProjectReader.mjs";
 
 /**
  * Validates the basic project structure for CM CLI projects
@@ -43,48 +44,7 @@ export function validateProjectStructure(cwd) {
   return { isValid: true };
 }
 
-/**
- * Gets list of available content models from the content-models directory
- * @param {string} cwd - Current working directory
- * @returns {Object} - { models: string[], error?: string }
- */
-export function getAvailableModels(cwd) {
-  const modelsDir = path.join(cwd, "content-models", "models");
-  
-  try {
-    // Check if the models subdirectory exists
-    if (!fs.existsSync(modelsDir)) {
-      return {
-        models: [],
-        error: "Error: No models directory found in content-models"
-      };
-    }
-
-    const modelEntries = fs.readdirSync(modelsDir, { withFileTypes: true });
-    console.error(`[DEBUG] Reading directory: ${modelsDir}`);
-    console.error(`[DEBUG] Found entries:`, modelEntries.map(e => `${e.name} (${e.isDirectory() ? 'dir' : 'file'})`));
-    
-    const modelDirs = modelEntries
-      .filter(entry => entry.isDirectory())
-      .map(entry => entry.name);
-    
-    console.error(`[DEBUG] Filtered model directories:`, modelDirs);
-    
-    if (modelDirs.length === 0) {
-      return {
-        models: [],
-        error: "Error: No content models found in project"
-      };
-    }
-
-    return { models: modelDirs };
-  } catch (error) {
-    return {
-      models: [],
-      error: `Error: Failed to read models directory: ${error.message}`
-    };
-  }
-}
+// getAvailableModels() function moved to userProjectReader.mjs
 
 /**
  * Validates that a specific model exists in the project

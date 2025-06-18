@@ -9,7 +9,7 @@ import { spawn } from "child_process";
 
 export const name = "getVersion";
 export const description =
-  "Returns the Content Modeling CLI version and its execution context.";
+  "Returns the Content Modeling MCP Server and CLI version and its execution context.";
 
 // No parameters → empty mapping
 export const schema = {};

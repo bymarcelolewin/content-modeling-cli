@@ -1,38 +1,50 @@
 //======================================
 // file: listTemplates.mjs
-// version: 1.1
-// last updated: 06-16-2025
+// version: 1.2
+// last updated: 06-18-2025
 //======================================
 
-import { promisify } from "util";
-import { exec } from "child_process";
-
-const execAsync = promisify(exec);
+import fs from "fs";
+import path from "path";
+import { getAvailableTemplates } from "../utils/userProjectReader.mjs";
 
 export const name = "listTemplates";
 export const description = "Lists all available content model templates in the project.";
 export const schema = {};
 
 export async function handler() {
-  // Current working directory
   const cwd = process.cwd();
   console.error(`[listTemplates handler] Executing in correct CWD: '${cwd}'`);
 
   try {
-    // Run the CLI with JSON output
-    const command = "cm list-templates --json";
-    const { stdout, stderr } = await execAsync(command, { cwd });
-
-    if (stderr) {
-      throw new Error(stderr);
+    // Basic project validation for templates (check for .cmcli.json)
+    const cmcliPath = path.join(cwd, ".cmcli.json");
+    if (!fs.existsSync(cmcliPath)) {
+      const errorOutput = JSON.stringify({ 
+        templates: [], 
+        error: "Error: Not in a valid CM CLI project (missing .cmcli.json file)" 
+      });
+      return {
+        content: [
+          { type: "text", text: errorOutput }
+        ]
+      };
     }
 
-    // Parse the JSON from CLI
-    const parsed = JSON.parse(stdout);
-    const templates = parsed.templates || [];
+    // Get available templates with content types
+    const templatesResult = getAvailableTemplates(cwd);
+    
+    if (templatesResult.error) {
+      const errorOutput = JSON.stringify({ templates: [], error: templatesResult.error });
+      return {
+        content: [
+          { type: "text", text: errorOutput }
+        ]
+      };
+    }
 
-    // Return as a single text content containing the JSON
-    const output = JSON.stringify({ templates });
+    // Return the enhanced JSON format with content types
+    const output = JSON.stringify({ templates: templatesResult.templates });
     return {
       content: [
         { type: "text", text: output }

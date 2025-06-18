@@ -1,4 +1,4 @@
-![Content Modeling CLI for Contentful](./cli-docs/assets/cmcli-logo.png)
+![Content Modeling MCP Server and CLI for Contentful](./cli-docs/assets/cmcli-logo.png)
 
 © Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reseved.
 
@@ -7,8 +7,8 @@
 [![License: Custom](https://img.shields.io/badge/license-Custom-lightgrey)](LICENSE.md)
 [![npm version](https://img.shields.io/npm/v/content-modeling-cli.svg)](https://www.npmjs.com/package/content-modeling-cli)
 
-# Content Modeling CLI
-⚠️ BETA – A CLI tool for content modeling in Contentful, purpose-built for content modeling architects, developers and teams working in Contentful.
+# Content Modeling MCP Server and CLI
+⚠️ BETA – An MCP Server and CLI for content modeling in Contentful, purpose-built for content modeling architects, developers and teams working in Contentful.
 
 Define content types, fields, and relationships using clean, structured JSON—no scripting or programming required. Create reusable components with predefined options and default values, and apply them across models for consistency and speed.
 
@@ -18,7 +18,7 @@ With built-in Git support, you can version, track, and collaborate on your model
 
 And because your models are fully structured, they’re AI-ready—ideal for powering generative workflows, personalization engines, and retrieval-augmented generation (RAG).
 
-All commands are also fully accessible as an MCP server via any MCP client.
+All commands are also tools fully accessible as an MCP server via any MCP client.
 
 Spend less time clicking through the UI and more time designing scalable, reusable content models—fast.
 

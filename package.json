@@ -48,12 +48,13 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.3",
     "chalk": "^4.1.2",
     "commander": "^13.1.0",
     "contentful-management": "^11.52.2",
+    "figlet": "^1.8.1",
     "fs-extra": "^11.3.0",
     "module-alias": "^2.2.3",
-    "@modelcontextprotocol/sdk": "^1.12.3",
     "zod": "^3.25.64"
   },
   "publishConfig": {
