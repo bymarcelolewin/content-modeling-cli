@@ -49,7 +49,7 @@ The Content Modeling MCP Server and CLI is a comprehensive tool for building, te
 - Tools for project management, version info, and model operations
 - Full CLI functionality exposed via MCP protocol
 
-#### Project Templates (`cli-project-template/`)
+#### Project Templates (`project-template/`)
 - Starter templates including simple blog setup
 - Component library (SEO metadata, etc.)
 - Emoji library for enhanced UX

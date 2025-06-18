@@ -10,7 +10,6 @@
 | `cm delete-model`     | Deletes an entire content model in Contentful, including its content types and entries. Without `--force`, performs a dry run. Does not delete the model folder locally. | `--model`: Name of the model folder to delete.<br>`--force`: Actually deletes the content; otherwise, runs in dry-run mode.                         |
 | `cm list-templates`   | Lists all available content model templates and their content types.                                 | (none)                                                                                                                                                |
 | `cm list-models`      | Lists all the content models you created so far.                                                     | (none)                                                                                                                                                |
-| `cm mcp-server`       | Starts the MCP server endpoint, exposing all CLI commands over JSON-RPC so any MCP-compatible client—including natural language interfaces—can interact with the CLI in real time. | `--project-path <path>`: Sets the working directory before launching the server.  If not passed, it will set the working directory to `/`.                                                                      |
 
 ---
 <br>

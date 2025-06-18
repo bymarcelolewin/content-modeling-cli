@@ -2,6 +2,40 @@
 
 [<- Back](./README.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Next ->](./try-your-first-chat.md)  
 
+## Migration from Beta.13
+
+**⚠️ Breaking Change:** Starting with Beta.14, the MCP server command has changed.
+
+### Before (Beta.13)
+```json
+{
+  "mcpServers": {
+    "cmcli": {
+      "command": "cm",
+      "args": ["mcp-server", "--project-path", "/"]
+    }
+  }
+}
+```
+
+### After (Beta.14)
+```json
+{
+  "mcpServers": {
+    "cmcli": {
+      "command": "cm-mcp-server",
+      "args": ["--project-path", "/"]
+    }
+  }
+}
+```
+
+If you're upgrading from Beta.13, update your `claude_desktop_config.json` file with the new configuration above.
+
+---
+
+## Setting Up Claude (New Installation)
+
 Setting up the CLI as an MCP server in claude is extremely simple.
 
 1) Open up Claude Desktop (not the web version, but the actual app in your computer.)  If you don't have it, you can download it from [Anthropic directly](https://claude.ai/download).
@@ -19,8 +53,8 @@ Setting up the CLI as an MCP server in claude is extremely simple.
 {
   "mcpServers": {
     "cmcli": {
-      "command": "cm",
-      "args": ["mcp-server", "--project-path", "/"]
+      "command": "cm-mcp-server",
+      "args": ["--project-path", "/"]
     }
   }
 }
@@ -28,8 +62,8 @@ Setting up the CLI as an MCP server in claude is extremely simple.
 > if it's not empty, add the following to your list of servers (after your last server):
 ````json
     "cmcli": {
-      "command": "cm",
-      "args": ["mcp-server", "--project-path", "/"]
+      "command": "cm-mcp-server",  
+      "args": ["--project-path", "/"]
     }
 ````
 

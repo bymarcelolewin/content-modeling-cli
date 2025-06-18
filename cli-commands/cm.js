@@ -2,7 +2,7 @@
 
 //======================================
 // file: cm.js
-// version: 1.12
+// version: 1.13
 // last updated: 06-18-2025
 //======================================
 
@@ -11,7 +11,6 @@ require("module-alias/register");
 const { Command } = require('commander');
 const { spawn } = require('child_process');
 const path = require('path');
-const { pathToFileURL } = require('url');
 const chalk = require('chalk');
 const figlet = require('figlet'); // ✅ New
 const pkg = require('../package.json');
@@ -160,30 +159,6 @@ program
     spawn('node', [script, ...args], { stdio: 'inherit' });
   });
 
-// ---------------------------------------------
-// cm mcp-server [--project-path <path>]
-// ---------------------------------------------
-program
-  .command('mcp-server')
-  .description('Runs the MCP server over stdio for Claude or other MCP clients')
-  .option('--project-path <path>', 'Set the project directory for the MCP server')
-  .action(async (options) => {
-    try {   
-      const fileUrl = pathToFileURL(path.join(__dirname, '../mcp-server/index.mjs')).href;
-      const { runMcpServer } = await import(fileUrl);
-      
-      // Pass the project-path option to the MCP server
-      const serverOptions = {};
-      if (options.projectPath) {
-        serverOptions.projectPath = options.projectPath;
-      }
-      
-      await runMcpServer(serverOptions);
-    } catch (err) {
-      console.error(err);
-      process.exit(1);
-    }
-  });
 
 // Enhance help output: make command names green
 program.configureHelp({

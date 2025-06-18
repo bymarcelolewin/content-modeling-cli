@@ -1,4 +1,4 @@
-![Content Modeling MCP Server and CLI for Contentful](./cli-docs/assets/cmcli-logo.png)
+![Content Modeling MCP Server and CLI for Contentful](./docs/assets/cmcli-logo.png)
 
 © Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reseved.
 
@@ -23,12 +23,12 @@ All commands are also tools fully accessible as an MCP server via any MCP client
 Spend less time clicking through the UI and more time designing scalable, reusable content models—fast.
 
 # Ready to get started?
-Check out our [documentation](cli-docs/README.md)!
+Check out our [documentation](docs/README.md)!
 
 # More Information
 - Learn more at [ContentModeling.io](https://www.contentmodeling.io/)
 - Need help, contact [Marcelo Lewin](mailto:marcelo@contentmodeling.io)
-- Check out the [latest release notes](cli-docs/release_notes.md).
+- Check out the [latest release notes](docs/release_notes.md).
 - Use as is.  No warranty provided.  
 - Do not use it in a production environment.
 

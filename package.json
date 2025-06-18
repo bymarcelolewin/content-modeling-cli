@@ -1,7 +1,7 @@
 {
-  "name": "content-modeling-cli",
+  "name": "content-modeling-mcp-server-and-cli",
   "version": "1.0.0-beta.13",
-  "description": "⚠️ BETA : A CLI tool for building, templating, and managing content models for Contentful using simple JSON files. It can also run as an MCP server for use with Anthropic's Claude and other MCP clients.",
+  "description": "⚠️ BETA : An MCP Server and CLI tool for building, templating, and managing content models for Contentful using simple JSON files. It can also run as an MCP server for use with Anthropic's Claude and other MCP clients.",
   "main": "cli-commands/cm.js",
   "bin": {
     "cm": "./cli-commands/cm.js",
@@ -10,11 +10,11 @@
   },
   "files": [
     "cli-commands",
-    "cli-docs",
     "cli-fields",
-    "cli-project-template",
     "cli-utilities",
+    "docs",
     "mcp-server",
+    "project-template",
     "README.md"
   ],
   "scripts": {

@@ -38,7 +38,7 @@ try {
 // --------------------------------------------
 // 📁 Paths
 // --------------------------------------------
-const templateDir = path.join(__dirname, "../cli-project-template");
+const templateDir = path.join(__dirname, "../project-template");
 const destDir = path.join(process.cwd(), folderName);
 
 // --------------------------------------------

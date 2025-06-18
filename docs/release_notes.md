@@ -2,6 +2,53 @@
 
 ---
 
+## Version 1.0.0-beta.14 – *Stand Alone Tools + Folder Structure Restructure - Part 1*
+
+### 🚨 Breaking Changes
+- **MCP Server Command Change:** The MCP server now runs independently with `cm-mcp-server` instead of `cm mcp-server`
+- **Claude Configuration Update Required:** Users must update their `claude_desktop_config.json` file
+
+### Migration Guide
+
+#### Before (Beta.13)
+```json
+{
+  "mcpServers": {
+    "cmcli": {
+      "command": "cm",
+      "args": ["mcp-server", "--project-path", "/"]
+    }
+  }
+}
+```
+
+#### After (Beta.14) 
+```json
+{
+  "mcpServers": {
+    "cmcli": {
+      "command": "cm-mcp-server",
+      "args": ["--project-path", "/"]
+    }
+  }
+}
+```
+
+### ⚡ Enhancements
+- **Cleaner Architecture:** MCP server now runs independently from CLI commands
+- **Better Separation:** Clear distinction between CLI and MCP server functionality  
+- **Faster Startup:** Direct execution without intermediate CLI process
+- **Simplified Maintenance:** No command proxying through CLI layer
+- **Enhanced getVersion Tool:** Disconnected it from the CLI layer and it works on its own.  Provides richer information including tool name, description and version.
+- **Cleaner Architecture:** Renamed the following folders: `cli-docs` to `docs` and `cli-project-template` to `project-template`.
+
+### 🧹 Cleanup
+- Removed `mcp-server` command from `cm` CLI - no longer available as `cm mcp-server`
+- Updated all documentation to reflect new command structure
+<br><br>
+
+---
+
 ## Version 1.0.0-beta.13 – *Standalone MCP Tools & Tool Rename*
 
 ### 🆕 New Features
@@ -21,7 +68,7 @@
 
 ### 🆕 New Features  
 - Added new MCP tools: `changeCurrentModel` and `showCurrentModel`.  
-  See [documentation](./tutorials/mcp-server-calude-setup/README.md) for more details.
+  See [documentation](./tutorials/mcp-server-claude-setup/README.md) for more details.
 
 ### ⚡ Enhancements
 - Refactored MCP tools to share validation utilities, improving integration and performance.
@@ -30,8 +77,8 @@
 ## Version 1.0.0-beta.11 – *MCP Server*
 
 ### 🆕 New Features
-- Introduced MCP Server support: run `cm mcp-server` to use the CLI with Claude, Postman, or other MCP clients.  
-  See [documentation](./tutorials/mcp-server-calude-setup/README.md) for setup.  
+- Introduced MCP Server support: run `cm-mcp-server` to use the CLI with Claude, Postman, or other MCP clients.  
+  See [documentation](./tutorials/mcp-server-claude-setup/README.md) for setup.  
 - Implemented new MCP tools: `showProjectPath`, `changeProjectPath`, `getVersion`, `listModels`, and `listTemplates`.
 
 ### ⚡ Enhancements

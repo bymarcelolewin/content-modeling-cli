@@ -11,7 +11,7 @@
 
 ### Tutorials
 - [Getting Started Tutorial](tutorials/getting-started/README.md)
-- [MCP Server Setup in Claude Tutorial](tutorials/mcp-server-calude-setup/README.md)
+- [MCP Server Setup in Claude Tutorial](tutorials/mcp-server-claude-setup/README.md)
 
 ### Objects
 - [CLI Commands](commands/README.md)
