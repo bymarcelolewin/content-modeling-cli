@@ -6,7 +6,7 @@
 
 import fs from "fs";
 import path from "path";
-import { getAvailableTemplates } from "../utils/userProjectReader.mjs";
+import { getAvailableTemplates } from "../utilities/userProjectReader.mjs";
 
 export const name = "listTemplates";
 export const description = "Lists all available content model templates in the project.";

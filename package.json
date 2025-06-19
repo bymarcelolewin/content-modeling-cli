@@ -2,19 +2,16 @@
   "name": "content-modeling-cli",
   "version": "1.0.0-beta.14",
   "description": "⚠️ BETA : An MCP Server and CLI tool for building, templating, and managing content models for Contentful using simple JSON files. It can also run as an MCP server for use with Anthropic's Claude and other MCP clients.",
-  "main": "cli-commands/cm.js",
+  "main": "cli/index.js",
   "bin": {
-    "cm": "./cli-commands/cm.js",
-    "contentmodel": "./cli-commands/cm.js",
+    "cm": "./cli/index.js",
+    "contentmodel": "./cli/index.js",
     "cm-mcp-server": "./mcp-server/index.mjs"
   },
   "files": [
-    "cli-commands",
-    "cli-fields",
-    "cli-utilities",
-    "docs",
+    "cli",
+    "common",
     "mcp-server",
-    "project-template",
     "README.md"
   ],
   "scripts": {
@@ -28,7 +25,7 @@
     "cli",
     "content-modeling",
     "headless-cms",
-    "cm",
+    "contentmodeling",
     "mcp",
     "anthropic",
     "model-context-protocol"
@@ -61,12 +58,12 @@
     "access": "public"
   },
   "_moduleAliases": {
-    "@fields": "cli-fields",
-    "@expand": "cli-utilities/expand-components.js",
-    "@validateRegistry": "cli-utilities/validate-field-registry.js",
-    "@resolve-emoji": "cli-utilities/resolve-emoji.js",
-    "@resolve-cma": "cli-utilities/resolve-cma.js",
-    "@loadProjectRoot": "cli-utilities/load-project-root.js",
-    "@validateFieldIds": "cli-utilities/validate-field-ids.js"
+    "@fields": "cli/fields",
+    "@expand": "cli/utilities/expand-components.js",
+    "@validateRegistry": "cli/utilities/validate-field-registry.js",
+    "@resolve-emoji": "cli/utilities/resolve-emoji.js",
+    "@resolve-cma": "cli/utilities/resolve-cma.js",
+    "@loadProjectRoot": "cli/utilities/load-project-root.js",
+    "@validateFieldIds": "cli/utilities/validate-field-ids.js"
   }
 }

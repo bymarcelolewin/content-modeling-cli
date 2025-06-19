@@ -4,8 +4,8 @@
 // last updated: 06-18-2025
 //======================================
 
-import { validateProjectStructure } from "../utils/modelValidation.mjs";
-import { getAvailableModels } from "../utils/userProjectReader.mjs";
+import { validateProjectStructure } from "../utilities/modelValidation.mjs";
+import { getAvailableModels } from "../utilities/userProjectReader.mjs";
 
 export const name = "listModels";
 export const description = "Lists all available content models in the project.";

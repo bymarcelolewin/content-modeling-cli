@@ -1,9 +1,15 @@
 # 🖥️ Content Modeling MCP Server and CLI Release Notes
 
----
+## Version 1.0.0-beta.15 – *Folder Structure Restructure - Part 2*
+### ⚡ Major Architectural Improvements
+- **3-Tier Architecture:** Created clean separation between `cli/`, `mcp-server/`, and `common/` folders
+- **Complete Symmetry:** Both CLI and MCP server now use `index` files as main entry points (`cli/index.js` ↔ `mcp-server/index.mjs`)
+- **Consistent Naming:** Standardized all utility folders to use `utilities/` (renamed `mcp-server/utils/` → `mcp-server/utilities/`)
+- **Professional Structure:** Follows industry-standard Node.js project conventions
+- **Shared Resources:** Created `common/` folder containing `docs/` and `project-template/` for shared components
+<br><br>
 
-## Version 1.0.0-beta.14 – *Stand Alone Tools + Folder Structure Restructure - Part 1*
-
+## Version 1.0.0-beta.14 – *Folder Structure Restructure - Part 1*
 ### 🚨 Breaking Changes
 - **MCP Server Command Change:** The MCP server now runs independently with `cm-mcp-server` instead of `cm mcp-server`
 - **Claude Configuration Update Required:** Users must update their `claude_desktop_config.json` file
@@ -47,8 +53,6 @@
 - Updated all documentation to reflect new command structure
 <br><br>
 
----
-
 ## Version 1.0.0-beta.13 – *Standalone MCP Tools & Tool Rename*
 
 ### 🆕 New Features
@@ -65,7 +69,6 @@
 <br><br>
 
 ## Version 1.0.0-beta.12 – *New MCP Tools*
-
 ### 🆕 New Features  
 - Added new MCP tools: `changeCurrentModel` and `showCurrentModel`.  
   See [documentation](./tutorials/mcp-server-claude-setup/README.md) for more details.
@@ -75,7 +78,6 @@
 <br><br>
 
 ## Version 1.0.0-beta.11 – *MCP Server*
-
 ### 🆕 New Features
 - Introduced MCP Server support: run `cm-mcp-server` to use the CLI with Claude, Postman, or other MCP clients.  
   See [documentation](./tutorials/mcp-server-claude-setup/README.md) for setup.  

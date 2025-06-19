@@ -6,8 +6,8 @@
 
 import fs from "fs";
 import path from "path";
-import { validateProjectStructure } from "../utils/modelValidation.mjs";
-import { getAvailableModels } from "../utils/userProjectReader.mjs";
+import { validateProjectStructure } from "../utilities/modelValidation.mjs";
+import { getAvailableModels } from "../utilities/userProjectReader.mjs";
 
 export const name = "showCurrentModel";
 export const description = "Display the currently selected content model";

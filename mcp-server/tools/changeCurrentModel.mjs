@@ -7,7 +7,7 @@
 import { z } from "zod";
 import fs from "fs";
 import path from "path";
-import { validateForModelOperation } from "../utils/modelValidation.mjs";
+import { validateForModelOperation } from "../utilities/modelValidation.mjs";
 
 export const name = "changeCurrentModel";
 export const description = "Change the currently selected content model";

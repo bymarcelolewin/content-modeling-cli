@@ -11,7 +11,7 @@ const path = require("path");
 const fse = require("fs-extra");
 const readline = require("readline");
 const { spawnSync } = require("child_process");
-const normalizeProjectName = require("../cli-utilities/normalize-project-name");
+const normalizeProjectName = require("../utilities/normalize-project-name");
 
 // --------------------------------------------
 // 🧾 Parse CLI arguments
@@ -38,7 +38,7 @@ try {
 // --------------------------------------------
 // 📁 Paths
 // --------------------------------------------
-const templateDir = path.join(__dirname, "../project-template");
+const templateDir = path.join(__dirname, "../../common/project-template");
 const destDir = path.join(process.cwd(), folderName);
 
 // --------------------------------------------

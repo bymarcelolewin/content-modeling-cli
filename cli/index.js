@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 //======================================
-// file: cm.js
-// version: 1.13
-// last updated: 06-18-2025
+// file: index.js
+// version: 1.15
+// last updated: 06-19-2025
 //======================================
 
 require("module-alias/register");
@@ -56,7 +56,7 @@ program
   .requiredOption('--name <project>', 'Name of the new project (e.g., "My Project")')
   .option('--git', 'Initialize Git in the root of the project with a default .gitignore')
   .action((options) => {
-    const script = path.join(__dirname, 'init-project.js');
+    const script = path.join(__dirname, 'commands', 'init-project.js');
     const args = ['--name', options.name];
     if (options.git) args.push('--git');
     spawn('node', [script, ...args], { stdio: 'inherit' });
@@ -71,7 +71,7 @@ program
   .option('--model <name>', '[required with --template] The name of the new model folder')
   .option('--template <template>', '[required with --model] The template to use (e.g., "simple-blog")')
   .action((options) => {
-    const script = path.join(__dirname, 'create-content-model.js');
+    const script = path.join(__dirname, 'commands', 'create-content-model.js');
     const usingModel = Boolean(options.model);
     const usingTemplate = Boolean(options.template);
     if (!(usingModel && usingTemplate)) {
@@ -93,7 +93,7 @@ program
   .requiredOption('--model <model>', 'Name of the content model folder')
   .option('--force', 'Actually push the model to Contentful (dry run by default)')
   .action((options) => {
-    const script = path.join(__dirname, 'push-content-model.js');
+    const script = path.join(__dirname, 'commands', 'push-content-model.js');
     const args = ['--model', options.model];
     if (options.force) args.push('--force');
     spawn('node', [script, ...args], { stdio: 'inherit' });
@@ -108,7 +108,7 @@ program
   .requiredOption('--model <model>', 'Name of the existing model folder')
   .requiredOption('--name <name>', 'Display name for the new content type (e.g., "Article - Blog")')
   .action((options) => {
-    const script = path.join(__dirname, 'add-content-type.js');
+    const script = path.join(__dirname, 'commands', 'add-content-type.js');
     const args = ['--model', options.model, '--name', options.name];
     spawn('node', [script, ...args], { stdio: 'inherit' });
   });
@@ -122,7 +122,7 @@ program
   .requiredOption('--model <model>', 'The model to delete')
   .option('--force', 'Actually delete content (dry run by default)')
   .action((options) => {
-    const script = path.join(__dirname, 'delete-content-model.js');
+    const script = path.join(__dirname, 'commands', 'delete-content-model.js');
     const args = ['--model', options.model];
     if (options.force) args.push('--force');
     spawn('node', [script, ...args], { stdio: 'inherit' });
@@ -135,7 +135,7 @@ program
   .command('list-templates')
   .description('List all available content model templates and their content types')
   .action((options) => {
-    const script = path.join(__dirname, 'list-templates.js');
+    const script = path.join(__dirname, 'commands', 'list-templates.js');
     spawn('node', [script], { stdio: 'inherit' });
   });
 
@@ -146,7 +146,7 @@ program
   .command('list-models')
   .description('List all available content models in the content-models/models folder')
   .action((options) => {
-    const script = path.join(__dirname, 'list-content-models.js');
+    const script = path.join(__dirname, 'commands', 'list-content-models.js');
     spawn('node', [script], { stdio: 'inherit' });
   });
 
@@ -158,7 +158,7 @@ program
   .description('Run developer-only utilities for validating and debugging field definitions')
   .option('--validate-field-registry', 'Validate field-registry.json file and functions')
   .action((options) => {
-    const script = path.join(__dirname, 'dev.js');
+    const script = path.join(__dirname, 'commands', 'dev.js');
     const args = [];
     if (options.validateFieldRegistry) args.push('--validate-field-registry');
     if (args.length === 0) args.push('--help');
