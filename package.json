@@ -58,7 +58,7 @@
     "access": "public"
   },
   "_moduleAliases": {
-    "@fields": "cli/fields",
+    "@fields": "common/fields",
     "@expand": "cli/utilities/expand-components.js",
     "@validateRegistry": "cli/utilities/validate-field-registry.js",
     "@resolve-emoji": "cli/utilities/resolve-emoji.js",

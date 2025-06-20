@@ -1,7 +1,15 @@
 # 🖥️ Content Modeling MCP Server and CLI Release Notes
 
+## Version 1.0.0-beta.16 – *Folder Structure Restructure - Part 4: Shared Fields*
+### ⚡ Enhancements
+- **Shared Fields Infrastructure:** Moved all field definitions from `cli/fields/` to `common/fields/` for shared usage
+- **MCP Server Preparation:** Fields are now accessible to future MCP server tools that will use field definitions
+- **Module Alias Migration:** Updated `@fields` alias to point to new shared location - zero code changes required
+
+<br><br>
+
 ## Version 1.0.0-beta.15 – *Folder Structure Restructure - Part 2*
-### ⚡ Major Architectural Improvements
+### ⚡ Enhancements
 - **3-Tier Architecture:** Created clean separation between `cli/`, `mcp-server/`, and `common/` folders
 - **Complete Symmetry:** Both CLI and MCP server now use `index` files as main entry points (`cli/index.js` ↔ `mcp-server/index.mjs`)
 - **Consistent Naming:** Standardized all utility folders to use `utilities/` (renamed `mcp-server/utils/` → `mcp-server/utilities/`)
