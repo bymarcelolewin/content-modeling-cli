@@ -2,7 +2,7 @@
 
 © Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reseved.
 
-**NOT associated with Contentful** - Learn more at [ContentModeling.io](https://www.contentmodeling.io/)
+**NOT associated with Contentful** - Learn more at [ByMarceloLewin.com](https://www.bymarcelolewin.com/)
 
 [![License: Custom](https://img.shields.io/badge/license-Custom-lightgrey)](../LICENSE.md)
 [![npm version](https://img.shields.io/npm/v/content-modeling-cli.svg)](https://www.npmjs.com/package/content-modeling-cli)
@@ -27,7 +27,7 @@
 <br>
 
 # More Information
-- Learn more at [ContentModeling.io](https://www.contentmodeling.io/)
+- Learn more at [ByMarceloLewin.com](https://www.bymarcelolewin.com/)
 - Need help, contact [Marcelo Lewin](mailto:marcelo@redpillbluepillstudios.com)
 - Use as is.  No warranty provided.  
 - Do not use it in a production environment.
