@@ -34,7 +34,7 @@ console.log(
 if (process.argv.length <= 2 || process.argv.includes('--version')) {
   console.log(
     'Learn more at https://www.contentmodeling.io\n' +
-    'For help contact marcelo@contentmodeling.io\n\n' +
+    'For help contact marcelo@redpillbluepillstudios.com\n\n' +
     'Licensed for Contentful modeling only. See LICENSE.md in the project or NPM page for full terms.\n\n' +
     'Not associated with Contentful.\n' +
     'Use "as is". No warranty provided.\n\n' +

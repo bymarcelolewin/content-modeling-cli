@@ -15,4 +15,4 @@ Commercial use—including integration into SaaS platforms, hosted services, res
 
 This software is provided "AS IS", without warranty of any kind.
 
-For licensing inquiries, contact: marcelo@contentmodeling.io
+For licensing inquiries, contact: marcelo@redpillbluepillstudios.com

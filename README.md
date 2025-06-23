@@ -27,7 +27,7 @@ Check out our [documentation](common/docs/README.md)!
 
 # More Information
 - Learn more at [ContentModeling.io](https://www.contentmodeling.io/)
-- Need help, contact [Marcelo Lewin](mailto:marcelo@contentmodeling.io)
+- Need help, contact [Marcelo Lewin](mailto:marcelo@redpillbluepillstudios.com)
 - Check out the [latest release notes](common/docs/release_notes.md).
 - Use as is.  No warranty provided.  
 - Do not use it in a production environment.
