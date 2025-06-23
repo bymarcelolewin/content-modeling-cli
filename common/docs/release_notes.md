@@ -1,5 +1,9 @@
 # 🖥️ Content Modeling MCP Server and CLI Release Notes
 
+## Version 1.0.0-beta.17 – *Update to websitge URL*
+### ⚡ Enhancements
+- **New Website Links:** Update the links to the new website.
+
 ## Version 1.0.0-beta.16 – *Folder Structure Restructure - Part 4: Shared Fields*
 ### ⚡ Enhancements
 - **Shared Fields Infrastructure:** Moved all field definitions from `cli/fields/` to `common/fields/` for shared usage
