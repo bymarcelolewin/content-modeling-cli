@@ -1,6 +1,6 @@
 {
   "name": "@icodewith-ai/content-modeling-cli",
-  "version": "1.0.0-beta.19",
+  "version": "1.0.0-beta.20",
   "description": "⚠️ BETA : An MCP Server and CLI tool for building, templating, and managing content models for Contentful using simple JSON files. It can also run as an MCP server for use with Anthropic's Claude and other MCP clients.",
   "main": "cli/index.js",
   "bin": {
