@@ -4,9 +4,9 @@
   "description": "⚠️ BETA : An MCP Server and CLI tool for building, templating, and managing content models for Contentful using simple JSON files. It can also run as an MCP server for use with Anthropic's Claude and other MCP clients.",
   "main": "cli/index.js",
   "bin": {
-    "cm": "./cli/index.js",
-    "contentmodel": "./cli/index.js",
-    "cm-mcp-server": "./mcp-server/index.mjs"
+    "cm": "cli/index.js",
+    "contentmodel": "cli/index.js",
+    "cm-mcp-server": "mcp-server/index.mjs"
   },
   "files": [
     "cli",
@@ -38,7 +38,7 @@
   "homepage": "https://www.bymarcelolewin.com/apps/content-modeling-cli/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/icodewith-ai/content-modeling-cli.git"
+    "url": "git+https://github.com/icodewith-ai/content-modeling-cli.git"
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {
