@@ -21,7 +21,7 @@ This option is for developers who want to work directly with the source code.
 1. Clone the repo:
 
     ```bash
-    git clone https://github.com/bymarcelolewin/Content-Modeling-CLI.git
+    git clone https://github.com/icodewith-ai/content-modeling-cli.git
     ```
 
 2. Navigate into the folder:

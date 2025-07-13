@@ -245,5 +245,5 @@ The implementation provides a solid foundation for future MCP tool development a
 ---
 
 **Project Team**: Claude (Implementation) + User (Validation & Testing)  
-**Repository**: [Content-Modeling-CLI](https://github.com/bymarcelolewin/Content-Modeling-CLI)  
-**Documentation**: [ByMarceloLewin.com](https://www.bymarcelolewin.com/)
+**Repository**: [Content-Modeling-CLI](https://github.com/icodewith-ai/content-modeling-cli.git)  
+**Documentation**: [iCodeWith.ai](https://iCodeWith.ai)

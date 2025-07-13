@@ -86,8 +86,8 @@ The Content Modeling MCP Server and CLI is a comprehensive tool for building, te
 
 - **Author**: Marcelo Lewin (marcelo@redpillbluepillstudios.com)
 - **Organization**: Red Pill Blue Pill Studios, LLC
-- **Website**: [ByMarceloLewin.com](https://www.bymarcelolewin.com/)
-- **Repository**: [GitHub](https://github.com/bymarcelolewin/Content-Modeling-CLI)
+- **Website**: [iCodeWith.ai](https://iCodeWith.ai)
+- **Repository**: [GitHub](https://github.com/icodewith-ai/content-modeling-cli.git)
 
 ---
 

@@ -32,10 +32,10 @@
   ],
   "author": {
     "name": "Marcelo Lewin",
-    "email": "marcelo@redpillbluepillstudios.com",
-    "url": "https://www.bymarcelolewin.com"
+    "email": "marcelo@icodewith.ai",
+    "url": "https://www.icodewith.ai"
   },
-  "homepage": "https://www.bymarcelolewin.com/apps/content-modeling-cli/",
+  "homepage": "https://www.icodewith.ai/apps/content-modeling-cli/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/icodewith-ai/content-modeling-cli.git"
