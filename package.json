@@ -1,5 +1,5 @@
 {
-  "name": "content-modeling-cli",
+  "name": "@icodewith-ai/content-modeling-cli",
   "version": "1.0.0-beta.18",
   "description": "⚠️ BETA : An MCP Server and CLI tool for building, templating, and managing content models for Contentful using simple JSON files. It can also run as an MCP server for use with Anthropic's Claude and other MCP clients.",
   "main": "cli/index.js",
@@ -17,7 +17,7 @@
   "scripts": {
     "test": "echo \"No test specified\" && exit 0",
     "start:mcp-server": "node mcp-server/index.mjs",
-    "release:beta": "npm version prerelease --preid=beta && npm publish --tag beta && npm dist-tag add content-modeling-cli@$(node -p \"require('./package.json').version\") latest && git push && git push --tags"
+    "release:beta": "npm version prerelease --preid=beta && npm publish --tag beta && npm dist-tag add @icodewith-ai/content-modeling-cli@$(node -p \"require('./package.json').version\") latest && git push && git push --tags"
   },
   "keywords": [
     "contentful",
@@ -38,7 +38,7 @@
   "homepage": "https://www.bymarcelolewin.com/apps/content-modeling-cli/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bymarcelolewin/Content-Modeling-CLI.git"
+    "url": "https://github.com/icodewith-ai/content-modeling-cli.git"
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {

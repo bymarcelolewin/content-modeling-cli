@@ -5,7 +5,7 @@
 **NOT associated with Contentful** - Learn more at [ByMarceloLewin.com](https://www.bymarcelolewin.com/)
 
 [![License: Custom](https://img.shields.io/badge/license-Custom-lightgrey)](LICENSE.md)
-[![npm version](https://img.shields.io/npm/v/content-modeling-cli.svg)](https://www.npmjs.com/package/content-modeling-cli)
+[![npm version](https://img.shields.io/npm/v/@icodewith-ai/content-modeling-cli.svg)](https://www.npmjs.com/package/@icodewith-ai/content-modeling-cli)
 
 # Content Modeling MCP Server and CLI
 ⚠️ BETA – An MCP Server and CLI for content modeling in Contentful, purpose-built for content modeling architects, developers and teams working in Contentful.
