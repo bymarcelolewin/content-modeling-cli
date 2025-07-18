@@ -1,4 +1,4 @@
-![Content Modeling MCP Server and CLI for Contentful](./common/docs/assets/cmcli-logo.png)
+![Content Modeling MCP Server and CLI for Contentful](./assets/cmcli-logo.png)
 
 © Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reseved.
 
