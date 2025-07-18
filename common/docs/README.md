@@ -1,11 +1,11 @@
-![Content Modeling MCP Server and CLI for Contentful](./assets/cmcli-logo.png)
+![Content Modeling MCP Server and CLI for Contentful](./common/docs/assets/cmcli-logo.png)
 
 © Copyright 2025 - Red Pill Blue Pill Studios, LLC - All Rights Reseved.
 
 **NOT associated with Contentful** - Learn more at [iCodeWith.ai](https://iCodeWith.ai/)
 
-[![License: Custom](https://img.shields.io/badge/license-Custom-lightgrey)](../LICENSE.md)
-[![npm version](https://img.shields.io/npm/v/content-modeling-cli.svg)](https://www.npmjs.com/package/content-modeling-cli)
+[![License: Custom](https://img.shields.io/badge/license-Custom-lightgrey)](LICENSE.md)
+[![npm version](https://img.shields.io/npm/v/@icodewith-ai/content-modeling-cli.svg)](https://www.npmjs.com/package/@icodewith-ai/content-modeling-cli)
 
 # Content Modeling MCP Server and CLI Documentation
 
@@ -38,4 +38,4 @@ This project is **not open source**. It is source-available and licensed for the
 
 You may integrate it into CI/CD pipelines or internal workflows, but redistribution, republishing, or commercial use are prohibited.
 
-See [our license](../LICENSE.md) for full terms.
+See [our license](../../LICENSE.md) for full terms.
