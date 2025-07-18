@@ -17,7 +17,7 @@
   "scripts": {
     "test": "echo \"No test specified\" && exit 0",
     "start:mcp-server": "node mcp-server/index.mjs",
-    "release:beta": "npm version prerelease --preid=beta && npm publish --tag beta && npm dist-tag add @icodewith-ai/content-modeling-cli@$(node -p \"require('./package.json').version\") latest && git push && git push --tags"
+    "release:beta": "npm version prerelease --preid=beta && npm publish --tag beta && npm dist-tag add @icodewith-ai/content-modeling-cli@$(node -p \"require('./package.json').version\") latest && git push && git push --tags && git checkout dev && git merge main && git push"
   },
   "keywords": [
     "contentful",
