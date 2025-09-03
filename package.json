@@ -1,7 +1,7 @@
 {
-  "name": "@icodewith-ai/content-modeling-cli",
-  "version": "1.0.0-beta.21",
-  "description": "⚠️ BETA : An MCP Server and CLI tool for building, templating, and managing content models for Contentful using simple JSON files. It can also run as an MCP server for use with Anthropic's Claude and other MCP clients.",
+  "name": "@bymarcelolewin/content-modeling-cli",
+  "version": "1.0.0",
+  "description": "An MCP Server and CLI tool for building, templating, and managing content models for Contentful using simple JSON files. It can also run as an MCP server for use with Anthropic's Claude and other MCP clients.",
   "main": "cli/index.js",
   "bin": {
     "cm": "cli/index.js",
@@ -17,7 +17,9 @@
   "scripts": {
     "test": "echo \"No test specified\" && exit 0",
     "start:mcp-server": "node mcp-server/index.mjs",
-    "release:beta": "npm version prerelease --preid=beta && npm publish --tag beta && npm dist-tag add @icodewith-ai/content-modeling-cli@$(node -p \"require('./package.json').version\") latest && git push && git push --tags && git checkout dev && git merge main && git push"
+    "release:patch": "git checkout main && git pull && git merge dev && npm version patch && npm publish && git push && git push --tags && git checkout dev && git merge main && git push",
+    "release:minor": "git checkout main && git pull && git merge dev && npm version minor && npm publish && git push && git push --tags && git checkout dev && git merge main && git push",
+    "release:major": "git checkout main && git pull && git merge dev && npm version major && npm publish && git push && git push --tags && git checkout dev && git merge main && git push"
   },
   "keywords": [
     "contentful",
@@ -38,7 +40,7 @@
   "homepage": "https://www.icodewith.ai/apps/content-modeling-cli/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/icodewith-ai/content-modeling-cli.git"
+    "url": "git+https://github.com/bymarcelolewin/content-modeling-cli.git"
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {

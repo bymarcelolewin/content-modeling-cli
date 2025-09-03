@@ -5,10 +5,10 @@
 **NOT associated with Contentful** - Learn more at [iCodeWith.ai](https://iCodeWith.ai/)
 
 [![License: Custom](https://img.shields.io/badge/license-Custom-lightgrey)](LICENSE.md)
-[![npm version](https://img.shields.io/npm/v/@icodewith-ai/content-modeling-cli.svg)](https://www.npmjs.com/package/@icodewith-ai/content-modeling-cli)
+[![npm version](https://img.shields.io/npm/v/@bymarcelolewin/content-modeling-cli.svg)](https://www.npmjs.com/package/@bymarcelolewin/content-modeling-cli)
 
 # Content Modeling MCP Server and CLI
-⚠️ BETA – An MCP Server and CLI for content modeling in Contentful, purpose-built for content modeling architects, developers and teams working in Contentful.
+An MCP Server and CLI for content modeling in Contentful, purpose-built for content modeling architects, developers and teams working in Contentful.
 
 Define content types, fields, and relationships using clean, structured JSON—no scripting or programming required. Create reusable components with predefined options and default values, and apply them across models for consistency and speed.
 
@@ -26,7 +26,7 @@ Spend less time clicking through the UI and more time designing scalable, reusab
 Check out our [documentation](common/docs/README.md)!
 
 # More Information
-- Learn more at [iCodeWith.ai](https://iCodeWith.ai/)
+- Learn more at [iCodeWith.ai](https://www.iCodeWith.ai/)
 - Need help, contact [Marcelo Lewin](mailto:marcelo@icodewith.ai)
 - Check out the [latest release notes](common/docs/release_notes.md).
 - Use as is.  No warranty provided.  
